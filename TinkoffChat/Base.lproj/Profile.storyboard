@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,41 +18,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Iz-Up-Q5F">
-                                <rect key="frame" x="29" y="69" width="120" height="120"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="0Iz-Up-Q5F">
+                                <rect key="frame" x="32" y="100" width="100" height="100"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="0Iz-Up-Q5F" secondAttribute="height" multiplier="1:1" id="8Km-zU-Rff"/>
+                                    <constraint firstAttribute="width" constant="100" id="x6p-VW-Sfd"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Владимир Павлов" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uy-Jj-kDX">
-                                <rect key="frame" x="179" y="84" width="145" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vladimir Pavlov" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3uy-Jj-kDX">
+                                <rect key="frame" x="148" y="100" width="207" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="iOS Developer at noname company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pls-k8-n6s">
-                                <rect key="frame" x="179" y="134" width="141" height="55"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifb-tT-LIn">
-                                <rect key="frame" x="54" y="299" width="71" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifb-tT-LIn">
+                                <rect key="frame" x="40" y="240" width="71" height="30"/>
                                 <state key="normal" title="Изменить">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QXf-QD-Id5">
-                                <rect key="frame" x="223" y="299" width="81" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QXf-QD-Id5">
+                                <rect key="frame" x="254" y="240" width="81" height="30"/>
                                 <state key="normal" title="Подробнее">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iOS Developer at a no-name company" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pls-k8-n6s">
+                                <rect key="frame" x="148" y="129" width="207" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="0Iz-Up-Q5F" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="80" id="6Qz-PU-jkF"/>
+                            <constraint firstItem="0Iz-Up-Q5F" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="FjR-79-tD9"/>
+                            <constraint firstItem="Pls-k8-n6s" firstAttribute="trailing" secondItem="3uy-Jj-kDX" secondAttribute="trailing" id="Ke0-cQ-5s3"/>
+                            <constraint firstItem="Ifb-tT-LIn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="MXP-Bn-LpI"/>
+                            <constraint firstItem="Pls-k8-n6s" firstAttribute="top" secondItem="3uy-Jj-kDX" secondAttribute="bottom" constant="8" symbolic="YES" id="Naf-VS-OEl"/>
+                            <constraint firstItem="Ifb-tT-LIn" firstAttribute="top" secondItem="0Iz-Up-Q5F" secondAttribute="bottom" constant="40" id="VQg-HF-3Mj"/>
+                            <constraint firstItem="Pls-k8-n6s" firstAttribute="leading" secondItem="3uy-Jj-kDX" secondAttribute="leading" id="gcJ-K8-Tvq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QXf-QD-Id5" secondAttribute="trailing" constant="40" id="i3w-mV-x4f"/>
+                            <constraint firstItem="3uy-Jj-kDX" firstAttribute="leading" secondItem="0Iz-Up-Q5F" secondAttribute="trailing" constant="16" id="ojX-kn-x9K"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3uy-Jj-kDX" secondAttribute="trailing" constant="20" id="qAd-aK-EdR"/>
+                            <constraint firstItem="QXf-QD-Id5" firstAttribute="baseline" secondItem="Ifb-tT-LIn" secondAttribute="baseline" id="reV-qd-Z8U"/>
+                            <constraint firstItem="QXf-QD-Id5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ifb-tT-LIn" secondAttribute="trailing" id="vCG-Dz-9i8"/>
+                            <constraint firstItem="3uy-Jj-kDX" firstAttribute="top" secondItem="0Iz-Up-Q5F" secondAttribute="top" id="x5c-SQ-ywe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -60,4 +75,7 @@
             <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="avatar" width="213" height="213"/>
+    </resources>
 </document>
