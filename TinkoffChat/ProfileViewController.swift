@@ -32,23 +32,9 @@ class ProfileViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        // Этот кусок кода вызовет ошибку, т.к. на данном этапе subviews контроллера (в т.ч. IBOutelet'ы) еще не проинициализированы
-//        print("\(#function): \(editButton.frame)")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("\(#function): \(editButton.frame)")
         imagePicker.delegate = self
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        // frame кнопки мог поменяться, т.к. на данный момент должны были отработать методы viewWill(Did)LayoutSubviews.
-        // Увы, этого не произошло. Мистика.
-        print("\(#function): \(editButton.frame)")
     }
 }
 
