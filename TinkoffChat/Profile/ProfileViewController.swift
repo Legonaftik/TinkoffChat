@@ -32,6 +32,10 @@ class ProfileViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 
+    @IBAction func goBack(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self

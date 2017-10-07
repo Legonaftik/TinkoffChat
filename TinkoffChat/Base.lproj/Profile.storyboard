@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile View Controller-->
+        <!--Профиль-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,9 +21,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="14D-BG-JNp">
-                                <rect key="frame" x="16" y="36" width="343" height="615"/>
+                                <rect key="frame" x="16" y="80" width="343" height="571"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nJ-OU-YU6">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7nJ-OU-YU6" userLabel="AvatarContainer">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="343"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-user" translatesAutoresizingMaskIntoConstraints="NO" id="vEe-vA-FCi" customClass="DesignableImageView" customModule="TinkoffChat" customModuleProvider="target">
@@ -59,16 +59,16 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="vEe-vA-FCi" secondAttribute="bottom" id="CeM-1B-8R8"/>
+                                            <constraint firstItem="vEe-vA-FCi" firstAttribute="top" secondItem="7nJ-OU-YU6" secondAttribute="top" id="G9k-sN-pLF"/>
                                             <constraint firstAttribute="trailing" secondItem="0MA-pv-guj" secondAttribute="trailing" id="JT5-jg-oyH"/>
                                             <constraint firstAttribute="trailing" secondItem="vEe-vA-FCi" secondAttribute="trailing" id="PqC-O6-WCv"/>
-                                            <constraint firstItem="vEe-vA-FCi" firstAttribute="top" secondItem="7nJ-OU-YU6" secondAttribute="top" id="gYk-fw-8ct"/>
                                             <constraint firstAttribute="width" secondItem="7nJ-OU-YU6" secondAttribute="height" multiplier="1:1" id="jPX-7C-xsb"/>
                                             <constraint firstItem="vEe-vA-FCi" firstAttribute="leading" secondItem="7nJ-OU-YU6" secondAttribute="leading" id="l7n-eP-lMV"/>
                                             <constraint firstAttribute="bottom" secondItem="0MA-pv-guj" secondAttribute="bottom" id="n96-8X-odj"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lf4-zt-FA6">
-                                        <rect key="frame" x="0.0" y="343" width="343" height="228"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lf4-zt-FA6" userLabel="LabelsContainer">
+                                        <rect key="frame" x="0.0" y="343" width="343" height="184"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vladimir Pavlov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUH-ly-51c">
                                                 <rect key="frame" x="8" y="8" width="327" height="29"/>
@@ -93,7 +93,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Va-9G-dL3" customClass="DesignableButton" customModule="TinkoffChat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="571" width="343" height="44"/>
+                                        <rect key="frame" x="0.0" y="527" width="343" height="44"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="dhp-nJ-Y8w"/>
@@ -120,12 +120,19 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="14D-BG-JNp" secondAttribute="trailing" constant="16" id="1sk-BK-IdW"/>
-                            <constraint firstItem="14D-BG-JNp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="HyT-aq-8QX"/>
                             <constraint firstItem="14D-BG-JNp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="cbi-n9-muO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="14D-BG-JNp" secondAttribute="bottom" constant="16" id="dez-Ur-cPQ"/>
+                            <constraint firstItem="14D-BG-JNp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="vy3-IJ-0CH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Профиль" id="ZLd-0J-Ag7">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="pyE-G3-MhL">
+                            <connections>
+                                <action selector="goBack:" destination="BYZ-38-t0r" id="jhH-Qb-bAg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="avatarImageView" destination="vEe-vA-FCi" id="OIc-LQ-HXP"/>
                         <outlet property="editButton" destination="9Va-9G-dL3" id="ZMj-3x-diq"/>
@@ -133,7 +140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="526" y="707"/>
+            <point key="canvasLocation" x="1225" y="689"/>
         </scene>
         <!--Tinkoff Chat-->
         <scene sceneID="x6x-8r-T4a">
@@ -208,10 +215,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Khc-gr-mbP"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Tinkoff Chat" id="x4C-Wk-uf9"/>
+                    <navigationItem key="navigationItem" title="Tinkoff Chat" id="x4C-Wk-uf9">
+                        <barButtonItem key="rightBarButtonItem" title="Профиль" id="YTm-CR-onn">
+                            <connections>
+                                <segue destination="vnf-u7-wb8" kind="presentation" id="mjm-mR-cFR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="viewModel" destination="yUF-3Z-C7x" id="TWP-Pf-eQE"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toProfile" id="uPn-sW-Cd0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pn-sT-WKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -229,6 +241,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="UdP-4K-OKA"/>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kny-oD-w78" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -251,6 +265,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3sW-Oo-8sA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-178" y="-9"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="abF-20-snI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vnf-u7-wb8" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SKT-ii-aHg">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="5j0-DZ-6L9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A00-JC-yVg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="526" y="689"/>
         </scene>
     </scenes>
     <resources>
