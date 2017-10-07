@@ -11,7 +11,7 @@ import UIKit
 class ConversationsListViewController: UIViewController {
 
     @IBOutlet var viewModel: ConversationListViewModel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -28,7 +28,7 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ConversationTableViewCell
         return cell
     }
 
@@ -41,5 +41,9 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
         default:
             return nil
         }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

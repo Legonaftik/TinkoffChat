@@ -133,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="526" y="754"/>
+            <point key="canvasLocation" x="526" y="707"/>
         </scene>
         <!--Tinkoff Chat-->
         <scene sceneID="x6x-8r-T4a">
@@ -147,40 +147,49 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="118" id="FoR-Ed-3v0" customClass="ConversationTableViewCell" customModule="TinkoffChat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="118"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="81" id="FoR-Ed-3v0" customClass="ConversationTableViewCell" customModule="TinkoffChat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FoR-Ed-3v0" id="ULB-wM-Njg">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="117.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="80.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kirill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3VR-m5-azE">
-                                                    <rect key="frame" x="28" y="26" width="33" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Kirill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3VR-m5-azE">
+                                                    <rect key="frame" x="8" y="8" width="33" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Привет, как дела?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQE-Ef-rsd">
-                                                    <rect key="frame" x="28" y="67" width="144" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Привет, как дела?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQE-Ef-rsd">
+                                                    <rect key="frame" x="8" y="45" width="326" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="16:40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2v-S1-Cgl">
-                                                    <rect key="frame" x="300" y="26" width="44" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16:40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h2v-S1-Cgl">
+                                                    <rect key="frame" x="290" y="8" width="44" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="jQE-Ef-rsd" secondAttribute="trailing" id="1WO-9w-uUG"/>
+                                                <constraint firstItem="h2v-S1-Cgl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3VR-m5-azE" secondAttribute="trailing" constant="8" id="3MG-3b-P2z"/>
+                                                <constraint firstItem="3VR-m5-azE" firstAttribute="leading" secondItem="ULB-wM-Njg" secondAttribute="leadingMargin" id="ABi-Mz-gYv"/>
+                                                <constraint firstItem="3VR-m5-azE" firstAttribute="top" secondItem="ULB-wM-Njg" secondAttribute="topMargin" id="ETm-Gc-4UW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="h2v-S1-Cgl" secondAttribute="trailing" id="FLc-vP-Hy1"/>
+                                                <constraint firstItem="h2v-S1-Cgl" firstAttribute="baseline" secondItem="3VR-m5-azE" secondAttribute="baseline" id="JKR-xe-LyF"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="jQE-Ef-rsd" secondAttribute="bottom" id="XfP-UF-lFH"/>
+                                                <constraint firstItem="jQE-Ef-rsd" firstAttribute="leading" secondItem="ULB-wM-Njg" secondAttribute="leadingMargin" id="jz1-ud-oAa"/>
+                                                <constraint firstItem="jQE-Ef-rsd" firstAttribute="top" secondItem="3VR-m5-azE" secondAttribute="bottom" constant="16" id="p76-NJ-o2q"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="h2v-S1-Cgl" id="srD-7r-IJ3"/>
                                             <outlet property="messageLabel" destination="jQE-Ef-rsd" id="bUe-uS-4r7"/>
                                             <outlet property="nameLabel" destination="3VR-m5-azE" id="Tj1-J4-uOG"/>
+                                            <segue destination="2GI-yy-TU1" kind="show" identifier="toConversation" id="lFM-xb-t44"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -202,8 +211,7 @@
                     <navigationItem key="navigationItem" title="Tinkoff Chat" id="x4C-Wk-uf9"/>
                     <connections>
                         <outlet property="viewModel" destination="yUF-3Z-C7x" id="TWP-Pf-eQE"/>
-                        <segue destination="2GI-yy-TU1" kind="show" id="sDW-14-vrc"/>
-                        <segue destination="BYZ-38-t0r" kind="presentation" id="uPn-sW-Cd0"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="toProfile" id="uPn-sW-Cd0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pn-sT-WKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -224,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kny-oD-w78" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1332" y="-13"/>
+            <point key="canvasLocation" x="1225" y="-9"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sP0-RL-MWq">
