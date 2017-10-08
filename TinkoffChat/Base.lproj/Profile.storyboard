@@ -253,11 +253,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yEE-xW-lNI">
-                                                    <rect key="frame" x="8" y="8" width="193" height="27.5"/>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yEE-xW-lNI" customClass="DesignableView" customModule="TinkoffChat" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="8" width="201" height="27.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Входящее сообщение" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMQ-Q9-hfL">
-                                                            <rect key="frame" x="8" y="8" width="177" height="11.5"/>
+                                                            <rect key="frame" x="12" y="8" width="177" height="11.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -265,11 +265,16 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="jMQ-Q9-hfL" secondAttribute="trailing" id="2Av-5b-ymF"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="jMQ-Q9-hfL" secondAttribute="bottom" id="GpR-fR-Q3j"/>
-                                                        <constraint firstItem="jMQ-Q9-hfL" firstAttribute="leading" secondItem="yEE-xW-lNI" secondAttribute="leadingMargin" id="Zml-8S-mz5"/>
-                                                        <constraint firstItem="jMQ-Q9-hfL" firstAttribute="top" secondItem="yEE-xW-lNI" secondAttribute="topMargin" id="g2L-ro-Cue"/>
+                                                        <constraint firstAttribute="trailing" secondItem="jMQ-Q9-hfL" secondAttribute="trailing" constant="12" id="2Av-5b-ymF"/>
+                                                        <constraint firstAttribute="bottom" secondItem="jMQ-Q9-hfL" secondAttribute="bottom" constant="8" id="GpR-fR-Q3j"/>
+                                                        <constraint firstItem="jMQ-Q9-hfL" firstAttribute="leading" secondItem="yEE-xW-lNI" secondAttribute="leading" constant="12" id="Zml-8S-mz5"/>
+                                                        <constraint firstItem="jMQ-Q9-hfL" firstAttribute="top" secondItem="yEE-xW-lNI" secondAttribute="top" constant="8" id="g2L-ro-Cue"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -279,6 +284,11 @@
                                                 <constraint firstItem="yEE-xW-lNI" firstAttribute="leading" secondItem="cWI-sP-Jwa" secondAttribute="leadingMargin" id="VlJ-6V-Lwm"/>
                                                 <constraint firstItem="yEE-xW-lNI" firstAttribute="width" relation="lessThanOrEqual" secondItem="cWI-sP-Jwa" secondAttribute="width" multiplier="0.7" id="wWm-rd-hjm"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="8"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="messageTextLabel" destination="jMQ-Q9-hfL" id="ofd-M2-L9D"/>
@@ -291,11 +301,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KhB-47-YDR">
-                                                    <rect key="frame" x="163.5" y="8" width="203.5" height="27.5"/>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KhB-47-YDR" customClass="DesignableView" customModule="TinkoffChat" customModuleProvider="target">
+                                                    <rect key="frame" x="155.5" y="8" width="211.5" height="27.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Исходящее сообщение" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feb-ea-y4R">
-                                                            <rect key="frame" x="8" y="8" width="187.5" height="11.5"/>
+                                                            <rect key="frame" x="12" y="8" width="187.5" height="11.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -303,11 +313,16 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.32275069516811483" green="0.56694718113931308" blue="0.98548370600000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="feb-ea-y4R" firstAttribute="top" secondItem="KhB-47-YDR" secondAttribute="topMargin" id="8tU-lQ-hxJ"/>
-                                                        <constraint firstItem="feb-ea-y4R" firstAttribute="leading" secondItem="KhB-47-YDR" secondAttribute="leadingMargin" id="Fj9-pg-rnL"/>
-                                                        <constraint firstAttribute="bottomMargin" secondItem="feb-ea-y4R" secondAttribute="bottom" id="INZ-R3-nDq"/>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="feb-ea-y4R" secondAttribute="trailing" id="fpg-Dz-Nvc"/>
+                                                        <constraint firstAttribute="trailing" secondItem="feb-ea-y4R" secondAttribute="trailing" constant="12" id="4Bx-Js-cvv"/>
+                                                        <constraint firstItem="feb-ea-y4R" firstAttribute="top" secondItem="KhB-47-YDR" secondAttribute="top" constant="8" id="AGP-Wv-eaX"/>
+                                                        <constraint firstAttribute="bottom" secondItem="feb-ea-y4R" secondAttribute="bottom" constant="8" id="WnD-eD-lFT"/>
+                                                        <constraint firstItem="feb-ea-y4R" firstAttribute="leading" secondItem="KhB-47-YDR" secondAttribute="leading" constant="12" id="azl-5R-g5r"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
