@@ -253,7 +253,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yEE-xW-lNI" customClass="DesignableView" customModule="TinkoffChat" customModuleProvider="target">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yEE-xW-lNI" customClass="IncomingMessageContainerView" customModule="TinkoffChat" customModuleProvider="target">
                                                     <rect key="frame" x="8" y="8" width="201" height="27.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Входящее сообщение" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMQ-Q9-hfL">
@@ -270,11 +270,6 @@
                                                         <constraint firstItem="jMQ-Q9-hfL" firstAttribute="leading" secondItem="yEE-xW-lNI" secondAttribute="leading" constant="12" id="Zml-8S-mz5"/>
                                                         <constraint firstItem="jMQ-Q9-hfL" firstAttribute="top" secondItem="yEE-xW-lNI" secondAttribute="top" constant="8" id="g2L-ro-Cue"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="15"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -301,7 +296,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KhB-47-YDR" customClass="DesignableView" customModule="TinkoffChat" customModuleProvider="target">
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KhB-47-YDR" customClass="OutgoingMessageContainerView" customModule="TinkoffChat" customModuleProvider="target">
                                                     <rect key="frame" x="155.5" y="8" width="211.5" height="27.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Исходящее сообщение" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feb-ea-y4R">
@@ -318,11 +313,6 @@
                                                         <constraint firstAttribute="bottom" secondItem="feb-ea-y4R" secondAttribute="bottom" constant="8" id="WnD-eD-lFT"/>
                                                         <constraint firstItem="feb-ea-y4R" firstAttribute="leading" secondItem="KhB-47-YDR" secondAttribute="leading" constant="12" id="azl-5R-g5r"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="15"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>

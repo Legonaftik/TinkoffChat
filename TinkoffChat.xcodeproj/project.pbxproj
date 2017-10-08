@@ -19,7 +19,8 @@
 		F3B55F291F89238B00F8B9A5 /* ConversationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B55F281F89238B00F8B9A5 /* ConversationListViewModel.swift */; };
 		F3D560B01F8AA2520042ADC6 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */; };
 		F3D560B21F8AA5A50042ADC6 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560B11F8AA5A40042ADC6 /* MessageTableViewCell.swift */; };
-		F3D560B41F8AB2B40042ADC6 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560B31F8AB2B40042ADC6 /* DesignableView.swift */; };
+		F3D560B71F8AB6300042ADC6 /* OutgoingMessageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560B61F8AB6300042ADC6 /* OutgoingMessageContainerView.swift */; };
+		F3D560B91F8AB6910042ADC6 /* IncomingMessageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560B81F8AB6910042ADC6 /* IncomingMessageContainerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +38,8 @@
 		F3B55F281F89238B00F8B9A5 /* ConversationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewModel.swift; sourceTree = "<group>"; };
 		F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		F3D560B11F8AA5A40042ADC6 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
-		F3D560B31F8AB2B40042ADC6 /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
+		F3D560B61F8AB6300042ADC6 /* OutgoingMessageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageContainerView.swift; sourceTree = "<group>"; };
+		F3D560B81F8AB6910042ADC6 /* IncomingMessageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageContainerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,8 @@
 		F3D560AE1F8AA2340042ADC6 /* Conversation */ = {
 			isa = PBXGroup;
 			children = (
+				F3D560B61F8AB6300042ADC6 /* OutgoingMessageContainerView.swift */,
+				F3D560B81F8AB6910042ADC6 /* IncomingMessageContainerView.swift */,
 				F3D560B11F8AA5A40042ADC6 /* MessageTableViewCell.swift */,
 				F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */,
 			);
@@ -123,7 +127,6 @@
 			children = (
 				F375861E1F7D8FAA0070C3A1 /* DesignableButton.swift */,
 				F37586201F7D8FCB0070C3A1 /* DesignableImageView.swift */,
-				F3D560B31F8AB2B40042ADC6 /* DesignableView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -200,6 +203,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3D560B91F8AB6910042ADC6 /* IncomingMessageContainerView.swift in Sources */,
+				F3D560B71F8AB6300042ADC6 /* OutgoingMessageContainerView.swift in Sources */,
 				F3630A691F72C9D5005EA5BC /* ProfileViewController.swift in Sources */,
 				F3B55F221F891D0D00F8B9A5 /* ConversationsListViewController.swift in Sources */,
 				F3D560B21F8AA5A50042ADC6 /* MessageTableViewCell.swift in Sources */,
@@ -208,7 +213,6 @@
 				F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */,
 				F3B55F291F89238B00F8B9A5 /* ConversationListViewModel.swift in Sources */,
 				F375861F1F7D8FAB0070C3A1 /* DesignableButton.swift in Sources */,
-				F3D560B41F8AB2B40042ADC6 /* DesignableView.swift in Sources */,
 				F37586211F7D8FCB0070C3A1 /* DesignableImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
