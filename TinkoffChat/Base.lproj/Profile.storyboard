@@ -12,7 +12,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Профиль-->
+        <!--Profile-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -126,7 +126,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Профиль" id="ZLd-0J-Ag7">
+                    <navigationItem key="navigationItem" title="Profile" id="ZLd-0J-Ag7">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="pyE-G3-MhL">
                             <connections>
                                 <action selector="goBack:" destination="BYZ-38-t0r" id="jhH-Qb-bAg"/>
@@ -167,7 +167,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Привет, как дела?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQE-Ef-rsd">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How are you?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQE-Ef-rsd">
                                                     <rect key="frame" x="8" y="45" width="326" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -192,6 +192,7 @@
                                                 <constraint firstItem="jQE-Ef-rsd" firstAttribute="top" secondItem="3VR-m5-azE" secondAttribute="bottom" constant="16" id="p76-NJ-o2q"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.97926563024520874" blue="0.56171411275863647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="h2v-S1-Cgl" id="srD-7r-IJ3"/>
                                             <outlet property="messageLabel" destination="jQE-Ef-rsd" id="bUe-uS-4r7"/>
@@ -216,7 +217,7 @@
                         <viewLayoutGuide key="safeArea" id="Khc-gr-mbP"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tinkoff Chat" id="x4C-Wk-uf9">
-                        <barButtonItem key="rightBarButtonItem" title="Профиль" id="YTm-CR-onn">
+                        <barButtonItem key="rightBarButtonItem" title="Profile" id="YTm-CR-onn">
                             <connections>
                                 <segue destination="vnf-u7-wb8" kind="presentation" id="mjm-mR-cFR"/>
                             </connections>
