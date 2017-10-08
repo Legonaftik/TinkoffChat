@@ -17,6 +17,8 @@
 		F3B55F221F891D0D00F8B9A5 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B55F211F891D0D00F8B9A5 /* ConversationsListViewController.swift */; };
 		F3B55F241F89214400F8B9A5 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B55F231F89214400F8B9A5 /* ConversationTableViewCell.swift */; };
 		F3B55F291F89238B00F8B9A5 /* ConversationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B55F281F89238B00F8B9A5 /* ConversationListViewModel.swift */; };
+		F3D560B01F8AA2520042ADC6 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */; };
+		F3D560B21F8AA5A50042ADC6 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560B11F8AA5A40042ADC6 /* MessageTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		F3B55F211F891D0D00F8B9A5 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		F3B55F231F89214400F8B9A5 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		F3B55F281F89238B00F8B9A5 /* ConversationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewModel.swift; sourceTree = "<group>"; };
+		F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		F3D560B11F8AA5A40042ADC6 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,7 @@
 		F3630A651F72C9D5005EA5BC /* TinkoffChat */ = {
 			isa = PBXGroup;
 			children = (
+				F3D560AE1F8AA2340042ADC6 /* Conversation */,
 				F3B55F261F8922D100F8B9A5 /* Profile */,
 				F3B55F251F8922BB00F8B9A5 /* ConversationList */,
 				F3B55F271F8922E900F8B9A5 /* SupportingFiles */,
@@ -101,6 +106,15 @@
 				F3630A721F72C9D5005EA5BC /* Info.plist */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		F3D560AE1F8AA2340042ADC6 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				F3D560B11F8AA5A40042ADC6 /* MessageTableViewCell.swift */,
+				F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */,
+			);
+			path = Conversation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +191,8 @@
 			files = (
 				F3630A691F72C9D5005EA5BC /* ProfileViewController.swift in Sources */,
 				F3B55F221F891D0D00F8B9A5 /* ConversationsListViewController.swift in Sources */,
+				F3D560B21F8AA5A50042ADC6 /* MessageTableViewCell.swift in Sources */,
+				F3D560B01F8AA2520042ADC6 /* ConversationViewController.swift in Sources */,
 				F3B55F241F89214400F8B9A5 /* ConversationTableViewCell.swift in Sources */,
 				F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */,
 				F3B55F291F89238B00F8B9A5 /* ConversationListViewModel.swift in Sources */,
