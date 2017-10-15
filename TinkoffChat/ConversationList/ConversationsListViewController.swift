@@ -81,7 +81,14 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
         cell.backgroundColor = online ? .yellow : .white
 
         let hasUnreadMessages = indexPath.row % 5 == 0
-        cell.messageLabel.font = hasUnreadMessages ? UIFont.boldSystemFont(ofSize: 18) : UIFont.systemFont(ofSize: 17)
+        let noMessagesYet = message == nil
+        if noMessagesYet {
+            cell.messageLabel.font = UIFont.init(name: "HelveticaNeue-UltraLight", size: 17)!
+        } else if hasUnreadMessages {
+            cell.messageLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        } else {
+            cell.messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
