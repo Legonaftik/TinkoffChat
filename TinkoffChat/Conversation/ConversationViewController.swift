@@ -14,7 +14,7 @@ class ConversationViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView! {
         didSet {
-            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.hideKeyboard))
             tableView.addGestureRecognizer(tapGestureRecognizer)
         }
     }
@@ -23,20 +23,18 @@ class ConversationViewController: UIViewController {
         super.viewDidLoad()
         title = name
     }
-
-    // TODO: For all VCs
-    @objc func hideKeyboard() {
-        view.endEditing(true)
-    }
 }
 
 extension ConversationViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Mock data
         return 6
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Mock data
+
         // Choose the correct cell type
         let cellId = indexPath.row % 2 == 0 ?
             MessageTableViewCell.incomingMessageId :

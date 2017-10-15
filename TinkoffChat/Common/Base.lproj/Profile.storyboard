@@ -77,7 +77,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Junior iOS developer... There should be some more text to show that this label works for more than one line" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rs-K3-SZD">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Junior iOS developer... There should be some more text to show that this label works for more than one line" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rs-K3-SZD">
                                                 <rect key="frame" x="8" y="53" width="327" height="64.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                 <nil key="textColor"/>
@@ -226,11 +226,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="vjJ-Zz-mgQ" id="T76-Xn-m95"/>
-                        <outlet property="viewModel" destination="yUF-3Z-C7x" id="TWP-Pf-eQE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pn-sT-WKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="yUF-3Z-C7x" customClass="ConversationListViewModel" customModule="TinkoffChat" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="525.60000000000002" y="-9.4452773613193415"/>
         </scene>

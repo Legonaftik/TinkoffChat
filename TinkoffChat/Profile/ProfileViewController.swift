@@ -17,18 +17,23 @@ class ProfileViewController: UIViewController {
 
     @IBAction func chooseAvatar() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
         let galeryAction = UIAlertAction(title: "Установить из галереи", style: .default) { _ in
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
         }
+
         let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { _ in
             self.imagePicker.sourceType = .camera
             self.present(self.imagePicker, animated: true, completion: nil)
         }
+
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+
         alertController.addAction(galeryAction)
         alertController.addAction(cameraAction)
         alertController.addAction(cancelAction)
+
         present(alertController, animated: true, completion: nil)
     }
 
@@ -45,8 +50,8 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let photo = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            avatarImageView.image = photo
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            avatarImageView.image = image
         }
         dismiss(animated: true, completion: nil)
     }
