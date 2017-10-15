@@ -33,4 +33,16 @@ extension UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(_:)),
                                                name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
     }
+
+    func displayAlert(title: String? = "Внимание!", message: String? = nil, firstAction: UIAlertAction, secondAction: UIAlertAction? = nil) {
+
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        alertController.addAction(firstAction)
+        if let secondAction = secondAction {
+            alertController.addAction(secondAction)
+        }
+
+        self.present(alertController, animated: true, completion: nil)
+    }
 }

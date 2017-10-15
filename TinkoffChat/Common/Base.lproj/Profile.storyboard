@@ -83,10 +83,17 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="EPQ-aR-yet">
+                                                <rect key="frame" x="153" y="100" width="37" height="37"/>
+                                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="EPQ-aR-yet" firstAttribute="centerX" secondItem="lf4-zt-FA6" secondAttribute="centerX" id="7SD-Wm-XLP"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="skE-4O-Uhk" secondAttribute="trailing" id="9fi-F4-h6F"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="EPQ-aR-yet" secondAttribute="bottom" id="FFU-ES-XGC"/>
                                             <constraint firstItem="skE-4O-Uhk" firstAttribute="leading" secondItem="lf4-zt-FA6" secondAttribute="leadingMargin" id="INp-56-S0L"/>
+                                            <constraint firstItem="EPQ-aR-yet" firstAttribute="top" secondItem="7zZ-il-k0j" secondAttribute="bottom" priority="750" constant="16" id="KHs-1j-deR"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="7zZ-il-k0j" secondAttribute="trailing" id="U96-sl-sTB"/>
                                             <constraint firstItem="7zZ-il-k0j" firstAttribute="top" secondItem="skE-4O-Uhk" secondAttribute="bottom" constant="16" id="bPH-KD-jvK"/>
                                             <constraint firstItem="7zZ-il-k0j" firstAttribute="leading" secondItem="lf4-zt-FA6" secondAttribute="leadingMargin" id="jQa-Zq-5lu"/>
@@ -117,6 +124,9 @@
                                                         <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="saveUsingGCD" destination="BYZ-38-t0r" eventType="touchUpInside" id="8P6-eE-HX8"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Va-9G-dL3" customClass="DesignableButton" customModule="TinkoffChat" customModuleProvider="target">
                                                 <rect key="frame" x="175.5" y="0.0" width="167.5" height="44"/>
@@ -139,6 +149,9 @@
                                                         <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="saveUsingOperation" destination="BYZ-38-t0r" eventType="touchUpInside" id="RNG-E4-5mk"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -162,7 +175,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="EPQ-aR-yet" id="I2O-Of-Ymc"/>
                         <outlet property="avatarImageView" destination="vEe-vA-FCi" id="OIc-LQ-HXP"/>
+                        <outlet property="infoTextField" destination="7zZ-il-k0j" id="2DV-hP-Czh"/>
+                        <outlet property="nameTextField" destination="skE-4O-Uhk" id="gsG-op-o6i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
