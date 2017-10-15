@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F31C7D621F93EB4E00F767D6 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C7D611F93EB4E00F767D6 /* UIViewController+Extension.swift */; };
 		F31C7D651F940E9A00F767D6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C7D641F940E9A00F767D6 /* UIColor+Extension.swift */; };
+		F31C7D671F94102600F767D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C7D661F94102600F767D6 /* Profile.swift */; };
 		F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3630A661F72C9D5005EA5BC /* AppDelegate.swift */; };
 		F3630A691F72C9D5005EA5BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3630A681F72C9D5005EA5BC /* ProfileViewController.swift */; };
 		F3630A6C1F72C9D5005EA5BC /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3630A6A1F72C9D5005EA5BC /* Profile.storyboard */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		F31C7D611F93EB4E00F767D6 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		F31C7D641F940E9A00F767D6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		F31C7D661F94102600F767D6 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		F3630A631F72C9D5005EA5BC /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3630A661F72C9D5005EA5BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3630A681F72C9D5005EA5BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 		F3B55F261F8922D100F8B9A5 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F31C7D661F94102600F767D6 /* Profile.swift */,
 				F3630A681F72C9D5005EA5BC /* ProfileViewController.swift */,
 			);
 			path = Profile;
@@ -217,6 +220,7 @@
 				F31C7D621F93EB4E00F767D6 /* UIViewController+Extension.swift in Sources */,
 				F3D560B91F8AB6910042ADC6 /* IncomingMessageContainerView.swift in Sources */,
 				F3D560B71F8AB6300042ADC6 /* OutgoingMessageContainerView.swift in Sources */,
+				F31C7D671F94102600F767D6 /* Profile.swift in Sources */,
 				F31C7D651F940E9A00F767D6 /* UIColor+Extension.swift in Sources */,
 				F3630A691F72C9D5005EA5BC /* ProfileViewController.swift in Sources */,
 				F3B55F221F891D0D00F8B9A5 /* ConversationsListViewController.swift in Sources */,

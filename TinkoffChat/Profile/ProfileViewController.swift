@@ -11,6 +11,17 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     private var imagePicker = UIImagePickerController()
+    private var profile = Profile() {
+        didSet {
+            updateUI()
+        }
+    }
+
+    var filePath: String {
+        let manager = FileManager.default
+        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+        return url!.appendingPathComponent("UserInfo").path
+    }
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var infoTextField: UITextField!
@@ -45,43 +56,36 @@ class ProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    private func updateLocalUserInfo() {
+        guard let avatar = self.avatarImageView.image,
+            let name = self.nameTextField.text,
+            let info = self.infoTextField.text else { return }
+
+        self.profile.avatar = avatar
+        self.profile.name = name
+        self.profile.info = info
+    }
+
     @IBAction func saveUsingGCD() {
+        activityIndicator.startAnimating()
+        gcdButton.isEnabled = false
+        operationButton.isEnabled = false
+
+        updateLocalUserInfo()
+
         DispatchQueue.global(qos: .userInitiated).async {
-
-            DispatchQueue.main.async {
-                self.activityIndicator.startAnimating()
-                self.gcdButton.isEnabled = false
-                self.operationButton.isEnabled = false
-            }
-
-            if let fileDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-
-                let fileURL = fileDirectory.appendingPathComponent("userInfo.txt")
-
-                do {
-                    if let name = self.nameTextField.text,
-                        let userInfo = self.infoTextField.text,
-                        let avatar = self.avatarImageView.image,
-                        let avatarData = UIImageJPEGRepresentation(avatar, 1) {
-
-                        try name.write(to: fileURL, atomically: false, encoding: .utf8)
-                        try userInfo.write(to: fileURL, atomically: false, encoding: .utf8)
-                        try avatarData.write(to: fileURL)
-                    }
-
-                    DispatchQueue.main.async {
-                        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        self.displayAlert(title: "Данные сохранены", message: nil, firstAction: okAction)
-                    }
+            if NSKeyedArchiver.archiveRootObject(self.profile, toFile: self.filePath) {
+                DispatchQueue.main.async {
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    self.displayAlert(title: "Данные сохранены", message: nil, firstAction: okAction)
                 }
-                catch {
-                    DispatchQueue.main.async {
-                        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                        let retryAction = UIAlertAction(title: "Повторить", style: .default, handler: { [unowned self] _ in
-                            self.saveUsingGCD()
-                        })
-                        self.displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
-                    }
+            } else {
+                DispatchQueue.main.async {
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    let retryAction = UIAlertAction(title: "Повторить", style: .default, handler: { [unowned self] _ in
+                        self.saveUsingGCD()
+                    })
+                    self.displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
                 }
             }
 
@@ -99,9 +103,45 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loadUserData()
         imagePicker.delegate = self
         hideKeyboardWhenTappedAround()
         addObserversForKeyboardAppearance()
+    }
+
+    private func profileInfoDidChange() -> Bool {
+        return profile.avatar != avatarImageView.image || profile.name != nameTextField.text || profile.info != infoTextField.text
+    }
+
+    private func infoToSaveIsValid() -> Bool {
+        return avatarImageView.image != nil && nameTextField.text != nil && infoTextField.text != nil
+    }
+
+    private func updateSaveButtonsAvailability() {
+        if profileInfoDidChange(), infoToSaveIsValid() {
+            gcdButton.isEnabled = true
+            operationButton.isEnabled = true
+        } else {
+            gcdButton.isEnabled = false
+            operationButton.isEnabled = false
+        }
+    }
+
+    private func updateUI() {
+        DispatchQueue.main.async {
+            self.avatarImageView.image = self.profile.avatar
+            self.nameTextField.text = self.profile.name
+            self.infoTextField.text = self.profile.info
+        }
+    }
+
+    private func loadUserData() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let profile = NSKeyedUnarchiver.unarchiveObject(withFile: self.filePath) as? Profile {
+                self.profile = profile
+            }
+            self.updateUI()
+        }
     }
 }
 
@@ -109,12 +149,21 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            avatarImageView.image = image
+            profile.avatar = image
+            updateSaveButtonsAvailability()
         }
         dismiss(animated: true, completion: nil)
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension ProfileViewController: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        updateSaveButtonsAvailability()
+        return true
     }
 }
