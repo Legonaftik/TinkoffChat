@@ -13,7 +13,6 @@ class ProfileViewController: UIViewController {
     private var imagePicker = UIImagePickerController()
 
     @IBOutlet weak var avatarImageView: DesignableImageView!
-    @IBOutlet weak var editButton: DesignableButton!
 
     @IBAction func chooseAvatar() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -43,7 +42,10 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         imagePicker.delegate = self
+        hideKeyboardWhenTappedAround()
+        addObserversForKeyboardAppearance()
     }
 }
 
