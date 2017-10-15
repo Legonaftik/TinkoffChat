@@ -54,13 +54,20 @@ class ProfileViewController: UIViewController {
                 self.operationButton.isEnabled = false
             }
 
-            let text = "some text" //just a text
             if let fileDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
 
-                let fileURL = fileDirectory.appendingPathComponent("file.txt")
+                let fileURL = fileDirectory.appendingPathComponent("userInfo.txt")
 
                 do {
-                    try text.write(to: fileURL, atomically: false, encoding: .utf8)
+                    if let name = self.nameTextField.text,
+                        let userInfo = self.infoTextField.text,
+                        let avatar = self.avatarImageView.image,
+                        let avatarData = UIImageJPEGRepresentation(avatar, 1) {
+
+                        try name.write(to: fileURL, atomically: false, encoding: .utf8)
+                        try userInfo.write(to: fileURL, atomically: false, encoding: .utf8)
+                        try avatarData.write(to: fileURL)
+                    }
 
                     DispatchQueue.main.async {
                         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -88,7 +95,6 @@ class ProfileViewController: UIViewController {
 
     @IBAction func saveUsingOperation() {
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()

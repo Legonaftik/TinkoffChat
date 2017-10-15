@@ -78,7 +78,7 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
         cell.dateLabel.text = dateFormatter.string(from: date)
 
         let online = indexPath.section == 0
-        cell.backgroundColor = online ? .yellow : .white
+        cell.backgroundColor = online ? .tinkoffYellow : .white
 
         let hasUnreadMessages = indexPath.row % 5 == 0
         let noMessagesYet = message == nil
