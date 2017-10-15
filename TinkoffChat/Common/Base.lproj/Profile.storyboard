@@ -177,8 +177,10 @@
                     <connections>
                         <outlet property="activityIndicator" destination="EPQ-aR-yet" id="I2O-Of-Ymc"/>
                         <outlet property="avatarImageView" destination="vEe-vA-FCi" id="OIc-LQ-HXP"/>
+                        <outlet property="gcdButton" destination="oIp-bb-WN1" id="S9O-kL-vBS"/>
                         <outlet property="infoTextField" destination="7zZ-il-k0j" id="2DV-hP-Czh"/>
                         <outlet property="nameTextField" destination="skE-4O-Uhk" id="gsG-op-o6i"/>
+                        <outlet property="operationButton" destination="9Va-9G-dL3" id="b3Y-WO-c7k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

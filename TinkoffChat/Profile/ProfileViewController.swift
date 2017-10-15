@@ -16,6 +16,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var infoTextField: UITextField!
     @IBOutlet weak var avatarImageView: DesignableImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var gcdButton: DesignableButton!
+    @IBOutlet weak var operationButton: DesignableButton!
 
     @IBAction func chooseAvatar() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -48,6 +50,8 @@ class ProfileViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.activityIndicator.startAnimating()
+                self.gcdButton.isEnabled = false
+                self.operationButton.isEnabled = false
             }
 
             let text = "some text" //just a text
@@ -76,6 +80,8 @@ class ProfileViewController: UIViewController {
 
             DispatchQueue.main.async {
                 self.activityIndicator.stopAnimating()
+                self.gcdButton.isEnabled = true
+                self.operationButton.isEnabled = true
             }
         }
     }
