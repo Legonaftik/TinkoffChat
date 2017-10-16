@@ -15,8 +15,12 @@ protocol DataManager {
 
 extension DataManager {
 
-    var userInfoFileName: String {
+    var userInfoFileURL: URL {
         let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return url.appendingPathComponent("UserInfo").path
+        return url.appendingPathComponent("UserInfo")
+    }
+
+    var userInfoFileName: String {
+        return userInfoFileURL.path
     }
 }

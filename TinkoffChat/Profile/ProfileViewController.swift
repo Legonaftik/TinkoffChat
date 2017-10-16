@@ -87,12 +87,37 @@ class ProfileViewController: UIViewController {
             }
         }
     }
+    @IBAction func saveUsingOperation() {
+        updateLocalUserInfo()
+
+        gcdButton.isEnabled = false
+        operationButton.isEnabled = false
+
+        activityIndicator.startAnimating()
+        OperationDataManager.shared.write { success in
+            self.activityIndicator.stopAnimating()
+
+            if success {
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                self.displayAlert(title: "Данные сохранены", message: nil, firstAction: okAction)
+            } else {
+                let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    // User should be able to try to save info again if something was wrong
+                    self.gcdButton.isEnabled = true
+                    self.operationButton.isEnabled = true
+                }
+                let retryAction = UIAlertAction(title: "Повторить", style: .default) { _ in
+                    self.saveUsingOperation()
+                }
+                self.displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
+            }
+        }
+    }
+
     @IBAction func changedTextFieldText() {
         updateSaveButtonsAvailability()
     }
 
-    @IBAction func saveUsingOperation() {
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +126,20 @@ class ProfileViewController: UIViewController {
         imagePicker.delegate = self
         hideKeyboardWhenTappedAround()
         addObserversForKeyboardAppearance()
+        subscribeToOperationNotifications()
+    }
+
+    private func subscribeToOperationNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(operationDidWriteHandler), name: .operationWrite, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(operationDidReadHandler), name: .operationRead, object: nil)
+    }
+
+    @objc private func operationDidWriteHandler() {
+        print("Did write")
+    }
+
+    @objc private func operationDidReadHandler() {
+        print("Did read")
     }
 
     private func updateSaveButtonsAvailability() {
