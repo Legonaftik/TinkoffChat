@@ -1,5 +1,5 @@
 //
-//  GCDStorage.swift
+//  GCDDataManager.swift
 //  TinkoffChat
 //
 //  Created by Vladimir Pavlov on 16/10/2017.
@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class GCDStorage: DataStorage {
+class GCDDataManager: DataManager {
 
-    static let shared = GCDStorage()
+    static let shared = GCDDataManager()
     private init() {}
 
     func write(completion: @escaping (_ success: Bool) -> ()) {

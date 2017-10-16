@@ -68,7 +68,7 @@ class ProfileViewController: UIViewController {
         operationButton.isEnabled = false
 
         activityIndicator.startAnimating()
-        GCDStorage.shared.write { success in
+        GCDDataManager.shared.write { success in
             self.activityIndicator.stopAnimating()
 
             if success {
@@ -130,7 +130,7 @@ class ProfileViewController: UIViewController {
     }
 
     private func loadUserData() {
-        GCDStorage.shared.read { profile in
+        GCDDataManager.shared.read { profile in
             self.profile = profile
         }
     }
