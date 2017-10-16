@@ -19,8 +19,7 @@ class GCDStorage: DataStorage {
 
             if NSKeyedArchiver.archiveRootObject(Profile.shared, toFile: self.userInfoFileName) {
                 DispatchQueue.main.async {
-                    // Testing wrong case
-                    completion(false)
+                    completion(true)
                 }
             } else {
                 DispatchQueue.main.async {

@@ -70,17 +70,25 @@ class ProfileViewController: UIViewController {
         activityIndicator.startAnimating()
         GCDStorage.shared.write { success in
             self.activityIndicator.stopAnimating()
+
             if success {
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                 self.displayAlert(title: "Данные сохранены", message: nil, firstAction: okAction)
             } else {
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                let retryAction = UIAlertAction(title: "Повторить", style: .default, handler: { [unowned self] _ in
+                let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                    // User should be able to try to save info again if something was wrong
+                    self.gcdButton.isEnabled = true
+                    self.operationButton.isEnabled = true
+                }
+                let retryAction = UIAlertAction(title: "Повторить", style: .default) { _ in
                     self.saveUsingGCD()
-                })
+                }
                 self.displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
             }
         }
+    }
+    @IBAction func changedTextFieldText() {
+        updateSaveButtonsAvailability()
     }
 
     @IBAction func saveUsingOperation() {
@@ -110,7 +118,7 @@ class ProfileViewController: UIViewController {
     }
 
     private func infoToSaveIsValid() -> Bool {
-        return avatarImageView.image != nil && nameTextField.text != nil && infoTextField.text != nil
+        return avatarImageView.image != nil && nameTextField.text != "" && infoTextField.text != ""
     }
 
     private func updateUI() {
@@ -125,10 +133,6 @@ class ProfileViewController: UIViewController {
         GCDStorage.shared.read { profile in
             self.profile = profile
         }
-    }
-
-    deinit {
-        print("Deinit")
     }
 }
 
@@ -149,8 +153,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
 extension ProfileViewController: UITextFieldDelegate {
 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        updateSaveButtonsAvailability()
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
 }

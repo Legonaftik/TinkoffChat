@@ -75,8 +75,9 @@
                                                 <rect key="frame" x="8" y="8" width="327" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
+                                                    <action selector="changedTextFieldText" destination="BYZ-38-t0r" eventType="editingChanged" id="520-vD-2N9"/>
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Y4b-LI-P8d"/>
                                                 </connections>
                                             </textField>
@@ -84,8 +85,9 @@
                                                 <rect key="frame" x="8" y="54" width="327" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                                 <connections>
+                                                    <action selector="changedTextFieldText" destination="BYZ-38-t0r" eventType="editingChanged" id="8VJ-Fl-cb0"/>
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="0C6-ft-ePF"/>
                                                 </connections>
                                             </textField>
