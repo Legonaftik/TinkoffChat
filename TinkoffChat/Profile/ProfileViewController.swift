@@ -11,16 +11,10 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     private var imagePicker = UIImagePickerController()
-    private var profile = Profile() {
+    private var profile = Profile.shared {
         didSet {
             updateUI()
         }
-    }
-
-    var filePath: String {
-        let manager = FileManager.default
-        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
-        return url!.appendingPathComponent("UserInfo").path
     }
 
     @IBOutlet weak var nameTextField: UITextField!
@@ -57,42 +51,34 @@ class ProfileViewController: UIViewController {
     }
 
     private func updateLocalUserInfo() {
-        guard let avatar = self.avatarImageView.image,
-            let name = self.nameTextField.text,
-            let info = self.infoTextField.text else { return }
+        guard let avatar = avatarImageView.image,
+            let name = nameTextField.text,
+            let info = infoTextField.text else { return }
 
-        self.profile.avatar = avatar
-        self.profile.name = name
-        self.profile.info = info
+        profile.avatar = avatar
+        profile.name = name
+        profile.info = info
     }
 
     @IBAction func saveUsingGCD() {
-        activityIndicator.startAnimating()
-        gcdButton.isEnabled = false
-        operationButton.isEnabled = false
 
         updateLocalUserInfo()
 
-        DispatchQueue.global(qos: .userInitiated).async {
-            if NSKeyedArchiver.archiveRootObject(self.profile, toFile: self.filePath) {
-                DispatchQueue.main.async {
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    self.displayAlert(title: "Данные сохранены", message: nil, firstAction: okAction)
-                }
-            } else {
-                DispatchQueue.main.async {
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                    let retryAction = UIAlertAction(title: "Повторить", style: .default, handler: { [unowned self] _ in
-                        self.saveUsingGCD()
-                    })
-                    self.displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
-                }
-            }
+        gcdButton.isEnabled = false
+        operationButton.isEnabled = false
 
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                self.gcdButton.isEnabled = true
-                self.operationButton.isEnabled = true
+        activityIndicator.startAnimating()
+        GCDStorage.shared.write { success in
+            self.activityIndicator.stopAnimating()
+            if success {
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                self.displayAlert(title: "Данные сохранены", message: nil, firstAction: okAction)
+            } else {
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                let retryAction = UIAlertAction(title: "Повторить", style: .default, handler: { [unowned self] _ in
+                    self.saveUsingGCD()
+                })
+                self.displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
             }
         }
     }
@@ -109,14 +95,6 @@ class ProfileViewController: UIViewController {
         addObserversForKeyboardAppearance()
     }
 
-    private func profileInfoDidChange() -> Bool {
-        return profile.avatar != avatarImageView.image || profile.name != nameTextField.text || profile.info != infoTextField.text
-    }
-
-    private func infoToSaveIsValid() -> Bool {
-        return avatarImageView.image != nil && nameTextField.text != nil && infoTextField.text != nil
-    }
-
     private func updateSaveButtonsAvailability() {
         if profileInfoDidChange(), infoToSaveIsValid() {
             gcdButton.isEnabled = true
@@ -127,21 +105,30 @@ class ProfileViewController: UIViewController {
         }
     }
 
+    private func profileInfoDidChange() -> Bool {
+        return profile.avatar != avatarImageView.image || profile.name != nameTextField.text || profile.info != infoTextField.text
+    }
+
+    private func infoToSaveIsValid() -> Bool {
+        return avatarImageView.image != nil && nameTextField.text != nil && infoTextField.text != nil
+    }
+
     private func updateUI() {
-        DispatchQueue.main.async {
-            self.avatarImageView.image = self.profile.avatar
-            self.nameTextField.text = self.profile.name
-            self.infoTextField.text = self.profile.info
+        if isViewLoaded {
+            avatarImageView.image = profile.avatar
+            nameTextField.text = profile.name
+            infoTextField.text = profile.info
         }
     }
 
     private func loadUserData() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            if let profile = NSKeyedUnarchiver.unarchiveObject(withFile: self.filePath) as? Profile {
-                self.profile = profile
-            }
-            self.updateUI()
+        GCDStorage.shared.read { profile in
+            self.profile = profile
         }
+    }
+
+    deinit {
+        print("Deinit")
     }
 }
 
@@ -149,7 +136,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            profile.avatar = image
+            avatarImageView.image = image
             updateSaveButtonsAvailability()
         }
         dismiss(animated: true, completion: nil)

@@ -10,6 +10,13 @@ import UIKit
 
 class Profile: NSObject, NSCoding {
 
+    static var shared = Profile()
+    override init() {
+        name = "Vladimir Pavlov"
+        info = "iOS developer in Techmas"
+        avatar = #imageLiteral(resourceName: "placeholder-user")
+    }
+
     enum Keys {
         static let name = "name"
         static let info = "info"
@@ -20,21 +27,14 @@ class Profile: NSObject, NSCoding {
     var info: String
     var avatar: UIImage
 
-    override init() {
-        name = "Vladimir Pavlov"
-        info = "iOS developer in Techmas"
-        avatar = #imageLiteral(resourceName: "placeholder-user")
-    }
-
     required init?(coder aDecoder: NSCoder) {
-        if let name = aDecoder.decodeObject(forKey: Keys.name) as? String,
+        guard let name = aDecoder.decodeObject(forKey: Keys.name) as? String,
             let info = aDecoder.decodeObject(forKey: Keys.info) as? String,
-            let avatar = aDecoder.decodeObject(forKey: Keys.avatar) as? UIImage {
-            self.name = name
-            self.info = info
-            self.avatar = avatar
-        }
-        return nil
+            let avatar = aDecoder.decodeObject(forKey: Keys.avatar) as? UIImage else { return nil }
+
+        self.name = name
+        self.info = info
+        self.avatar = avatar
     }
 
     func encode(with aCoder: NSCoder) {

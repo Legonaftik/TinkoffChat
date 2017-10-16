@@ -10,6 +10,8 @@
 		F31C7D621F93EB4E00F767D6 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C7D611F93EB4E00F767D6 /* UIViewController+Extension.swift */; };
 		F31C7D651F940E9A00F767D6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C7D641F940E9A00F767D6 /* UIColor+Extension.swift */; };
 		F31C7D671F94102600F767D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C7D661F94102600F767D6 /* Profile.swift */; };
+		F35B35A41F94C72000D5F557 /* GCDStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A31F94C72000D5F557 /* GCDStorage.swift */; };
+		F35B35A61F94C8FD00D5F557 /* DataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A51F94C8FD00D5F557 /* DataStorage.swift */; };
 		F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3630A661F72C9D5005EA5BC /* AppDelegate.swift */; };
 		F3630A691F72C9D5005EA5BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3630A681F72C9D5005EA5BC /* ProfileViewController.swift */; };
 		F3630A6C1F72C9D5005EA5BC /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3630A6A1F72C9D5005EA5BC /* Profile.storyboard */; };
@@ -29,6 +31,8 @@
 		F31C7D611F93EB4E00F767D6 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		F31C7D641F940E9A00F767D6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F31C7D661F94102600F767D6 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		F35B35A31F94C72000D5F557 /* GCDStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDStorage.swift; sourceTree = "<group>"; };
+		F35B35A51F94C8FD00D5F557 /* DataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorage.swift; sourceTree = "<group>"; };
 		F3630A631F72C9D5005EA5BC /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3630A661F72C9D5005EA5BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3630A681F72C9D5005EA5BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 		F3B55F261F8922D100F8B9A5 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F35B35A31F94C72000D5F557 /* GCDStorage.swift */,
+				F35B35A51F94C8FD00D5F557 /* DataStorage.swift */,
 				F31C7D661F94102600F767D6 /* Profile.swift */,
 				F3630A681F72C9D5005EA5BC /* ProfileViewController.swift */,
 			);
@@ -225,9 +231,11 @@
 				F3630A691F72C9D5005EA5BC /* ProfileViewController.swift in Sources */,
 				F3B55F221F891D0D00F8B9A5 /* ConversationsListViewController.swift in Sources */,
 				F3D560B21F8AA5A50042ADC6 /* MessageTableViewCell.swift in Sources */,
+				F35B35A41F94C72000D5F557 /* GCDStorage.swift in Sources */,
 				F3D560B01F8AA2520042ADC6 /* ConversationViewController.swift in Sources */,
 				F3B55F241F89214400F8B9A5 /* ConversationTableViewCell.swift in Sources */,
 				F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */,
+				F35B35A61F94C8FD00D5F557 /* DataStorage.swift in Sources */,
 				F375861F1F7D8FAB0070C3A1 /* DesignableButton.swift in Sources */,
 				F37586211F7D8FCB0070C3A1 /* DesignableImageView.swift in Sources */,
 			);
