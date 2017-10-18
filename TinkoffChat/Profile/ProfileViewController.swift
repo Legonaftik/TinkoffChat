@@ -128,14 +128,6 @@ class ProfileViewController: UIViewController {
         addObserversForKeyboardAppearance()
     }
 
-    @objc private func operationDidWriteHandler() {
-        print("Did write")
-    }
-
-    @objc private func operationDidReadHandler() {
-        print("Did read")
-    }
-
     private func updateSaveButtonsAvailability() {
         if profileInfoDidChange(), infoToSaveIsValid() {
             gcdButton.isEnabled = true
