@@ -52,25 +52,25 @@ class OperationDataManager: DataManager {
 
     func write(completion: @escaping (Bool) -> ()) {
 
-        let saveOp = WriteOperation(fileName: userInfoFileName)
-        saveOp.completionBlock = {
+        let writeOperation = WriteOperation(fileName: userInfoFileName)
+        writeOperation.completionBlock = {
             OperationQueue.main.addOperation {
-                completion(saveOp.success)
+                completion(writeOperation.success)
             }
         }
 
-        queue.addOperation(saveOp)
+        queue.addOperation(writeOperation)
     }
 
     func read(completion: @escaping (Profile) -> ()) {
 
-        let restoreOp = ReadOperation(fileName: userInfoFileName)
-        restoreOp.completionBlock = {
+        let readOperation = ReadOperation(fileName: userInfoFileName)
+        readOperation.completionBlock = {
             OperationQueue.main.addOperation {
                 completion(Profile.shared)
             }
         }
 
-        queue.addOperation(restoreOp)
+        queue.addOperation(readOperation)
     }
 }

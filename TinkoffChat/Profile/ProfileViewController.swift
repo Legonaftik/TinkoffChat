@@ -137,8 +137,10 @@ class ProfileViewController: UIViewController {
     }
 
     private func loadUserData() {
-        GCDDataManager.shared.read { profile in
-            self.profile = profile
+        GCDDataManager.shared.read { [weak self] profile in
+            guard let strongSelf = self else { return }
+
+            strongSelf.profile = profile
         }
     }
 }
