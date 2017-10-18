@@ -126,12 +126,6 @@ class ProfileViewController: UIViewController {
         imagePicker.delegate = self
         hideKeyboardWhenTappedAround()
         addObserversForKeyboardAppearance()
-        subscribeToOperationNotifications()
-    }
-
-    private func subscribeToOperationNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(operationDidWriteHandler), name: .operationWrite, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(operationDidReadHandler), name: .operationRead, object: nil)
     }
 
     @objc private func operationDidWriteHandler() {

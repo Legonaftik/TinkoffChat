@@ -8,7 +8,9 @@
 
 import UIKit
 
-class WriteOperation: AsyncOperation {
+class WriteOperation: Operation {
+
+    var success = false
 
     let fileName: String
     init(fileName: String) {
@@ -16,24 +18,14 @@ class WriteOperation: AsyncOperation {
     }
 
     override func main() {
-        if isCancelled {
-            state = .finished
-        } else {
-            state = .executing
-
-            var success = false
-            if NSKeyedArchiver.archiveRootObject(Profile.shared, toFile: fileName) {
-                success = true
-            }
-            OperationQueue.main.addOperation {
-                NotificationCenter.default.post(name: .operationWrite, object: nil, userInfo: ["success": success])
-            }
-            state = .finished
+        success = false
+        if NSKeyedArchiver.archiveRootObject(Profile.shared, toFile: fileName) {
+            success = true
         }
     }
 }
 
-class ReadOperation: AsyncOperation {
+class ReadOperation: Operation {
 
     let fileName: String
     init(fileName: String) {
@@ -41,18 +33,8 @@ class ReadOperation: AsyncOperation {
     }
 
     override func main() {
-        if isCancelled {
-            state = .finished
-        } else {
-            state = .executing
-
-            if let savedProfile = NSKeyedUnarchiver.unarchiveObject(withFile: fileName) as? Profile {
-                Profile.shared = savedProfile
-                OperationQueue.main.addOperation {
-                    NotificationCenter.default.post(name: .operationRead, object: nil)
-                }
-            }
-            state = .finished
+        if let savedProfile = NSKeyedUnarchiver.unarchiveObject(withFile: fileName) as? Profile {
+            Profile.shared = savedProfile
         }
     }
 }
@@ -69,14 +51,26 @@ class OperationDataManager: DataManager {
     }
 
     func write(completion: @escaping (Bool) -> ()) {
+
         let saveOp = WriteOperation(fileName: userInfoFileName)
+        saveOp.completionBlock = {
+            OperationQueue.main.addOperation {
+                completion(saveOp.success)
+            }
+        }
+
         queue.addOperation(saveOp)
-        completion(true)
     }
 
     func read(completion: @escaping (Profile) -> ()) {
+
         let restoreOp = ReadOperation(fileName: userInfoFileName)
+        restoreOp.completionBlock = {
+            OperationQueue.main.addOperation {
+                completion(Profile.shared)
+            }
+        }
+
         queue.addOperation(restoreOp)
-        completion(Profile.shared)
     }
 }
