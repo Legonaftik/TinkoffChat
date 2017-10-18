@@ -60,64 +60,46 @@ class ProfileViewController: UIViewController {
         profile.info = info
     }
 
-    @IBAction func saveUsingGCD() {
-
+    private func saveUserInfo(using dataManager: DataManager) {
         updateLocalUserInfo()
 
         gcdButton.isEnabled = false
         operationButton.isEnabled = false
 
         activityIndicator.startAnimating()
-        GCDDataManager.shared.write { success in
-            self.activityIndicator.stopAnimating()
+        dataManager.write { [weak self] success in
+            guard let strongSelf = self else { return }
+
+            strongSelf.activityIndicator.stopAnimating()
 
             if success {
                 let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                self.displayAlert(title: "Данные сохранены", message: nil, firstAction: okAction)
+                strongSelf.displayAlert(title: "Данные сохранены", message: nil, firstAction: okAction)
             } else {
                 let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                     // User should be able to try to save info again if something was wrong
-                    self.gcdButton.isEnabled = true
-                    self.operationButton.isEnabled = true
+                    strongSelf.gcdButton.isEnabled = true
+                    strongSelf.operationButton.isEnabled = true
                 }
                 let retryAction = UIAlertAction(title: "Повторить", style: .default) { _ in
-                    self.saveUsingGCD()
+                    strongSelf.saveUserInfo(using: dataManager)
                 }
-                self.displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
+                strongSelf.displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
             }
         }
     }
+
+    @IBAction func saveUsingGCD() {
+        saveUserInfo(using: GCDDataManager.shared)
+    }
+
     @IBAction func saveUsingOperation() {
-        updateLocalUserInfo()
-
-        gcdButton.isEnabled = false
-        operationButton.isEnabled = false
-
-        activityIndicator.startAnimating()
-        OperationDataManager.shared.write { success in
-            self.activityIndicator.stopAnimating()
-
-            if success {
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                self.displayAlert(title: "Данные сохранены", message: nil, firstAction: okAction)
-            } else {
-                let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                    // User should be able to try to save info again if something was wrong
-                    self.gcdButton.isEnabled = true
-                    self.operationButton.isEnabled = true
-                }
-                let retryAction = UIAlertAction(title: "Повторить", style: .default) { _ in
-                    self.saveUsingOperation()
-                }
-                self.displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
-            }
-        }
+        saveUserInfo(using: OperationDataManager.shared)
     }
 
     @IBAction func changedTextFieldText() {
         updateSaveButtonsAvailability()
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
