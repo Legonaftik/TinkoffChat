@@ -10,7 +10,10 @@ import UIKit
 
 class Profile: NSObject, NSCoding {
 
-    static var shared = Profile()
+    var name: String
+    var info: String
+    var avatar: UIImage
+
     override init() {
         name = "Vladimir Pavlov"
         info = "iOS developer in Techmas"
@@ -22,10 +25,6 @@ class Profile: NSObject, NSCoding {
         static let info = "info"
         static let avatar = "avatar"
     }
-
-    var name: String
-    var info: String
-    var avatar: UIImage
 
     required init?(coder aDecoder: NSCoder) {
         guard let name = aDecoder.decodeObject(forKey: Keys.name) as? String,

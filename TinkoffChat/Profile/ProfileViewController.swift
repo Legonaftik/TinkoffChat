@@ -11,7 +11,7 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     private var imagePicker = UIImagePickerController()
-    private var profile = Profile.shared {
+    private var profile = Profile() {
         didSet {
             updateUI()
         }
@@ -53,6 +53,27 @@ class ProfileViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func saveUsingGCD() {
+        saveUserInfo(using: gcdDataManager)
+    }
+
+    @IBAction func saveUsingOperation() {
+        saveUserInfo(using: operationDataManager)
+    }
+
+    @IBAction func changedTextFieldText() {
+        updateSaveButtonsAvailability()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        loadUserData(using: gcdDataManager)
+        imagePicker.delegate = self
+        hideKeyboardWhenTappedAround()
+        addObserversForKeyboardAppearance()
+    }
+
     private func updateLocalUserInfo() {
         guard let avatar = avatarImageView.image,
             let name = nameTextField.text,
@@ -70,7 +91,7 @@ class ProfileViewController: UIViewController {
         operationButton.isEnabled = false
 
         activityIndicator.startAnimating()
-        dataManager.write { [weak self] success in
+        dataManager.write(profile: profile) { [weak self] success in
             guard let strongSelf = self else { return }
 
             strongSelf.activityIndicator.stopAnimating()
@@ -90,27 +111,6 @@ class ProfileViewController: UIViewController {
                 strongSelf.displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
             }
         }
-    }
-
-    @IBAction func saveUsingGCD() {
-        saveUserInfo(using: gcdDataManager)
-    }
-
-    @IBAction func saveUsingOperation() {
-        saveUserInfo(using: operationDataManager)
-    }
-
-    @IBAction func changedTextFieldText() {
-        updateSaveButtonsAvailability()
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        loadUserData()
-        imagePicker.delegate = self
-        hideKeyboardWhenTappedAround()
-        addObserversForKeyboardAppearance()
     }
 
     private func updateSaveButtonsAvailability() {
@@ -139,8 +139,8 @@ class ProfileViewController: UIViewController {
         }
     }
 
-    private func loadUserData() {
-        gcdDataManager.read { [weak self] profile in
+    private func loadUserData(using dataManager: DataManager) {
+        dataManager.read { [weak self] profile in
             guard let strongSelf = self else { return }
 
             strongSelf.profile = profile

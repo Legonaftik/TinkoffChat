@@ -11,21 +11,26 @@ import UIKit
 class WriteOperation: Operation {
 
     var success = false
+    let profile: Profile
 
     let fileName: String
-    init(fileName: String) {
+    init(fileName: String, profile: Profile) {
         self.fileName = fileName
+        self.profile = profile
     }
 
     override func main() {
         success = false
-        if NSKeyedArchiver.archiveRootObject(Profile.shared, toFile: fileName) {
+        if NSKeyedArchiver.archiveRootObject(profile, toFile: fileName) {
             success = true
         }
     }
 }
 
 class ReadOperation: Operation {
+
+    // Will return the default profile if couldn't read a new one from the file
+    var profile = Profile()
 
     let fileName: String
     init(fileName: String) {
@@ -34,7 +39,7 @@ class ReadOperation: Operation {
 
     override func main() {
         if let savedProfile = NSKeyedUnarchiver.unarchiveObject(withFile: fileName) as? Profile {
-            Profile.shared = savedProfile
+            profile = savedProfile
         }
     }
 }
@@ -44,12 +49,13 @@ class OperationDataManager: DataManager {
     var queue: OperationQueue {
         let queue = OperationQueue()
         queue.qualityOfService = .userInitiated
+        queue.maxConcurrentOperationCount = 1
         return queue
     }
 
-    func write(completion: @escaping (Bool) -> ()) {
+    func write(profile: Profile, completion: @escaping (Bool) -> ()) {
 
-        let writeOperation = WriteOperation(fileName: userInfoFileName)
+        let writeOperation = WriteOperation(fileName: userInfoFileName, profile: profile)
         writeOperation.completionBlock = {
             OperationQueue.main.addOperation {
                 completion(writeOperation.success)
@@ -64,7 +70,7 @@ class OperationDataManager: DataManager {
         let readOperation = ReadOperation(fileName: userInfoFileName)
         readOperation.completionBlock = {
             OperationQueue.main.addOperation {
-                completion(Profile.shared)
+                completion(readOperation.profile)
             }
         }
 

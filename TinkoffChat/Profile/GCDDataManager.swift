@@ -10,11 +10,14 @@ import UIKit
 
 class GCDDataManager: DataManager {
 
-    func write(completion: @escaping (_ success: Bool) -> ()) {
+    // Will return the default profile if couldn't read a new one from the file
+    var profile = Profile()
+
+    func write(profile: Profile, completion: @escaping (_ success: Bool) -> ()) {
 
         DispatchQueue.global(qos: .userInitiated).async {
 
-            if NSKeyedArchiver.archiveRootObject(Profile.shared, toFile: self.userInfoFileName) {
+            if NSKeyedArchiver.archiveRootObject(profile, toFile: self.userInfoFileName) {
                 DispatchQueue.main.async {
                     completion(true)
                 }
@@ -30,10 +33,10 @@ class GCDDataManager: DataManager {
 
         DispatchQueue.global(qos: .userInitiated).async {
             if let storedProfile = NSKeyedUnarchiver.unarchiveObject(withFile: self.userInfoFileName) as? Profile {
-                    Profile.shared = storedProfile
+                    self.profile = storedProfile
                 }
             DispatchQueue.main.async {
-                completion(Profile.shared)
+                completion(self.profile)
             }
         }
     }
