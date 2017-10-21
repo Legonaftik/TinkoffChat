@@ -71,50 +71,98 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lf4-zt-FA6" userLabel="LabelsContainer">
                                         <rect key="frame" x="0.0" y="343" width="343" height="184"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vladimir Pavlov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LUH-ly-51c">
-                                                <rect key="frame" x="8" y="8" width="327" height="29"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Vladimir Pavlov" borderStyle="roundedRect" placeholder="Your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="skE-4O-Uhk">
+                                                <rect key="frame" x="8" y="8" width="327" height="30"/>
                                                 <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Junior iOS developer... There should be some more text to show that this label works for more than one line" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rs-K3-SZD">
-                                                <rect key="frame" x="8" y="53" width="327" height="64.5"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="changedTextFieldText" destination="BYZ-38-t0r" eventType="editingChanged" id="520-vD-2N9"/>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Y4b-LI-P8d"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Junior iOS developer in Techmas" borderStyle="roundedRect" placeholder="About you" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7zZ-il-k0j">
+                                                <rect key="frame" x="8" y="54" width="327" height="30"/>
                                                 <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="changedTextFieldText" destination="BYZ-38-t0r" eventType="editingChanged" id="8VJ-Fl-cb0"/>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="0C6-ft-ePF"/>
+                                                </connections>
+                                            </textField>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="EPQ-aR-yet">
+                                                <rect key="frame" x="153" y="100" width="37" height="37"/>
+                                                <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="LUH-ly-51c" firstAttribute="trailing" secondItem="lf4-zt-FA6" secondAttribute="trailingMargin" id="Vz7-MV-D9s"/>
-                                            <constraint firstItem="LUH-ly-51c" firstAttribute="leading" secondItem="lf4-zt-FA6" secondAttribute="leadingMargin" id="ZbA-Wq-qSN"/>
-                                            <constraint firstItem="LUH-ly-51c" firstAttribute="top" secondItem="lf4-zt-FA6" secondAttribute="topMargin" id="Zvj-X2-sl2"/>
-                                            <constraint firstItem="1rs-K3-SZD" firstAttribute="leading" secondItem="LUH-ly-51c" secondAttribute="leading" id="eDt-KM-zfT"/>
-                                            <constraint firstItem="1rs-K3-SZD" firstAttribute="top" secondItem="LUH-ly-51c" secondAttribute="bottom" constant="16" id="f7Z-1y-N8G"/>
-                                            <constraint firstItem="1rs-K3-SZD" firstAttribute="trailing" secondItem="LUH-ly-51c" secondAttribute="trailing" id="sg3-tr-04p"/>
+                                            <constraint firstItem="EPQ-aR-yet" firstAttribute="centerX" secondItem="lf4-zt-FA6" secondAttribute="centerX" id="7SD-Wm-XLP"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="skE-4O-Uhk" secondAttribute="trailing" id="9fi-F4-h6F"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="EPQ-aR-yet" secondAttribute="bottom" id="FFU-ES-XGC"/>
+                                            <constraint firstItem="skE-4O-Uhk" firstAttribute="leading" secondItem="lf4-zt-FA6" secondAttribute="leadingMargin" id="INp-56-S0L"/>
+                                            <constraint firstItem="EPQ-aR-yet" firstAttribute="top" secondItem="7zZ-il-k0j" secondAttribute="bottom" priority="750" constant="16" id="KHs-1j-deR"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="7zZ-il-k0j" secondAttribute="trailing" id="U96-sl-sTB"/>
+                                            <constraint firstItem="7zZ-il-k0j" firstAttribute="top" secondItem="skE-4O-Uhk" secondAttribute="bottom" constant="16" id="bPH-KD-jvK"/>
+                                            <constraint firstItem="7zZ-il-k0j" firstAttribute="leading" secondItem="lf4-zt-FA6" secondAttribute="leadingMargin" id="jQa-Zq-5lu"/>
+                                            <constraint firstItem="skE-4O-Uhk" firstAttribute="top" secondItem="lf4-zt-FA6" secondAttribute="topMargin" id="oJH-fi-Gxj"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Va-9G-dL3" customClass="DesignableButton" customModule="TinkoffChat" customModuleProvider="target">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9rb-dW-RmY">
                                         <rect key="frame" x="0.0" y="527" width="343" height="44"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="dhp-nJ-Y8w"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                        <state key="normal" title="Редактировать">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
+                                        <subviews>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIp-bb-WN1" customClass="DesignableButton" customModule="TinkoffChat" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="O1i-Vc-7Xl"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <state key="normal" title="GCD">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="saveUsingGCD" destination="BYZ-38-t0r" eventType="touchUpInside" id="8P6-eE-HX8"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Va-9G-dL3" customClass="DesignableButton" customModule="TinkoffChat" customModuleProvider="target">
+                                                <rect key="frame" x="175.5" y="0.0" width="167.5" height="44"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="dhp-nJ-Y8w"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <state key="normal" title="Operation">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="10"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="saveUsingOperation" destination="BYZ-38-t0r" eventType="touchUpInside" id="RNG-E4-5mk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -135,8 +183,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="EPQ-aR-yet" id="I2O-Of-Ymc"/>
                         <outlet property="avatarImageView" destination="vEe-vA-FCi" id="OIc-LQ-HXP"/>
-                        <outlet property="editButton" destination="9Va-9G-dL3" id="ZMj-3x-diq"/>
+                        <outlet property="gcdButton" destination="oIp-bb-WN1" id="S9O-kL-vBS"/>
+                        <outlet property="infoTextField" destination="7zZ-il-k0j" id="2DV-hP-Czh"/>
+                        <outlet property="nameTextField" destination="skE-4O-Uhk" id="gsG-op-o6i"/>
+                        <outlet property="operationButton" destination="9Va-9G-dL3" id="b3Y-WO-c7k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -226,11 +278,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="vjJ-Zz-mgQ" id="T76-Xn-m95"/>
-                        <outlet property="viewModel" destination="yUF-3Z-C7x" id="TWP-Pf-eQE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pn-sT-WKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="yUF-3Z-C7x" customClass="ConversationListViewModel" customModule="TinkoffChat" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="525.60000000000002" y="-9.4452773613193415"/>
         </scene>
