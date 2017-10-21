@@ -9,6 +9,7 @@
 import Foundation
 
 protocol DataManager {
+    
     func write(completion: @escaping (_ success: Bool) -> ())
     func read(completion: @escaping (_ profile: Profile) -> ())
 }

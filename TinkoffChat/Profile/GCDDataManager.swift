@@ -6,13 +6,9 @@
 //  Copyright © 2017 Vladimir Pavlov. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class GCDDataManager: DataManager {
-
-    static let shared = GCDDataManager()
-    private init() {}
 
     func write(completion: @escaping (_ success: Bool) -> ()) {
 

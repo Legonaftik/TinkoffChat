@@ -41,9 +41,6 @@ class ReadOperation: Operation {
 
 class OperationDataManager: DataManager {
 
-    static let shared = OperationDataManager()
-    private init() {}
-
     var queue: OperationQueue {
         let queue = OperationQueue()
         queue.qualityOfService = .userInitiated

@@ -17,6 +17,9 @@ class ProfileViewController: UIViewController {
         }
     }
 
+    private let gcdDataManager = GCDDataManager()
+    private let operationDataManager = OperationDataManager()
+
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var infoTextField: UITextField!
     @IBOutlet weak var avatarImageView: DesignableImageView!
@@ -90,11 +93,11 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func saveUsingGCD() {
-        saveUserInfo(using: GCDDataManager.shared)
+        saveUserInfo(using: gcdDataManager)
     }
 
     @IBAction func saveUsingOperation() {
-        saveUserInfo(using: OperationDataManager.shared)
+        saveUserInfo(using: operationDataManager)
     }
 
     @IBAction func changedTextFieldText() {
@@ -137,7 +140,7 @@ class ProfileViewController: UIViewController {
     }
 
     private func loadUserData() {
-        GCDDataManager.shared.read { [weak self] profile in
+        gcdDataManager.read { [weak self] profile in
             guard let strongSelf = self else { return }
 
             strongSelf.profile = profile
