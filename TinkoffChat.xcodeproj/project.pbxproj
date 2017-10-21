@@ -10,6 +10,8 @@
 		F31C7D621F93EB4E00F767D6 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C7D611F93EB4E00F767D6 /* UIViewController+Extension.swift */; };
 		F31C7D651F940E9A00F767D6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C7D641F940E9A00F767D6 /* UIColor+Extension.swift */; };
 		F31C7D671F94102600F767D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C7D661F94102600F767D6 /* Profile.swift */; };
+		F358DB111F9B61A500C49EEA /* MultipeerCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB101F9B61A500C49EEA /* MultipeerCommunicator.swift */; };
+		F358DB131F9B69E900C49EEA /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB121F9B69E900C49EEA /* CommunicationManager.swift */; };
 		F35B35A41F94C72000D5F557 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A31F94C72000D5F557 /* GCDDataManager.swift */; };
 		F35B35A61F94C8FD00D5F557 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A51F94C8FD00D5F557 /* DataManager.swift */; };
 		F35B35A81F94EBAD00D5F557 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A71F94EBAD00D5F557 /* OperationDataManager.swift */; };
@@ -33,6 +35,8 @@
 		F31C7D611F93EB4E00F767D6 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		F31C7D641F940E9A00F767D6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F31C7D661F94102600F767D6 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		F358DB101F9B61A500C49EEA /* MultipeerCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerCommunicator.swift; sourceTree = "<group>"; };
+		F358DB121F9B69E900C49EEA /* CommunicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
 		F35B35A31F94C72000D5F557 /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		F35B35A51F94C8FD00D5F557 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F35B35A71F94EBAD00D5F557 /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 		F3B55F251F8922BB00F8B9A5 /* ConversationList */ = {
 			isa = PBXGroup;
 			children = (
+				F358DB101F9B61A500C49EEA /* MultipeerCommunicator.swift */,
+				F358DB121F9B69E900C49EEA /* CommunicationManager.swift */,
 				F3B55F211F891D0D00F8B9A5 /* ConversationsListViewController.swift */,
 				F3B55F231F89214400F8B9A5 /* ConversationTableViewCell.swift */,
 			);
@@ -237,8 +243,10 @@
 				F3630A691F72C9D5005EA5BC /* ProfileViewController.swift in Sources */,
 				F3B55F221F891D0D00F8B9A5 /* ConversationsListViewController.swift in Sources */,
 				F3D560B21F8AA5A50042ADC6 /* MessageTableViewCell.swift in Sources */,
+				F358DB111F9B61A500C49EEA /* MultipeerCommunicator.swift in Sources */,
 				F35B35A41F94C72000D5F557 /* GCDDataManager.swift in Sources */,
 				F3D560B01F8AA2520042ADC6 /* ConversationViewController.swift in Sources */,
+				F358DB131F9B69E900C49EEA /* CommunicationManager.swift in Sources */,
 				F3B55F241F89214400F8B9A5 /* ConversationTableViewCell.swift in Sources */,
 				F35B35A81F94EBAD00D5F557 /* OperationDataManager.swift in Sources */,
 				F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */,
