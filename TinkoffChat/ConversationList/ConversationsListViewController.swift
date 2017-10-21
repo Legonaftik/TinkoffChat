@@ -10,19 +10,22 @@ import UIKit
 
 class ConversationsListViewController: UIViewController {
 
-    private static let conversationSegueId = "toConversation"
+    private let conversationSegueId = "toConversation"
+
+    private let multipeerCommunicator = MultipeerCommunicator()
     fileprivate let dateFormatter = DateFormatter()
 
     @IBOutlet weak var tableView: UITableView!
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ConversationsListViewController.conversationSegueId {
+        if segue.identifier == conversationSegueId {
             guard let conversationVC = segue.destination as? ConversationViewController,
                 let indexPath = tableView.indexPathForSelectedRow,
                 let cell = tableView.cellForRow(at: indexPath) as? ConversationTableViewCell,
                 let name = cell.nameLabel.text else { return }
 
             conversationVC.name = name
+            conversationVC.multipeerCommunicator = multipeerCommunicator
         }
     }
 }

@@ -11,7 +11,7 @@ import MultipeerConnectivity
 
 protocol Communicator {
 
-    func sendMessage(string: String, to userID: String, competionHandler: ((_ success: Bool, _ error: Error?) -> ())?)
+    func sendMessage(string: String, to userID: String, completionHandler: ((_ success: Bool, _ error: Error?) -> ())?)
     weak var delegate: CommunicatorDelegate? {get set}
     var online: Bool {get set}
 }
@@ -55,6 +55,7 @@ class MultipeerCommunicator: NSObject, Communicator {
 
     deinit {
         advertiser.stopAdvertisingPeer()
+        browser.stopBrowsingForPeers()
     }
 
     func generateMessageId() -> String {
@@ -62,8 +63,23 @@ class MultipeerCommunicator: NSObject, Communicator {
         return string!
     }
 
-    func sendMessage(string: String, to userID: String, competionHandler: ((Bool, Error?) -> ())?) {
+    func sendMessage(string: String, to userID: String, completionHandler: ((Bool, Error?) -> ())?) {
+        let message = Message(text: string)
+        do {
+            let messageData = try JSONEncoder().encode(message)
+            try session.send(messageData, toPeers: session.connectedPeers, with: .reliable)
+            if let completionHandler = completionHandler {
+                completionHandler(true, nil)
+            }
 
+            for peer in session.connectedPeers {
+                delegate?.didReceiveMessage(text: message.text, fromUser: myPeerId.displayName, toUser: peer.displayName)
+            }
+        } catch {
+            if let completionHandler = completionHandler {
+                completionHandler(false, error)
+            }
+        }
     }
 }
 

@@ -11,6 +11,7 @@ import UIKit
 class ConversationViewController: UIViewController {
 
     var name: String!
+    var multipeerCommunicator: MultipeerCommunicator!
 
     @IBOutlet weak var tableView: UITableView! {
         didSet {
