@@ -13,6 +13,7 @@
 		F358DB111F9B61A500C49EEA /* MultipeerCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB101F9B61A500C49EEA /* MultipeerCommunicator.swift */; };
 		F358DB131F9B69E900C49EEA /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB121F9B69E900C49EEA /* CommunicationManager.swift */; };
 		F358DB151F9B7BF900C49EEA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB141F9B7BF900C49EEA /* Message.swift */; };
+		F358DB171F9BAEDF00C49EEA /* ChatHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB161F9BAEDF00C49EEA /* ChatHistory.swift */; };
 		F35B35A41F94C72000D5F557 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A31F94C72000D5F557 /* GCDDataManager.swift */; };
 		F35B35A61F94C8FD00D5F557 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A51F94C8FD00D5F557 /* DataManager.swift */; };
 		F35B35A81F94EBAD00D5F557 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A71F94EBAD00D5F557 /* OperationDataManager.swift */; };
@@ -39,6 +40,7 @@
 		F358DB101F9B61A500C49EEA /* MultipeerCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerCommunicator.swift; sourceTree = "<group>"; };
 		F358DB121F9B69E900C49EEA /* CommunicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
 		F358DB141F9B7BF900C49EEA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		F358DB161F9BAEDF00C49EEA /* ChatHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistory.swift; sourceTree = "<group>"; };
 		F35B35A31F94C72000D5F557 /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		F35B35A51F94C8FD00D5F557 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F35B35A71F94EBAD00D5F557 /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		F3630A651F72C9D5005EA5BC /* TinkoffChat */ = {
 			isa = PBXGroup;
 			children = (
+				F358DB161F9BAEDF00C49EEA /* ChatHistory.swift */,
 				F3D560AE1F8AA2340042ADC6 /* Conversation */,
 				F3B55F261F8922D100F8B9A5 /* Profile */,
 				F3B55F251F8922BB00F8B9A5 /* ConversationList */,
@@ -255,6 +258,7 @@
 				F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */,
 				F35B35AC1F94FA0700D5F557 /* NotificationName+Extension.swift in Sources */,
 				F35B35A61F94C8FD00D5F557 /* DataManager.swift in Sources */,
+				F358DB171F9BAEDF00C49EEA /* ChatHistory.swift in Sources */,
 				F358DB151F9B7BF900C49EEA /* Message.swift in Sources */,
 				F375861F1F7D8FAB0070C3A1 /* DesignableButton.swift in Sources */,
 				F37586211F7D8FCB0070C3A1 /* DesignableImageView.swift in Sources */,

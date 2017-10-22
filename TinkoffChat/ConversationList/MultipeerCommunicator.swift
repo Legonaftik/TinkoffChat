@@ -31,7 +31,8 @@ protocol CommunicatorDelegate: class {
 
 class MultipeerCommunicator: NSObject, Communicator {
 
-    weak var delegate: CommunicatorDelegate? = CommunicationManager()
+    weak var delegate: CommunicatorDelegate?
+
     var online: Bool = false
 
     private let serviceType = "tinkoff-chat"
@@ -80,12 +81,10 @@ extension MultipeerCommunicator: MCNearbyServiceAdvertiserDelegate {
     }
 
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        // Automatically accept all the invitations
-        if let session = sessions[peerID.displayName] {
-            invitationHandler(true, session)
-        } else {
-            invitationHandler(false, nil)
-        }
+        let session = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .none)
+        session.delegate = self
+        sessions[peerID.displayName] = session
+        invitationHandler(true, session)  // Automatically accept all the invitations
     }
 }
 
@@ -104,8 +103,8 @@ extension MultipeerCommunicator: MCNearbyServiceBrowserDelegate {
         delegate?.didFoundUser(userID: peerID.displayName, userName: info?["userName"])
 
         let session = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .none)
-        sessions[peerID.displayName] = session
         session.delegate = self
+        sessions[peerID.displayName] = session
 
         browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
     }
@@ -119,7 +118,6 @@ extension MultipeerCommunicator: MCSessionDelegate {
             sendMessage(string: "Hello, user!", to: peerID.displayName, completionHandler: nil)
         case .notConnected:
             delegate?.didLostUser(userID: peerID.displayName)
-//            sessions.removeValue(forKey: peerID.displayName)
         case .connecting:
             break
         }
@@ -129,7 +127,6 @@ extension MultipeerCommunicator: MCSessionDelegate {
         do {
             let message = try JSONDecoder().decode(Message.self, from: data)
             delegate?.didReceiveMessage(text: message.text, fromUser: peerID.displayName, toUser: myPeerId.displayName)
-            print("Did receive message; text: \(message.text), from: \(peerID.displayName)")
         } catch {
             fatalError("Couldn't convert the received data into Message")
         }

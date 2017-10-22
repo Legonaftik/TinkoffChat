@@ -12,10 +12,16 @@ class ConversationsListViewController: UIViewController {
 
     private let conversationSegueId = "toConversation"
 
-    private let multipeerCommunicator = MultipeerCommunicator()
+    private let communicationManager = CommunicationManager()
     fileprivate let dateFormatter = DateFormatter()
 
     @IBOutlet weak var tableView: UITableView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        communicationManager.conversationListDelegate = self
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == conversationSegueId {
@@ -25,16 +31,11 @@ class ConversationsListViewController: UIViewController {
                 let name = cell.nameLabel.text else { return }
 
             conversationVC.name = name
-            conversationVC.multipeerCommunicator = multipeerCommunicator
         }
     }
 }
 
 extension ConversationsListViewController: UITableViewDataSource, UITableViewDelegate {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
@@ -49,21 +50,22 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Mock data
-        return 10
+        return communicationManager.chatHistories.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ConversationTableViewCell
-        configure(cell, for: indexPath)
+        let chatHistory = communicationManager.chatHistories[indexPath.row]
+        configure(cell, using: chatHistory)
         return cell
     }
 
-    private func configure(_ cell: ConversationTableViewCell, for indexPath: IndexPath) {
-        // Mock data
+    private func configure(_ cell: ConversationTableViewCell, using chatHistory: ChatHistory) {
 
-        cell.nameLabel.text = "Name:\(indexPath.section)\(indexPath.row)"
+        cell.nameLabel.text = chatHistory.userName
 
-        let message: String? = (indexPath.row % 2 == 0) ? "There is some message!!!" : nil
+        cell.messageLabel.text = chatHistory.messages.last?.text ?? "No messages yet"
+        let message = chatHistory.messages.last?.text
         if message == nil {
             cell.messageLabel.font = UIFont.italicSystemFont(ofSize: 14)
             cell.messageLabel.text = "No message yet"
@@ -72,29 +74,28 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
             cell.messageLabel.text = message
         }
 
-        let date = (indexPath.row % 3 == 0) ? Date() : Date(timeIntervalSince1970: 100500)
-        if Calendar.current.isDateInToday(date) {
-            dateFormatter.dateFormat = "HH:mm"
+        if let date = chatHistory.lastMessageDate {
+            if Calendar.current.isDateInToday(date) {
+                dateFormatter.dateFormat = "HH:mm"
+            } else {
+                dateFormatter.dateFormat = "dd MMM"
+            }
+            cell.dateLabel.text = dateFormatter.string(from: date)
         } else {
-            dateFormatter.dateFormat = "dd MMM"
+            cell.dateLabel.text = ""
         }
-        cell.dateLabel.text = dateFormatter.string(from: date)
 
-        let online = indexPath.section == 0
-        cell.backgroundColor = online ? .tinkoffYellow : .white
-
-        let hasUnreadMessages = indexPath.row % 5 == 0
-        let noMessagesYet = message == nil
-        if noMessagesYet {
-            cell.messageLabel.font = UIFont.init(name: "HelveticaNeue-UltraLight", size: 17)!
-        } else if hasUnreadMessages {
-            cell.messageLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        } else {
-            cell.messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        }
+        cell.backgroundColor = UIColor.tinkoffYellow
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ConversationsListViewController: CommunicationManagerDelegate {
+
+    func reloadData() {
+        tableView.reloadData()
     }
 }
