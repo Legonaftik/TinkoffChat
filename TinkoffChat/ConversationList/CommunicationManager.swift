@@ -11,24 +11,49 @@ import Foundation
 protocol CommunicationManagerDelegate: class {
 
     func reloadData()
+
+    func displayError(with text: String)
 }
 
-class CommunicationManager: CommunicatorDelegate {
+class CommunicationManager {
 
     weak var conversationListDelegate: CommunicationManagerDelegate?
+    weak var singleConversationDelegate: CommunicationManagerDelegate?
 
-    var chatHistories: [ChatHistory] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.conversationListDelegate?.reloadData()
-            }
-        }
-    }
+    var chatHistories: [ChatHistory] = []
     private let multipeerCommunicator = MultipeerCommunicator()
 
     init() {
         multipeerCommunicator.delegate = self
     }
+
+    fileprivate func updateDelegatesState() {
+        DispatchQueue.main.async {
+            self.conversationListDelegate?.reloadData()
+            self.singleConversationDelegate?.reloadData()
+        }
+    }
+
+    func sendMessage(in chatHistory: ChatHistory, with text: String, completion: ((Bool, Error?) -> ())?) {
+
+        multipeerCommunicator.sendMessage(string: text, to: chatHistory.userID) { [unowned self] (success, error) in
+
+            if success {
+                // Type outgoing
+                chatHistory.messages.append(Message(text: text, messageType: .outgoing))
+                self.chatHistories.sort(by: ChatHistory.comparator)
+            }
+            DispatchQueue.main.async {
+                completion?(success, error)
+                if success {
+                    self.singleConversationDelegate?.reloadData()
+                }
+            }
+        }
+    }
+}
+
+extension CommunicationManager: CommunicatorDelegate {
 
     func didFoundUser(userID: String, userName: String?) {
         print("didFoundUser; userID: \(userID), userName: \(userName ?? "Unknown")")
@@ -41,6 +66,8 @@ class CommunicationManager: CommunicatorDelegate {
         }
         // Otherwise create a new record
         chatHistories.append(ChatHistory(userID: userID, userName: userName ?? "Unknown user"))
+        chatHistories.sort(by: ChatHistory.comparator)
+        updateDelegatesState()
     }
 
     func didLostUser(userID: String) {
@@ -51,6 +78,11 @@ class CommunicationManager: CommunicatorDelegate {
                 chatHistories.remove(at: i)
                 return
             }
+        }
+
+        updateDelegatesState()
+        DispatchQueue.main.async {
+            self.singleConversationDelegate?.displayError(with: "Lost connection with this user.")
         }
     }
 
@@ -67,8 +99,10 @@ class CommunicationManager: CommunicatorDelegate {
 
         for chatHistory in chatHistories {
             if chatHistory.userID == fromUser {
-                chatHistory.addNewMessage(Message(text: text))
+                chatHistory.addNewMessage(Message(text: text, messageType: .incoming))
             }
         }
+
+        updateDelegatesState()
     }
 }

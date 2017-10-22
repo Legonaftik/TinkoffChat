@@ -26,11 +26,9 @@ class ConversationsListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == conversationSegueId {
             guard let conversationVC = segue.destination as? ConversationViewController,
-                let indexPath = tableView.indexPathForSelectedRow,
-                let cell = tableView.cellForRow(at: indexPath) as? ConversationTableViewCell,
-                let name = cell.nameLabel.text else { return }
+                let indexPath = tableView.indexPathForSelectedRow else { return }
 
-            conversationVC.name = name
+            conversationVC.chatHistory = communicationManager.chatHistories[indexPath.row]
         }
     }
 }
@@ -38,18 +36,10 @@ class ConversationsListViewController: UIViewController {
 extension ConversationsListViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Online"
-        case 1:
-            return "History"
-        default:
-            return nil
-        }
+        return "Online"
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Mock data
         return communicationManager.chatHistories.count
     }
 
@@ -95,6 +85,10 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
 
 extension ConversationsListViewController: CommunicationManagerDelegate {
 
+    func displayError(with text: String) {
+        displayAlert(message: text)
+    }
+    
     func reloadData() {
         tableView.reloadData()
     }

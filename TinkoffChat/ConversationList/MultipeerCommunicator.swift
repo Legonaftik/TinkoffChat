@@ -33,7 +33,7 @@ class MultipeerCommunicator: NSObject, Communicator {
 
     weak var delegate: CommunicatorDelegate?
 
-    var online: Bool = false
+    var online: Bool = true
 
     private let serviceType = "tinkoff-chat"
     private let myPeerId = MCPeerID(displayName: UIDevice.current.identifierForVendor!.uuidString)
@@ -42,7 +42,7 @@ class MultipeerCommunicator: NSObject, Communicator {
     private var sessions: [String: MCSession] = [:]
 
     override init() {
-        advertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: ["userName": "legonaftik"], serviceType: serviceType)
+        advertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: ["userName": "\(UIDevice.current.name)"], serviceType: serviceType)
         browser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: serviceType)
         super.init()
 
@@ -59,7 +59,7 @@ class MultipeerCommunicator: NSObject, Communicator {
     }
 
     func sendMessage(string: String, to userID: String, completionHandler: ((Bool, Error?) -> ())?) {
-        let message = Message(text: string)
+        let message = Message(text: string, messageType: .outgoing)
         let session = sessions[userID]!
 
         do {
@@ -78,6 +78,7 @@ extension MultipeerCommunicator: MCNearbyServiceAdvertiserDelegate {
 
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         delegate?.failedToStartAdvertising(error: error)
+        online = false
     }
 
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
@@ -97,6 +98,7 @@ extension MultipeerCommunicator: MCNearbyServiceBrowserDelegate {
 
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         delegate?.failedToStartBrowsingForUsers(error: error)
+        online = false
     }
 
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
@@ -116,8 +118,10 @@ extension MultipeerCommunicator: MCSessionDelegate {
         switch state {
         case .connected:
             sendMessage(string: "Hello, user!", to: peerID.displayName, completionHandler: nil)
+            delegate?.didFoundUser(userID: peerID.displayName, userName: session.connectedPeers)
         case .notConnected:
             delegate?.didLostUser(userID: peerID.displayName)
+//            sessions.removeValue(forKey: peerID.displayName)
         case .connecting:
             break
         }
@@ -125,7 +129,8 @@ extension MultipeerCommunicator: MCSessionDelegate {
 
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         do {
-            let message = try JSONDecoder().decode(Message.self, from: data)
+            var message = try JSONDecoder().decode(Message.self, from: data)
+            message.messageType = .incoming
             delegate?.didReceiveMessage(text: message.text, fromUser: peerID.displayName, toUser: myPeerId.displayName)
         } catch {
             fatalError("Couldn't convert the received data into Message")

@@ -10,9 +10,11 @@ import UIKit
 
 class ConversationViewController: UIViewController {
 
-    var name: String!
-    var multipeerCommunicator: MultipeerCommunicator!
+    var chatHistory: ChatHistory!
+    var communicationManager: CommunicationManager!
 
+    @IBOutlet weak var inputTextField: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.hideKeyboard))
@@ -20,41 +22,57 @@ class ConversationViewController: UIViewController {
         }
     }
 
+    @IBAction func changedMessageText(_ sender: UITextField) {
+        if let messageText = sender.text {
+            sendButton.isEnabled = !messageText.isEmpty
+        } else {
+            sendButton.isEnabled = false
+        }
+    }
+
+    @IBAction func sendMessage(_ sender: UIButton) {
+        communicationManager.sendMessage(in: chatHistory, with: inputTextField.text!) { [weak self] (success, error) in
+            guard let strongSelf = self else { return }
+
+            
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = name
+
+        title = chatHistory.userName
+        communicationManager.singleConversationDelegate = self
     }
 }
 
 extension ConversationViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Mock data
-        return 6
+        return chatHistory.messages.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Mock data
+        let message = chatHistory.messages[indexPath.row]
 
-        // Choose the correct cell type
-        let cellId = indexPath.row % 2 == 0 ?
+        let cellId = message.messageType == .incoming ?
             MessageTableViewCell.incomingMessageId :
             MessageTableViewCell.outgoingMessageId
+
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MessageTableViewCell
-        // Configure message text
-        let messageText: String
-        switch indexPath.row % 3 {
-        case 0:
-            messageText = "o"
-        case 1:
-            messageText = String(repeating: "o", count: 30)
-        case 2:
-            messageText = String(repeating: "o", count: 300)
-        default:
-            messageText = "Wrong message!"
-        }
-        cell.messageTextLabel.text = messageText
+        cell.messageTextLabel.text = message.text
 
         return cell
+    }
+}
+
+extension ConversationViewController: CommunicationManagerDelegate {
+
+    func reloadData() {
+        tableView.reloadData()
+    }
+
+    func displayError(with text: String) {
+        displayAlert(message: text)
     }
 }

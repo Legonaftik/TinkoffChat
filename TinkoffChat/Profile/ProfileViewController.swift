@@ -97,8 +97,7 @@ class ProfileViewController: UIViewController {
             strongSelf.activityIndicator.stopAnimating()
 
             if success {
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-                strongSelf.displayAlert(title: "Данные сохранены", message: nil, firstAction: okAction)
+                strongSelf.displayAlert(title: "Данные сохранены")
             } else {
                 let okAction = UIAlertAction(title: "OK", style: .default) { _ in
                     // User should be able to try to save info again if something was wrong

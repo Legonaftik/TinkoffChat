@@ -20,7 +20,7 @@
 		F35B35AC1F94FA0700D5F557 /* NotificationName+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35AB1F94FA0700D5F557 /* NotificationName+Extension.swift */; };
 		F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3630A661F72C9D5005EA5BC /* AppDelegate.swift */; };
 		F3630A691F72C9D5005EA5BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3630A681F72C9D5005EA5BC /* ProfileViewController.swift */; };
-		F3630A6C1F72C9D5005EA5BC /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3630A6A1F72C9D5005EA5BC /* Profile.storyboard */; };
+		F3630A6C1F72C9D5005EA5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3630A6A1F72C9D5005EA5BC /* Main.storyboard */; };
 		F3630A6E1F72C9D5005EA5BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3630A6D1F72C9D5005EA5BC /* Assets.xcassets */; };
 		F3630A711F72C9D5005EA5BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3630A6F1F72C9D5005EA5BC /* LaunchScreen.storyboard */; };
 		F375861F1F7D8FAB0070C3A1 /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F375861E1F7D8FAA0070C3A1 /* DesignableButton.swift */; };
@@ -48,7 +48,7 @@
 		F3630A631F72C9D5005EA5BC /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3630A661F72C9D5005EA5BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3630A681F72C9D5005EA5BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		F3630A6B1F72C9D5005EA5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
+		F3630A6B1F72C9D5005EA5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F3630A6D1F72C9D5005EA5BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3630A701F72C9D5005EA5BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3630A721F72C9D5005EA5BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		F3D560B51F8AB35B0042ADC6 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				F3630A6A1F72C9D5005EA5BC /* Profile.storyboard */,
+				F3630A6A1F72C9D5005EA5BC /* Main.storyboard */,
 				F375861E1F7D8FAA0070C3A1 /* DesignableButton.swift */,
 				F37586201F7D8FCB0070C3A1 /* DesignableImageView.swift */,
 			);
@@ -230,7 +230,7 @@
 			files = (
 				F3630A711F72C9D5005EA5BC /* LaunchScreen.storyboard in Resources */,
 				F3630A6E1F72C9D5005EA5BC /* Assets.xcassets in Resources */,
-				F3630A6C1F72C9D5005EA5BC /* Profile.storyboard in Resources */,
+				F3630A6C1F72C9D5005EA5BC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,12 +268,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F3630A6A1F72C9D5005EA5BC /* Profile.storyboard */ = {
+		F3630A6A1F72C9D5005EA5BC /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F3630A6B1F72C9D5005EA5BC /* Base */,
 			);
-			name = Profile.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		F3630A6F1F72C9D5005EA5BC /* LaunchScreen.storyboard */ = {

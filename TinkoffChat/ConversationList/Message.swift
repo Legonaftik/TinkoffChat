@@ -8,14 +8,24 @@
 
 import Foundation
 
+enum MessageType: Int, Codable {
+
+    case incoming
+    case outgoing
+}
+
 struct Message: Codable {
 
     let eventType = "TextMessage"
     let messageId = generateMessageId()
     let text: String
+    let date = Date()
+    var messageType: MessageType
 
-    init(text: String) {
+
+    init(text: String, messageType: MessageType) {
         self.text = text
+        self.messageType = messageType
     }
 
     static func generateMessageId() -> String {

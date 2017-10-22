@@ -397,7 +397,19 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="changedMessageText" destination="2GI-yy-TU1" eventType="editingChanged" id="ZiS-xe-XVG"/>
+                                            <action selector="changedMessageText:" destination="2GI-yy-TU1" eventType="editingChanged" id="2fk-aG-lcl"/>
+                                        </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zj9-LJ-CfJ">
+                                        <rect key="frame" x="169" y="8" width="36" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="sendMessage:" destination="2GI-yy-TU1" eventType="touchUpInside" id="rBR-Td-fQr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -426,6 +438,9 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Person name" id="YmJ-dk-Fzz"/>
                     <connections>
+                        <outlet property="changedMessageText" destination="iRH-By-v9y" id="iDR-od-8fS"/>
+                        <outlet property="inputTextField" destination="iRH-By-v9y" id="KS8-a1-jrL"/>
+                        <outlet property="sendButton" destination="Zj9-LJ-CfJ" id="xtp-3L-9F7"/>
                         <outlet property="tableView" destination="hBD-Qq-NHo" id="FN7-zJ-Ndy"/>
                     </connections>
                 </viewController>
