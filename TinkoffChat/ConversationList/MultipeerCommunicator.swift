@@ -76,30 +76,20 @@ class MultipeerCommunicator: NSObject, Communicator {
 
 extension MultipeerCommunicator: MCNearbyServiceAdvertiserDelegate {
 
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
-        delegate?.failedToStartAdvertising(error: error)
-        online = false
-    }
-
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         let session = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self
         sessions[peerID.displayName] = session
         invitationHandler(true, session)  // Automatically accept all the invitations
     }
+
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
+        delegate?.failedToStartAdvertising(error: error)
+        online = false
+    }
 }
 
 extension MultipeerCommunicator: MCNearbyServiceBrowserDelegate {
-
-    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        delegate?.didLostUser(userID: peerID.displayName)
-        sessions.removeValue(forKey: peerID.displayName)
-    }
-
-    func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
-        delegate?.failedToStartBrowsingForUsers(error: error)
-        online = false
-    }
 
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         delegate?.didFoundUser(userID: peerID.displayName, userName: info?["userName"])
@@ -110,6 +100,16 @@ extension MultipeerCommunicator: MCNearbyServiceBrowserDelegate {
 
         browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
     }
+
+    func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
+        delegate?.didLostUser(userID: peerID.displayName)
+        sessions.removeValue(forKey: peerID.displayName)
+    }
+
+    func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
+        delegate?.failedToStartBrowsingForUsers(error: error)
+        online = false
+    }
 }
 
 extension MultipeerCommunicator: MCSessionDelegate {
@@ -117,11 +117,12 @@ extension MultipeerCommunicator: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         switch state {
         case .connected:
-            sendMessage(string: "Hello, user!", to: peerID.displayName, completionHandler: nil)
-            delegate?.didFoundUser(userID: peerID.displayName, userName: session.connectedPeers)
+            print("Connected to: \(peerID.displayName)")
+//            delegate?.didFoundUser(userID: peerID.displayName, userName: session.connectedPeers)
         case .notConnected:
+            print("Disconnected from: \(peerID.displayName)")
             delegate?.didLostUser(userID: peerID.displayName)
-//            sessions.removeValue(forKey: peerID.displayName)
+            sessions.removeValue(forKey: peerID.displayName)
         case .connecting:
             break
         }

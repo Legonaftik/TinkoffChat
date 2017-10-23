@@ -29,6 +29,7 @@ class ConversationsListViewController: UIViewController {
                 let indexPath = tableView.indexPathForSelectedRow else { return }
 
             conversationVC.chatHistory = communicationManager.chatHistories[indexPath.row]
+            conversationVC.communicationManager = communicationManager
         }
     }
 }
