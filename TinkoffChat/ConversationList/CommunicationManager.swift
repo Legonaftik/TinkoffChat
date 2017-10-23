@@ -75,7 +75,6 @@ extension CommunicationManager: CommunicatorDelegate {
         for i in 0 ..< chatHistories.count {
             if chatHistories[i].userID == userID {
                 chatHistories.remove(at: i)
-                return
             }
         }
 
@@ -86,11 +85,11 @@ extension CommunicationManager: CommunicatorDelegate {
     }
 
     func failedToStartBrowsingForUsers(error: Error) {
-        print(error.localizedDescription)
+        conversationListDelegate?.displayError(with: error.localizedDescription)
     }
 
     func failedToStartAdvertising(error: Error) {
-        print(error.localizedDescription)
+        conversationListDelegate?.displayError(with: error.localizedDescription)
     }
 
     func didReceiveMessage(text: String, fromUser: String, toUser: String) {

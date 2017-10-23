@@ -22,19 +22,15 @@ class ConversationViewController: UIViewController {
         }
     }
 
-    @IBAction func changedMessageText(_ sender: UITextField) {
-        if let messageText = sender.text {
-            sendButton.isEnabled = !messageText.isEmpty
-        } else {
-            sendButton.isEnabled = false
-        }
-    }
-
     @IBAction func sendMessage(_ sender: UIButton) {
+        guard let messageText = inputTextField.text,
+            !messageText.isEmpty else { return }
+
         communicationManager.sendMessage(in: chatHistory, with: inputTextField.text!) { [weak self] (success, error) in
             guard let strongSelf = self else { return }
-
             
+            strongSelf.inputTextField.text = ""
+            strongSelf.inputTextField.resignFirstResponder()
         }
     }
 
@@ -43,6 +39,7 @@ class ConversationViewController: UIViewController {
 
         title = chatHistory.userName
         communicationManager.singleConversationDelegate = self
+        addObserversForKeyboardAppearance()
     }
 }
 
@@ -74,5 +71,6 @@ extension ConversationViewController: CommunicationManagerDelegate {
 
     func displayError(with text: String) {
         displayAlert(message: text)
+        sendButton.isEnabled = false
     }
 }

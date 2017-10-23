@@ -66,8 +66,6 @@ class MultipeerCommunicator: NSObject, Communicator {
             let messageData = try JSONEncoder().encode(message)
             try session.send(messageData, toPeers: session.connectedPeers, with: .reliable)  // There should be only one peer
             completionHandler?(true, nil)
-
-            print("Did send message; string: \(string), to: \(userID)")
         } catch {
             completionHandler?(false, error)
         }
@@ -98,7 +96,7 @@ extension MultipeerCommunicator: MCNearbyServiceBrowserDelegate {
         session.delegate = self
         sessions[peerID.displayName] = session
 
-        browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
+        browser.invitePeer(peerID, to: session, withContext: nil, timeout: 0)
     }
 
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -118,7 +116,6 @@ extension MultipeerCommunicator: MCSessionDelegate {
         switch state {
         case .connected:
             print("Connected to: \(peerID.displayName)")
-//            delegate?.didFoundUser(userID: peerID.displayName, userName: session.connectedPeers)
         case .notConnected:
             print("Disconnected from: \(peerID.displayName)")
             delegate?.didLostUser(userID: peerID.displayName)
