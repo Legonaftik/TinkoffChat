@@ -23,6 +23,12 @@ class ConversationsListViewController: UIViewController {
         communicationManager.conversationListDelegate = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        tableView.reloadData()
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == conversationSegueId {
             guard let conversationVC = segue.destination as? ConversationViewController,
@@ -57,12 +63,19 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
 
         cell.messageLabel.text = chatHistory.messages.last?.text ?? "No messages yet"
         let message = chatHistory.messages.last?.text
-        if message == nil {
-            cell.messageLabel.font = UIFont.italicSystemFont(ofSize: 14)
+        let noMessagesYet = message == nil
+        if noMessagesYet {
             cell.messageLabel.text = "No message yet"
+            cell.messageLabel.font = UIFont.init(name: "HelveticaNeue-UltraLight", size: 17)!
         } else {
-            cell.messageLabel.font = UIFont.systemFont(ofSize: 17)
             cell.messageLabel.text = message
+
+            if let lastMessage = chatHistory.messages.last,
+                lastMessage.messageType == .incoming {
+                cell.messageLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+            } else {
+                cell.messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+            }
         }
 
         if let date = chatHistory.lastMessageDate {

@@ -115,9 +115,8 @@ extension MultipeerCommunicator: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         switch state {
         case .connected:
-            print("Connected to: \(peerID.displayName)")
+            break
         case .notConnected:
-            print("Disconnected from: \(peerID.displayName)")
             delegate?.didLostUser(userID: peerID.displayName)
             sessions.removeValue(forKey: peerID.displayName)
         case .connecting:
