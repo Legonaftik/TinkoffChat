@@ -34,11 +34,16 @@ extension UIViewController {
                                                name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
     }
 
-    func displayAlert(title: String? = "Внимание!", message: String? = nil, firstAction: UIAlertAction, secondAction: UIAlertAction? = nil) {
+    func displayAlert(title: String? = "Внимание!", message: String? = nil, firstAction: UIAlertAction? = nil, secondAction: UIAlertAction? = nil) {
 
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
-        alertController.addAction(firstAction)
+        if let firstAction = firstAction {
+            alertController.addAction(firstAction)
+        } else {
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+        }
         if let secondAction = secondAction {
             alertController.addAction(secondAction)
         }

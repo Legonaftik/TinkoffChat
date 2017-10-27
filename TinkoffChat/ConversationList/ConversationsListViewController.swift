@@ -10,88 +10,100 @@ import UIKit
 
 class ConversationsListViewController: UIViewController {
 
-    private static let conversationSegueId = "toConversation"
+    private let conversationSegueId = "toConversation"
+
+    private let communicationManager = CommunicationManager()
     fileprivate let dateFormatter = DateFormatter()
 
     @IBOutlet weak var tableView: UITableView!
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ConversationsListViewController.conversationSegueId {
-            guard let conversationVC = segue.destination as? ConversationViewController,
-                let indexPath = tableView.indexPathForSelectedRow,
-                let cell = tableView.cellForRow(at: indexPath) as? ConversationTableViewCell,
-                let name = cell.nameLabel.text else { return }
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-            conversationVC.name = name
+        communicationManager.conversationListDelegate = self
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        tableView.reloadData()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == conversationSegueId {
+            guard let conversationVC = segue.destination as? ConversationViewController,
+                let indexPath = tableView.indexPathForSelectedRow else { return }
+
+            conversationVC.chatHistory = communicationManager.chatHistories[indexPath.row]
+            conversationVC.communicationManager = communicationManager
         }
     }
 }
 
 extension ConversationsListViewController: UITableViewDataSource, UITableViewDelegate {
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Online"
-        case 1:
-            return "History"
-        default:
-            return nil
-        }
+        return "Online"
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Mock data
-        return 10
+        return communicationManager.chatHistories.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ConversationTableViewCell
-        configure(cell, for: indexPath)
+        let chatHistory = communicationManager.chatHistories[indexPath.row]
+        configure(cell, using: chatHistory)
         return cell
     }
 
-    private func configure(_ cell: ConversationTableViewCell, for indexPath: IndexPath) {
-        // Mock data
+    private func configure(_ cell: ConversationTableViewCell, using chatHistory: ChatHistory) {
 
-        cell.nameLabel.text = "Name:\(indexPath.section)\(indexPath.row)"
+        cell.nameLabel.text = chatHistory.userName
 
-        let message: String? = (indexPath.row % 2 == 0) ? "There is some message!!!" : nil
-        if message == nil {
-            cell.messageLabel.font = UIFont.italicSystemFont(ofSize: 14)
-            cell.messageLabel.text = "No message yet"
-        } else {
-            cell.messageLabel.font = UIFont.systemFont(ofSize: 17)
-            cell.messageLabel.text = message
-        }
-
-        let date = (indexPath.row % 3 == 0) ? Date() : Date(timeIntervalSince1970: 100500)
-        if Calendar.current.isDateInToday(date) {
-            dateFormatter.dateFormat = "HH:mm"
-        } else {
-            dateFormatter.dateFormat = "dd MMM"
-        }
-        cell.dateLabel.text = dateFormatter.string(from: date)
-
-        let online = indexPath.section == 0
-        cell.backgroundColor = online ? .tinkoffYellow : .white
-
-        let hasUnreadMessages = indexPath.row % 5 == 0
+        cell.messageLabel.text = chatHistory.messages.last?.text ?? "No messages yet"
+        let message = chatHistory.messages.last?.text
         let noMessagesYet = message == nil
         if noMessagesYet {
+            cell.messageLabel.text = "No message yet"
             cell.messageLabel.font = UIFont.init(name: "HelveticaNeue-UltraLight", size: 17)!
-        } else if hasUnreadMessages {
-            cell.messageLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         } else {
-            cell.messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+            cell.messageLabel.text = message
+
+            if let lastMessage = chatHistory.messages.last,
+                lastMessage.messageType == .incoming {
+                cell.messageLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+            } else {
+                cell.messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+            }
         }
+
+        if let date = chatHistory.lastMessageDate {
+            if Calendar.current.isDateInToday(date) {
+                dateFormatter.dateFormat = "HH:mm"
+            } else {
+                dateFormatter.dateFormat = "dd MMM"
+            }
+            cell.dateLabel.text = dateFormatter.string(from: date)
+        } else {
+            cell.dateLabel.text = ""
+        }
+
+        cell.backgroundColor = UIColor.tinkoffYellow
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension ConversationsListViewController: CommunicationManagerDelegate {
+
+    func displayError(with text: String) {
+        displayAlert(message: text)
+    }
+    
+    func reloadData() {
+        tableView.reloadData()
     }
 }

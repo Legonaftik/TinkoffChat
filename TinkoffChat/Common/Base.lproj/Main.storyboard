@@ -393,16 +393,25 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите сообщение" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iRH-By-v9y">
-                                        <rect key="frame" x="8" y="8" width="359" height="30"/>
+                                        <rect key="frame" x="8" y="8" width="315" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zj9-LJ-CfJ">
+                                        <rect key="frame" x="331" y="8" width="36" height="30"/>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="sendMessage:" destination="2GI-yy-TU1" eventType="touchUpInside" id="rBR-Td-fQr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="iRH-By-v9y" secondAttribute="trailing" id="1FK-ZD-3qO"/>
+                                    <constraint firstItem="Zj9-LJ-CfJ" firstAttribute="centerY" secondItem="hS2-2z-SYl" secondAttribute="centerY" id="8XX-ge-dLG"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zj9-LJ-CfJ" secondAttribute="trailing" constant="8" id="C25-sM-7eH"/>
                                     <constraint firstItem="vdX-97-iPy" firstAttribute="leading" secondItem="hS2-2z-SYl" secondAttribute="leading" id="Tvy-d0-hac"/>
+                                    <constraint firstItem="Zj9-LJ-CfJ" firstAttribute="leading" secondItem="iRH-By-v9y" secondAttribute="trailing" constant="8" id="dYg-16-Yag"/>
                                     <constraint firstItem="iRH-By-v9y" firstAttribute="top" secondItem="hS2-2z-SYl" secondAttribute="topMargin" id="i4N-8n-Xh4"/>
                                     <constraint firstItem="iRH-By-v9y" firstAttribute="leading" secondItem="hS2-2z-SYl" secondAttribute="leadingMargin" id="jWA-q1-igA"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="iRH-By-v9y" secondAttribute="bottom" id="kRF-WL-OjX"/>
@@ -426,6 +435,8 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Person name" id="YmJ-dk-Fzz"/>
                     <connections>
+                        <outlet property="inputTextField" destination="iRH-By-v9y" id="KS8-a1-jrL"/>
+                        <outlet property="sendButton" destination="Zj9-LJ-CfJ" id="xtp-3L-9F7"/>
                         <outlet property="tableView" destination="hBD-Qq-NHo" id="FN7-zJ-Ndy"/>
                     </connections>
                 </viewController>
