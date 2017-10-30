@@ -11,12 +11,6 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     private var imagePicker = UIImagePickerController()
-    private var profile = Profile() {
-        didSet {
-            updateUI()
-        }
-    }
-
     private var model: IProfileModel = ProfileModel()
 
     @IBOutlet weak var nameTextField: UITextField!
@@ -74,19 +68,7 @@ class ProfileViewController: UIViewController {
         addObserversForKeyboardAppearance()
     }
 
-    private func updateLocalUserInfo() {
-        guard let avatar = avatarImageView.image,
-            let name = nameTextField.text,
-            let info = infoTextField.text else { return }
-
-        profile.avatar = avatar
-        profile.name = name
-        profile.info = info
-    }
-
     private func startSavingProfile() {
-        updateLocalUserInfo()
-
         gcdButton.isEnabled = false
         operationButton.isEnabled = false
         activityIndicator.startAnimating()
@@ -99,28 +81,12 @@ class ProfileViewController: UIViewController {
     }
 
     private func updateSaveButtonsAvailability() {
-        if profileInfoDidChange(), infoToSaveIsValid() {
+        if model.profileDidChange(avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text) {
             gcdButton.isEnabled = true
             operationButton.isEnabled = true
         } else {
             gcdButton.isEnabled = false
             operationButton.isEnabled = false
-        }
-    }
-
-    private func profileInfoDidChange() -> Bool {
-        return profile.avatar != avatarImageView.image || profile.name != nameTextField.text || profile.info != infoTextField.text
-    }
-
-    private func infoToSaveIsValid() -> Bool {
-        return avatarImageView.image != nil && nameTextField.text != "" && infoTextField.text != ""
-    }
-
-    private func updateUI() {
-        if isViewLoaded {
-            avatarImageView.image = profile.avatar
-            nameTextField.text = profile.name
-            infoTextField.text = profile.info
         }
     }
 }
@@ -150,8 +116,10 @@ extension ProfileViewController: UITextFieldDelegate {
 
 extension ProfileViewController: IProfileModelDelegate {
 
-    func setup(profileViewModel: ProfileViewModel) {
-        profile = Profile(name: profileViewModel.name, info: profileViewModel.info, avatar: profileViewModel.avatar)
+    func didGet(profileViewModel: ProfileViewModel) {
+        nameTextField.text = profileViewModel.name
+        infoTextField.text = profileViewModel.info
+        avatarImageView.image = profileViewModel.avatar
     }
 
     func didFinishSaving(success: Bool) {

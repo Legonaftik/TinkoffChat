@@ -32,11 +32,12 @@ protocol IProfileModel {
     weak var delegate: IProfileModelDelegate? {get set}
     func getProfile()
     func saveProfile(avatar: UIImage?, name: String?, info: String?)
+    func profileDidChange(avatar: UIImage?, name: String?, info: String?) -> Bool
 }
 
 protocol IProfileModelDelegate: class {
 
-    func setup(profileViewModel: ProfileViewModel)
+    func didGet(profileViewModel: ProfileViewModel)
     func didFinishSaving(success: Bool)
 }
 
@@ -45,11 +46,13 @@ class ProfileModel: IProfileModel {
     weak var delegate: IProfileModelDelegate?
 
     private let profileService: IProfileService = ProfileService()
+    private var lastSavedProfile: Profile?
 
     func getProfile() {
         profileService.getProfile { [weak self] profile in
             let profileViewModel = ProfileViewModel(profile: profile)
-            self?.delegate?.setup(profileViewModel: profileViewModel)
+            self?.delegate?.didGet(profileViewModel: profileViewModel)
+            self?.lastSavedProfile = profile
         }
     }
 
@@ -62,6 +65,22 @@ class ProfileModel: IProfileModel {
         let profile = Profile(name: name, info: info, avatar: avatar)
         profileService.saveProfile(profile) { [weak self] success in
             self?.delegate?.didFinishSaving(success: success)
+            self?.lastSavedProfile = profile
         }
+    }
+
+    func profileDidChange(avatar: UIImage?, name: String?, info: String?) -> Bool {
+        guard let lastSavedProfile = lastSavedProfile else {
+            return true
+        }
+
+        guard let name = name, let info = info, let avatar = avatar,
+            !name.isEmpty, !info.isEmpty else {
+                return false
+        }
+
+        return avatar != lastSavedProfile.avatar ||
+            name != lastSavedProfile.name ||
+            info != lastSavedProfile.info
     }
 }
