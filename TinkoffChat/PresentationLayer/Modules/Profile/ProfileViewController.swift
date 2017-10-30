@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController {
         }
     }
 
-    private let model: IProfileModel = ProfileModel()
+    private var model: IProfileModel = ProfileModel()
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var infoTextField: UITextField!
@@ -53,11 +53,11 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func saveUsingGCD() {
-        saveProfile()
+        startSavingProfile()
     }
 
     @IBAction func saveUsingOperation() {
-        saveProfile()
+        startSavingProfile()
     }
 
     @IBAction func changedTextFieldText() {
@@ -67,6 +67,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        model.delegate = self
         model.getProfile()
         imagePicker.delegate = self
         hideKeyboardWhenTappedAround()
@@ -83,7 +84,7 @@ class ProfileViewController: UIViewController {
         profile.info = info
     }
 
-    private func saveUserInfo(using dataManager: IDataManager) {
+    private func startSavingProfile() {
         updateLocalUserInfo()
 
         gcdButton.isEnabled = false
