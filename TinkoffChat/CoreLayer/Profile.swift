@@ -20,6 +20,12 @@ class Profile: NSObject, NSCoding {
         avatar = #imageLiteral(resourceName: "placeholder-user")
     }
 
+    init(name: String, info: String, avatar: UIImage) {
+        self.name = name
+        self.info = info
+        self.avatar = avatar
+    }
+
     enum Keys {
         static let name = "name"
         static let info = "info"

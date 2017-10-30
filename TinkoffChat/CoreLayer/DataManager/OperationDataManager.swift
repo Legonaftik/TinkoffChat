@@ -44,7 +44,7 @@ class ReadOperation: Operation {
     }
 }
 
-class OperationDataManager: DataManager {
+class OperationDataManager: IDataManager {
 
     var queue: OperationQueue {
         let queue = OperationQueue()

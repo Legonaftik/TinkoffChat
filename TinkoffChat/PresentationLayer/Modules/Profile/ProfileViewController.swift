@@ -17,8 +17,7 @@ class ProfileViewController: UIViewController {
         }
     }
 
-    private let gcdDataManager = GCDDataManager()
-    private let operationDataManager = OperationDataManager()
+    private let model: IProfileModel = ProfileModel()
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var infoTextField: UITextField!
@@ -30,12 +29,12 @@ class ProfileViewController: UIViewController {
     @IBAction func chooseAvatar() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        let galeryAction = UIAlertAction(title: "Установить из галереи", style: .default) { _ in
+        let galeryAction = UIAlertAction(title: "Установить из галереи", style: .default) { [unowned self] _ in
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
         }
 
-        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { _ in
+        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { [unowned self] _ in
             self.imagePicker.sourceType = .camera
             self.present(self.imagePicker, animated: true, completion: nil)
         }
@@ -54,11 +53,11 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func saveUsingGCD() {
-        saveUserInfo(using: gcdDataManager)
+        saveProfile()
     }
 
     @IBAction func saveUsingOperation() {
-        saveUserInfo(using: operationDataManager)
+        saveProfile()
     }
 
     @IBAction func changedTextFieldText() {
@@ -68,7 +67,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loadUserData(using: gcdDataManager)
+        model.getProfile()
         imagePicker.delegate = self
         hideKeyboardWhenTappedAround()
         addObserversForKeyboardAppearance()
@@ -84,32 +83,18 @@ class ProfileViewController: UIViewController {
         profile.info = info
     }
 
-    private func saveUserInfo(using dataManager: DataManager) {
+    private func saveUserInfo(using dataManager: IDataManager) {
         updateLocalUserInfo()
 
         gcdButton.isEnabled = false
         operationButton.isEnabled = false
-
         activityIndicator.startAnimating()
-        dataManager.write(profile: profile) { [weak self] success in
-            guard let strongSelf = self else { return }
 
-            strongSelf.activityIndicator.stopAnimating()
+        saveProfile()
+    }
 
-            if success {
-                strongSelf.displayAlert(title: "Данные сохранены")
-            } else {
-                let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-                    // User should be able to try to save info again if something was wrong
-                    strongSelf.gcdButton.isEnabled = true
-                    strongSelf.operationButton.isEnabled = true
-                }
-                let retryAction = UIAlertAction(title: "Повторить", style: .default) { _ in
-                    strongSelf.saveUserInfo(using: dataManager)
-                }
-                strongSelf.displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
-            }
-        }
+    private func saveProfile() {
+        model.saveProfile(avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text)
     }
 
     private func updateSaveButtonsAvailability() {
@@ -137,14 +122,6 @@ class ProfileViewController: UIViewController {
             infoTextField.text = profile.info
         }
     }
-
-    private func loadUserData(using dataManager: DataManager) {
-        dataManager.read { [weak self] profile in
-            guard let strongSelf = self else { return }
-
-            strongSelf.profile = profile
-        }
-    }
 }
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -167,5 +144,30 @@ extension ProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension ProfileViewController: IProfileModelDelegate {
+
+    func setup(profileViewModel: ProfileViewModel) {
+        profile = Profile(name: profileViewModel.name, info: profileViewModel.info, avatar: profileViewModel.avatar)
+    }
+
+    func didFinishSaving(success: Bool) {
+        activityIndicator.stopAnimating()
+
+        if success {
+            displayAlert(title: "Данные успешно сохранены.")
+        } else {
+            let okAction = UIAlertAction(title: "OK", style: .default) { [unowned self] _ in
+                // User should be able to try to save info again if something was wrong
+                self.gcdButton.isEnabled = true
+                self.operationButton.isEnabled = true
+            }
+            let retryAction = UIAlertAction(title: "Повторить", style: .default) { [unowned self] _ in
+                self.saveProfile()
+            }
+            displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
+        }
     }
 }

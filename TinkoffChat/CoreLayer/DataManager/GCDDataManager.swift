@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GCDDataManager: DataManager {
+class GCDDataManager: IDataManager {
 
     // Will return the default profile if couldn't read a new one from the file
     var profile = Profile()

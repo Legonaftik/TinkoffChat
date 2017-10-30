@@ -1,5 +1,5 @@
 //
-//  DataManager.swift
+//  IDataManager.swift
 //  TinkoffChat
 //
 //  Created by Vladimir Pavlov on 16/10/2017.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol DataManager {
+protocol IDataManager {
     
     func write(profile: Profile, completion: @escaping (_ success: Bool) -> ())
     func read(completion: @escaping (_ profile: Profile) -> ())
 }
 
-extension DataManager {
+extension IDataManager {
 
     var userInfoFileURL: URL {
         let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
