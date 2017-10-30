@@ -10,6 +10,12 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    enum SaveType {
+        case gcd
+        case operation
+    }
+
+    private var lastSaveType: SaveType = .gcd
     private var imagePicker = UIImagePickerController()
     private var model: IProfileModel = ProfileModel()
 
@@ -47,11 +53,11 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func saveUsingGCD() {
-        startSavingProfile()
+        startSavingProfile(saveType: .gcd)
     }
 
     @IBAction func saveUsingOperation() {
-        startSavingProfile()
+        startSavingProfile(saveType: .operation)
     }
 
     @IBAction func changedTextFieldText() {
@@ -68,16 +74,22 @@ class ProfileViewController: UIViewController {
         addObserversForKeyboardAppearance()
     }
 
-    private func startSavingProfile() {
+    private func startSavingProfile(saveType: SaveType) {
         gcdButton.isEnabled = false
         operationButton.isEnabled = false
         activityIndicator.startAnimating()
 
-        saveProfile()
+        lastSaveType = saveType
+        saveProfile(saveType: saveType)
     }
 
-    private func saveProfile() {
-        model.saveProfile(avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text)
+    private func saveProfile(saveType: SaveType) {
+        switch saveType {
+        case .gcd:
+            model.saveProfileUsingGCD(avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text)
+        case .operation:
+            model.saveProfileUsingOperation(avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text)
+        }
     }
 
     private func updateSaveButtonsAvailability() {
@@ -134,7 +146,7 @@ extension ProfileViewController: IProfileModelDelegate {
                 self.operationButton.isEnabled = true
             }
             let retryAction = UIAlertAction(title: "Повторить", style: .default) { [unowned self] _ in
-                self.saveProfile()
+                self.startSavingProfile(saveType: self.lastSaveType)
             }
             displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
         }

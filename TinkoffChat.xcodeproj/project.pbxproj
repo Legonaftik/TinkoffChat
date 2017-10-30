@@ -125,6 +125,9 @@
 				F31C7D661F94102600F767D6 /* Profile.swift */,
 				F3AC0C531FA4BF6F00224F32 /* DataManager */,
 				F358DB161F9BAEDF00C49EEA /* ChatHistory.swift */,
+				F358DB141F9B7BF900C49EEA /* Message.swift */,
+				F358DB101F9B61A500C49EEA /* MultipeerCommunicator.swift */,
+				F358DB121F9B69E900C49EEA /* CommunicationManager.swift */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -145,8 +148,8 @@
 			isa = PBXGroup;
 			children = (
 				F3B55F261F8922D100F8B9A5 /* Profile */,
-				F3D560AE1F8AA2340042ADC6 /* Conversation */,
 				F3B55F251F8922BB00F8B9A5 /* ConversationList */,
+				F3D560AE1F8AA2340042ADC6 /* Conversation */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -154,8 +157,8 @@
 		F3AC0C531FA4BF6F00224F32 /* DataManager */ = {
 			isa = PBXGroup;
 			children = (
-				F35B35A31F94C72000D5F557 /* GCDDataManager.swift */,
 				F35B35A51F94C8FD00D5F557 /* IDataManager.swift */,
+				F35B35A31F94C72000D5F557 /* GCDDataManager.swift */,
 				F35B35A71F94EBAD00D5F557 /* OperationDataManager.swift */,
 			);
 			path = DataManager;
@@ -164,9 +167,6 @@
 		F3B55F251F8922BB00F8B9A5 /* ConversationList */ = {
 			isa = PBXGroup;
 			children = (
-				F358DB101F9B61A500C49EEA /* MultipeerCommunicator.swift */,
-				F358DB121F9B69E900C49EEA /* CommunicationManager.swift */,
-				F358DB141F9B7BF900C49EEA /* Message.swift */,
 				F3B55F211F891D0D00F8B9A5 /* ConversationsListViewController.swift */,
 				F3B55F231F89214400F8B9A5 /* ConversationTableViewCell.swift */,
 			);
@@ -196,10 +196,10 @@
 		F3D560AE1F8AA2340042ADC6 /* Conversation */ = {
 			isa = PBXGroup;
 			children = (
+				F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */,
 				F3D560B61F8AB6300042ADC6 /* OutgoingMessageContainerView.swift */,
 				F3D560B81F8AB6910042ADC6 /* IncomingMessageContainerView.swift */,
 				F3D560B11F8AA5A40042ADC6 /* MessageTableViewCell.swift */,
-				F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */,
 			);
 			path = Conversation;
 			sourceTree = "<group>";
