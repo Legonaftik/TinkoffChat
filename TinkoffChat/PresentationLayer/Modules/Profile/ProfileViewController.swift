@@ -29,17 +29,17 @@ class ProfileViewController: UIViewController {
     @IBAction func chooseAvatar() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        let galeryAction = UIAlertAction(title: "Установить из галереи", style: .default) { [unowned self] _ in
+        let galeryAction = UIAlertAction(title: "Choose from gallery", style: .default) { [unowned self] _ in
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
         }
 
-        let cameraAction = UIAlertAction(title: "Сделать фото", style: .default) { [unowned self] _ in
+        let cameraAction = UIAlertAction(title: "Take a photo", style: .default) { [unowned self] _ in
             self.imagePicker.sourceType = .camera
             self.present(self.imagePicker, animated: true, completion: nil)
         }
 
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
         alertController.addAction(galeryAction)
         alertController.addAction(cameraAction)
@@ -53,11 +53,13 @@ class ProfileViewController: UIViewController {
     }
 
     @IBAction func saveUsingGCD() {
-        startSavingProfile(saveType: .gcd)
+        lastSaveType = .gcd
+        startSavingProfile()
     }
 
     @IBAction func saveUsingOperation() {
-        startSavingProfile(saveType: .operation)
+        lastSaveType = .operation
+        startSavingProfile()
     }
 
     @IBAction func changedTextFieldText() {
@@ -74,17 +76,16 @@ class ProfileViewController: UIViewController {
         addObserversForKeyboardAppearance()
     }
 
-    private func startSavingProfile(saveType: SaveType) {
+    private func startSavingProfile() {
         gcdButton.isEnabled = false
         operationButton.isEnabled = false
         activityIndicator.startAnimating()
 
-        lastSaveType = saveType
-        saveProfile(saveType: saveType)
+        saveProfile()
     }
 
-    private func saveProfile(saveType: SaveType) {
-        switch saveType {
+    private func saveProfile() {
+        switch lastSaveType {
         case .gcd:
             model.saveProfileUsingGCD(avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text)
         case .operation:
@@ -138,17 +139,17 @@ extension ProfileViewController: IProfileModelDelegate {
         activityIndicator.stopAnimating()
 
         if success {
-            displayAlert(title: "Данные успешно сохранены.")
+            displayAlert(title: "Your profile is saved.")
         } else {
             let okAction = UIAlertAction(title: "OK", style: .default) { [unowned self] _ in
                 // User should be able to try to save info again if something was wrong
                 self.gcdButton.isEnabled = true
                 self.operationButton.isEnabled = true
             }
-            let retryAction = UIAlertAction(title: "Повторить", style: .default) { [unowned self] _ in
-                self.startSavingProfile(saveType: self.lastSaveType)
+            let retryAction = UIAlertAction(title: "Retry", style: .default) { [unowned self] _ in
+                self.startSavingProfile()
             }
-            displayAlert(title: "Ошибка", message: "Не удалось сохранить данные", firstAction: okAction, secondAction: retryAction)
+            displayAlert(title: "Error", message: "Couldn't save profile.", firstAction: okAction, secondAction: retryAction)
         }
     }
 }
