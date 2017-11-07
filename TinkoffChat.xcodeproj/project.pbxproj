@@ -31,6 +31,7 @@
 		F3B21A171FAF972A000F171D /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A161FAF972A000F171D /* CommunicationManager.swift */; };
 		F3B21A1A1FB1E977000F171D /* TinkoffChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A181FB1E977000F171D /* TinkoffChat.xcdatamodeld */; };
 		F3B21A1C1FB1E9A6000F171D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A1B1FB1E9A6000F171D /* CoreDataStack.swift */; };
+		F3B21A1F1FB1F8E6000F171D /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A1E1FB1F8E6000F171D /* AppUser.swift */; };
 		F3B55F221F891D0D00F8B9A5 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B55F211F891D0D00F8B9A5 /* ConversationsListViewController.swift */; };
 		F3B55F241F89214400F8B9A5 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B55F231F89214400F8B9A5 /* ConversationTableViewCell.swift */; };
 		F3D560B01F8AA2520042ADC6 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */; };
@@ -66,6 +67,7 @@
 		F3B21A161FAF972A000F171D /* CommunicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
 		F3B21A191FB1E977000F171D /* TinkoffChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffChat.xcdatamodel; sourceTree = "<group>"; };
 		F3B21A1B1FB1E9A6000F171D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		F3B21A1E1FB1F8E6000F171D /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		F3B55F211F891D0D00F8B9A5 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		F3B55F231F89214400F8B9A5 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			children = (
 				F3B21A181FB1E977000F171D /* TinkoffChat.xcdatamodeld */,
 				F3B21A1B1FB1E9A6000F171D /* CoreDataStack.swift */,
+				F3B21A1E1FB1F8E6000F171D /* AppUser.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3B21A1F1FB1F8E6000F171D /* AppUser.swift in Sources */,
 				F31C7D621F93EB4E00F767D6 /* UIViewController+Extension.swift in Sources */,
 				F3D560B91F8AB6910042ADC6 /* IncomingMessageContainerView.swift in Sources */,
 				F3D560B71F8AB6300042ADC6 /* OutgoingMessageContainerView.swift in Sources */,

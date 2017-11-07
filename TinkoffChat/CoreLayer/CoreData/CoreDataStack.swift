@@ -103,4 +103,24 @@ class CoreDataStack {
             return _saveContext
         }
     }
+
+    public func performSave(context: NSManagedObjectContext, completionHandler: (()->Void)?) {
+        if context.hasChanges {
+            context.perform { [weak self] in
+                do {
+                    try context.save()
+                } catch {
+                    print("Context save error: \(error)")
+                }
+
+                if let parent = context.parent {
+                    self?.performSave(context: parent, completionHandler: completionHandler)
+                } else {
+                    completionHandler?()
+                }
+            }
+        } else {
+            completionHandler?()
+        }
+    }
 }
