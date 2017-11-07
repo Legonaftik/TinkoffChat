@@ -11,8 +11,7 @@ import Foundation
 protocol IProfileService {
 
     func getProfile(completion: @escaping (Profile) -> ())
-    func saveProfileUsingGCD(_ profile: Profile, completion: @escaping (_ success: Bool) -> ())
-    func saveProfileUsingOperation(_ profile: Profile, completion: @escaping (_ success: Bool) -> ())
+    func saveProfile(_ profile: Profile, completion: @escaping (_ success: Bool) -> ())
 }
 
 class ProfileService: IProfileService {
@@ -23,13 +22,8 @@ class ProfileService: IProfileService {
         dataManager.read(completion: completion)
     }
 
-    func saveProfileUsingGCD(_ profile: Profile, completion: @escaping (_ success: Bool) -> ()) {
+    func saveProfile(_ profile: Profile, completion: @escaping (_ success: Bool) -> ()) {
         dataManager = GCDDataManager()
-        dataManager.write(profile: profile, completion: completion)
-    }
-
-    func saveProfileUsingOperation(_ profile: Profile, completion: @escaping (_ success: Bool) -> ()) {
-        dataManager = OperationDataManager()
         dataManager.write(profile: profile, completion: completion)
     }
 }

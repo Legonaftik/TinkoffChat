@@ -31,8 +31,7 @@ protocol IProfileModel {
 
     weak var delegate: IProfileModelDelegate? {get set}
     func getProfile()
-    func saveProfileUsingGCD(avatar: UIImage?, name: String?, info: String?)
-    func saveProfileUsingOperation(avatar: UIImage?, name: String?, info: String?)
+    func saveProfile(avatar: UIImage?, name: String?, info: String?)
     func profileDidChange(avatar: UIImage?, name: String?, info: String?) -> Bool
 }
 
@@ -59,27 +58,14 @@ class ProfileModel: IProfileModel {
         }
     }
 
-    func saveProfileUsingGCD(avatar: UIImage?, name: String?, info: String?) {
+    func saveProfile(avatar: UIImage?, name: String?, info: String?) {
         guard let name = name, let info = info, let avatar = avatar else {
             self.delegate?.didFinishSaving(success: false)
             return
         }
 
         let profile = Profile(name: name, info: info, avatar: avatar)
-        profileService.saveProfileUsingGCD(profile) { [weak self] success in
-            self?.delegate?.didFinishSaving(success: success)
-            self?.lastSavedProfile = profile
-        }
-    }
-
-    func saveProfileUsingOperation(avatar: UIImage?, name: String?, info: String?) {
-        guard let name = name, let info = info, let avatar = avatar else {
-            self.delegate?.didFinishSaving(success: false)
-            return
-        }
-
-        let profile = Profile(name: name, info: info, avatar: avatar)
-        profileService.saveProfileUsingOperation(profile) { [weak self] success in
+        profileService.saveProfile(profile) { [weak self] success in
             self?.delegate?.didFinishSaving(success: success)
             self?.lastSavedProfile = profile
         }

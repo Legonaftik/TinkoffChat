@@ -49,7 +49,7 @@ class ProfileViewController: UIViewController {
         saveButton.isEnabled = false
         activityIndicator.startAnimating()
 
-        model.saveProfileUsingGCD(avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text)
+        model.saveProfile(avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text)
     }
 
     @IBAction func changedTextFieldText() {
