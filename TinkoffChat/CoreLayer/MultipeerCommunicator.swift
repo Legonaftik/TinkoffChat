@@ -9,14 +9,14 @@
 import Foundation
 import MultipeerConnectivity
 
-protocol Communicator {
+protocol ICommunicator {
 
     func sendMessage(string: String, to userID: String, completionHandler: ((_ success: Bool, _ error: Error?) -> ())?)
-    weak var delegate: CommunicatorDelegate? {get set}
+    weak var delegate: ICommunicatorDelegate? {get set}
     var online: Bool {get set}
 }
 
-protocol CommunicatorDelegate: class {
+protocol ICommunicatorDelegate: class {
     // discovering
     func didFoundUser(userID: String, userName: String?)
     func didLostUser(userID: String)
@@ -29,14 +29,14 @@ protocol CommunicatorDelegate: class {
     func didReceiveMessage(text: String, fromUser: String, toUser: String)
 }
 
-class MultipeerCommunicator: NSObject, Communicator {
+class MultipeerCommunicator: NSObject, ICommunicator {
 
-    weak var delegate: CommunicatorDelegate?
+    weak var delegate: ICommunicatorDelegate?
 
     var online: Bool = true
 
     private let serviceType = "tinkoff-chat"
-    private let myPeerId = MCPeerID(displayName: UIDevice.current.identifierForVendor!.uuidString)
+    private let myPeerId = MCPeerID(displayName: UIDevice.current.identifierForVendor?.uuidString ?? "Unknown device ID")
     private let advertiser: MCNearbyServiceAdvertiser
     private let browser: MCNearbyServiceBrowser
     private var sessions: [String: MCSession] = [:]
@@ -60,7 +60,10 @@ class MultipeerCommunicator: NSObject, Communicator {
 
     func sendMessage(string: String, to userID: String, completionHandler: ((Bool, Error?) -> ())?) {
         let message = Message(text: string, messageType: .outgoing)
-        let session = sessions[userID]!
+        guard let session = sessions[userID] else {
+            print("Couldn't send message because this session is invalid.")
+            return
+        }
 
         do {
             let messageData = try JSONEncoder().encode(message)

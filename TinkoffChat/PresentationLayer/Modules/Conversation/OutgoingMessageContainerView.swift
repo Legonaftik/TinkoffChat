@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class OutgoingMessageContainerView: UIView {
+class OutgoingMessageContainerView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
