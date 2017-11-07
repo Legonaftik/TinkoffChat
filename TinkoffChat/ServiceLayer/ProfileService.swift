@@ -16,14 +16,13 @@ protocol IProfileService {
 
 class ProfileService: IProfileService {
 
-    private var dataManager: IDataManager = GCDDataManager()
+    private var dataManager: IDataManager = StorageManager()
 
     func getProfile(completion: @escaping (Profile) -> ()) {
         dataManager.read(completion: completion)
     }
 
     func saveProfile(_ profile: Profile, completion: @escaping (_ success: Bool) -> ()) {
-        dataManager = GCDDataManager()
         dataManager.write(profile: profile, completion: completion)
     }
 }

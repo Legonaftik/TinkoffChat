@@ -18,7 +18,6 @@
 		F358DB171F9BAEDF00C49EEA /* ChatHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB161F9BAEDF00C49EEA /* ChatHistory.swift */; };
 		F35B35A41F94C72000D5F557 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A31F94C72000D5F557 /* GCDDataManager.swift */; };
 		F35B35A61F94C8FD00D5F557 /* IDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A51F94C8FD00D5F557 /* IDataManager.swift */; };
-		F35B35A81F94EBAD00D5F557 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A71F94EBAD00D5F557 /* OperationDataManager.swift */; };
 		F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3630A661F72C9D5005EA5BC /* AppDelegate.swift */; };
 		F3630A691F72C9D5005EA5BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3630A681F72C9D5005EA5BC /* ProfileViewController.swift */; };
 		F3630A6C1F72C9D5005EA5BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3630A6A1F72C9D5005EA5BC /* Main.storyboard */; };
@@ -32,6 +31,7 @@
 		F3B21A1A1FB1E977000F171D /* TinkoffChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A181FB1E977000F171D /* TinkoffChat.xcdatamodeld */; };
 		F3B21A1C1FB1E9A6000F171D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A1B1FB1E9A6000F171D /* CoreDataStack.swift */; };
 		F3B21A1F1FB1F8E6000F171D /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A1E1FB1F8E6000F171D /* AppUser.swift */; };
+		F3B21A211FB1FDC3000F171D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A201FB1FDC3000F171D /* StorageManager.swift */; };
 		F3B55F221F891D0D00F8B9A5 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B55F211F891D0D00F8B9A5 /* ConversationsListViewController.swift */; };
 		F3B55F241F89214400F8B9A5 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B55F231F89214400F8B9A5 /* ConversationTableViewCell.swift */; };
 		F3D560B01F8AA2520042ADC6 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */; };
@@ -52,7 +52,6 @@
 		F358DB161F9BAEDF00C49EEA /* ChatHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistory.swift; sourceTree = "<group>"; };
 		F35B35A31F94C72000D5F557 /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		F35B35A51F94C8FD00D5F557 /* IDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDataManager.swift; sourceTree = "<group>"; };
-		F35B35A71F94EBAD00D5F557 /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
 		F3630A631F72C9D5005EA5BC /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3630A661F72C9D5005EA5BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3630A681F72C9D5005EA5BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +67,7 @@
 		F3B21A191FB1E977000F171D /* TinkoffChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffChat.xcdatamodel; sourceTree = "<group>"; };
 		F3B21A1B1FB1E9A6000F171D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F3B21A1E1FB1F8E6000F171D /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		F3B21A201FB1FDC3000F171D /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		F3B55F211F891D0D00F8B9A5 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		F3B55F231F89214400F8B9A5 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		F3D560AF1F8AA2520042ADC6 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 			children = (
 				F35B35A51F94C8FD00D5F557 /* IDataManager.swift */,
 				F35B35A31F94C72000D5F557 /* GCDDataManager.swift */,
-				F35B35A71F94EBAD00D5F557 /* OperationDataManager.swift */,
+				F3B21A201FB1FDC3000F171D /* StorageManager.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -305,6 +305,7 @@
 				F3B21A1F1FB1F8E6000F171D /* AppUser.swift in Sources */,
 				F31C7D621F93EB4E00F767D6 /* UIViewController+Extension.swift in Sources */,
 				F3D560B91F8AB6910042ADC6 /* IncomingMessageContainerView.swift in Sources */,
+				F3B21A211FB1FDC3000F171D /* StorageManager.swift in Sources */,
 				F3D560B71F8AB6300042ADC6 /* OutgoingMessageContainerView.swift in Sources */,
 				F3B21A1C1FB1E9A6000F171D /* CoreDataStack.swift in Sources */,
 				F3AC0C551FA4CC8000224F32 /* ProfileModel.swift in Sources */,
@@ -320,7 +321,6 @@
 				F31915E11FA8BC7400EBBE87 /* ConversationvsService.swift in Sources */,
 				F358DB131F9B69E900C49EEA /* ConversationsListModel.swift in Sources */,
 				F3B55F241F89214400F8B9A5 /* ConversationTableViewCell.swift in Sources */,
-				F35B35A81F94EBAD00D5F557 /* OperationDataManager.swift in Sources */,
 				F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */,
 				F35B35A61F94C8FD00D5F557 /* IDataManager.swift in Sources */,
 				F358DB171F9BAEDF00C49EEA /* ChatHistory.swift in Sources */,
