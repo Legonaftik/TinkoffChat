@@ -47,6 +47,8 @@ class ProfileModel: IProfileModel {
     weak var delegate: IProfileModelDelegate?
 
     private let profileService: IProfileService = ProfileService()
+    // Will be used to compare with updated but not saved version of profile and decide
+    // if the save button should be available
     private var lastSavedProfile: Profile?
 
     func getProfile() {

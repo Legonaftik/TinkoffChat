@@ -2,39 +2,36 @@
 //  CommunicationManager.swift
 //  TinkoffChat
 //
-//  Created by Vladimir Pavlov on 21/10/2017.
+//  Created by Vladimir Pavlov on 05/11/2017.
 //  Copyright © 2017 Vladimir Pavlov. All rights reserved.
 //
 
 import Foundation
 
-protocol CommunicationManagerDelegate: class {
+protocol ICommunicationManager {
 
-    func reloadData()
+    func sendMessage(in chatHistory: ChatHistory, with text: String)
+}
 
+protocol ICommunicationManagerDelegate: class {
+
+    func didUpdate(chatHistories: [ChatHistory])
     func displayError(with text: String)
 }
 
-class CommunicationManager {
+class CommunicationManager: ICommunicationManager {
 
-    weak var conversationListDelegate: CommunicationManagerDelegate?
-    weak var singleConversationDelegate: CommunicationManagerDelegate?
+    weak var conversationsListDelegate: ICommunicationManagerDelegate?
+    weak var singleConversationDelegate: ICommunicationManagerDelegate?
 
-    var chatHistories: [ChatHistory] = []
+    private var chatHistories: [ChatHistory] = []
     private let multipeerCommunicator = MultipeerCommunicator()
 
     init() {
         multipeerCommunicator.delegate = self
     }
 
-    fileprivate func updateDelegatesState() {
-        DispatchQueue.main.async {
-            self.conversationListDelegate?.reloadData()
-            self.singleConversationDelegate?.reloadData()
-        }
-    }
-
-    func sendMessage(in chatHistory: ChatHistory, with text: String, completion: ((Bool, Error?) -> ())?) {
+    func sendMessage(in chatHistory: ChatHistory, with text: String) {
 
         multipeerCommunicator.sendMessage(string: text, to: chatHistory.userID) { [unowned self] (success, error) in
 
@@ -44,16 +41,15 @@ class CommunicationManager {
                 self.chatHistories.sort(by: ChatHistory.comparator)
             }
             DispatchQueue.main.async {
-                completion?(success, error)
                 if success {
-                    self.singleConversationDelegate?.reloadData()
+                    self.singleConversationDelegate?.didUpdate(chatHistories: self.chatHistories)
                 }
             }
         }
     }
 }
 
-extension CommunicationManager: CommunicatorDelegate {
+extension CommunicationManager: ICommunicatorDelegate {
 
     func didFoundUser(userID: String, userName: String?) {
 
@@ -67,7 +63,10 @@ extension CommunicationManager: CommunicatorDelegate {
         // Otherwise create a new record
         chatHistories.append(ChatHistory(userID: userID, userName: userName ?? "Unknown user"))
         chatHistories.sort(by: ChatHistory.comparator)
-        updateDelegatesState()
+
+        DispatchQueue.main.async {
+            self.conversationsListDelegate?.didUpdate(chatHistories: self.chatHistories)
+        }
     }
 
     func didLostUser(userID: String) {
@@ -78,18 +77,22 @@ extension CommunicationManager: CommunicatorDelegate {
             }
         }
 
-        updateDelegatesState()
         DispatchQueue.main.async {
+            self.conversationsListDelegate?.didUpdate(chatHistories: self.chatHistories)
             self.singleConversationDelegate?.displayError(with: "Lost connection with this user.")
         }
     }
 
     func failedToStartBrowsingForUsers(error: Error) {
-        conversationListDelegate?.displayError(with: error.localizedDescription)
+        DispatchQueue.main.async {
+            self.conversationsListDelegate?.displayError(with: error.localizedDescription)
+        }
     }
 
     func failedToStartAdvertising(error: Error) {
-        conversationListDelegate?.displayError(with: error.localizedDescription)
+        DispatchQueue.main.async {
+            self.conversationsListDelegate?.displayError(with: error.localizedDescription)
+        }
     }
 
     func didReceiveMessage(text: String, fromUser: String, toUser: String) {
@@ -100,6 +103,10 @@ extension CommunicationManager: CommunicatorDelegate {
             }
         }
 
-        updateDelegatesState()
+        DispatchQueue.main.async {
+            self.conversationsListDelegate?.didUpdate(chatHistories: self.chatHistories)
+            self.singleConversationDelegate?.didUpdate(chatHistories: self.chatHistories)
+        }
     }
 }
+

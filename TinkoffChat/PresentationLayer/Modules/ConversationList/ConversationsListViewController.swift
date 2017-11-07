@@ -12,7 +12,7 @@ class ConversationsListViewController: UIViewController {
 
     private let conversationSegueId = "toConversation"
 
-    private let communicationManager = CommunicationManager()
+    private var model: IConversationsListModel = ConversationsListModel()
     fileprivate let dateFormatter = DateFormatter()
 
     @IBOutlet weak var tableView: UITableView!
@@ -20,7 +20,7 @@ class ConversationsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        communicationManager.conversationListDelegate = self
+        model.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -34,8 +34,8 @@ class ConversationsListViewController: UIViewController {
             guard let conversationVC = segue.destination as? ConversationViewController,
                 let indexPath = tableView.indexPathForSelectedRow else { return }
 
-            conversationVC.chatHistory = communicationManager.chatHistories[indexPath.row]
-            conversationVC.communicationManager = communicationManager
+            conversationVC.chatHistory = model.chatHistories[indexPath.row]
+            conversationVC.model = ConversationModel(conversationsService: model.conversationsService)
         }
     }
 }
@@ -47,12 +47,12 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return communicationManager.chatHistories.count
+        return model.chatHistories.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ConversationTableViewCell
-        let chatHistory = communicationManager.chatHistories[indexPath.row]
+        let chatHistory = model.chatHistories[indexPath.row]
         configure(cell, using: chatHistory)
         return cell
     }
@@ -97,13 +97,13 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
     }
 }
 
-extension ConversationsListViewController: CommunicationManagerDelegate {
+extension ConversationsListViewController: IConversationsListModelDelegate {
+    
+    func didUpdateChatHistories() {
+        tableView.reloadData()
+    }
 
     func displayError(with text: String) {
         displayAlert(message: text)
-    }
-    
-    func reloadData() {
-        tableView.reloadData()
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 class ConversationViewController: UIViewController {
 
     var chatHistory: ChatHistory!
-    var communicationManager: CommunicationManager!
+    var model: IConversationModel!
 
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
@@ -26,19 +26,16 @@ class ConversationViewController: UIViewController {
         guard let messageText = inputTextField.text,
             !messageText.isEmpty else { return }
 
-        communicationManager.sendMessage(in: chatHistory, with: inputTextField.text!) { [weak self] (success, error) in
-            guard let strongSelf = self else { return }
-            
-            strongSelf.inputTextField.text = ""
-            strongSelf.inputTextField.resignFirstResponder()
-        }
+        model.sendMessage(in: chatHistory, with: inputTextField.text!)
+        inputTextField.text = ""
+        inputTextField.resignFirstResponder()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = chatHistory.userName
-        communicationManager.singleConversationDelegate = self
+        model.delegate = self
         addObserversForKeyboardAppearance()
     }
 }
@@ -63,9 +60,9 @@ extension ConversationViewController: UITableViewDataSource {
     }
 }
 
-extension ConversationViewController: CommunicationManagerDelegate {
+extension ConversationViewController: IConversationModelDelegate {
 
-    func reloadData() {
+    func didUpdate(chatHistories: [ChatHistory]) {
         tableView.reloadData()
     }
 
