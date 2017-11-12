@@ -1,5 +1,5 @@
 //
-//  CommunicationManager.swift
+//  ConversationvsService.swift
 //  TinkoffChat
 //
 //  Created by Vladimir Pavlov on 05/11/2017.
@@ -8,23 +8,24 @@
 
 import Foundation
 
-protocol ICommunicationManager {
+protocol IConversationsService {
 
-    weak var conversationsListDelegate: ICommunicationManagerDelegate? {get set}
-    weak var singleConversationDelegate: ICommunicationManagerDelegate? {get set}
+    weak var conversationsListDelegate: IConversationsServiceDelegate? {get set}
+    weak var singleConversationDelegate: IConversationsServiceDelegate? {get set}
+
     func sendMessage(in chatHistory: ChatHistory, with text: String)
 }
 
-protocol ICommunicationManagerDelegate: class {
+protocol IConversationsServiceDelegate: class {
 
     func didUpdate(chatHistories: [ChatHistory])
     func displayError(with text: String)
 }
 
-class CommunicationManager: ICommunicationManager {
+class ConversationvsService: IConversationsService {
 
-    weak var conversationsListDelegate: ICommunicationManagerDelegate?
-    weak var singleConversationDelegate: ICommunicationManagerDelegate?
+    weak var conversationsListDelegate: IConversationsServiceDelegate?
+    weak var singleConversationDelegate: IConversationsServiceDelegate?
 
     private var chatHistories: [ChatHistory] = []
     private var multipeerCommunicator: ICommunicator = MultipeerCommunicator()
@@ -51,14 +52,15 @@ class CommunicationManager: ICommunicationManager {
     }
 }
 
-extension CommunicationManager: ICommunicatorDelegate {
+extension ConversationvsService: ICommunicatorDelegate {
 
     func didFoundUser(userID: String, userName: String?) {
 
         for i in 0 ..< chatHistories.count {
             if chatHistories[i].userID == userID {
-                // Shouldn't add chat again
-                return
+                // Replace old session with the new one
+                chatHistories.remove(at: i)
+                break
             }
         }
 
@@ -73,10 +75,10 @@ extension CommunicationManager: ICommunicatorDelegate {
 
     func didLostUser(userID: String) {
 
-        // TODO: Move user to offline
         for i in 0 ..< chatHistories.count {
             if chatHistories[i].userID == userID {
                 chatHistories.remove(at: i)
+                break
             }
         }
 

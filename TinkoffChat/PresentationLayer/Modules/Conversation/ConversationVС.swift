@@ -1,5 +1,5 @@
 //
-//  ConversationViewController.swift
+//  ConversationVС.swift
 //  TinkoffChat
 //
 //  Created by Vladimir Pavlov on 08/10/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationViewController: UIViewController {
+class ConversationVС: UIViewController {
 
     var chatHistory: ChatHistory!
     var model: IConversationModel!
@@ -40,7 +40,7 @@ class ConversationViewController: UIViewController {
     }
 }
 
-extension ConversationViewController: UITableViewDataSource {
+extension ConversationVС: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatHistory.messages.count
@@ -60,7 +60,7 @@ extension ConversationViewController: UITableViewDataSource {
     }
 }
 
-extension ConversationViewController: IConversationModelDelegate {
+extension ConversationVС: IConversationModelDelegate {
 
     func didUpdate(chatHistories: [ChatHistory]) {
         tableView.reloadData()

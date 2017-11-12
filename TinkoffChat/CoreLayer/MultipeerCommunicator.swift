@@ -122,7 +122,6 @@ extension MultipeerCommunicator: MCSessionDelegate {
             break
         case .notConnected:
             delegate?.didLostUser(userID: peerID.displayName)
-            sessions.removeValue(forKey: peerID.displayName)
         case .connecting:
             break
         }
