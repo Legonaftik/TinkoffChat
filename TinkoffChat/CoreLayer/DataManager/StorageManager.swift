@@ -41,7 +41,13 @@ class StorageManager: IDataManager {
             guard let strongSelf = self else { return }
 
             let appUser = AppUser.findOrInsertAppUser(in: strongSelf.saveContext)
-            let profile = Profile(name: appUser.name!, info: appUser.info!, avatar: UIImage(data: appUser.avatar!)!)
+            guard let name = appUser.name, let info = appUser.info,
+                let avatarData = appUser.avatar, let avatar = UIImage(data: avatarData) else { return }
+            let profile = Profile(name: name, info: info, avatar: avatar)
+            DispatchQueue.main.async {
+                completion(profile)
+            }
+
             // This save is neccessary for the first launch (when there's no saved profile yet)
             strongSelf.coreDataStack.performSave(context: strongSelf.saveContext) {
                 DispatchQueue.main.async {
