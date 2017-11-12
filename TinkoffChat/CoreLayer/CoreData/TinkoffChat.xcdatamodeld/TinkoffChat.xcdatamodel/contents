@@ -4,9 +4,38 @@
         <attribute name="avatar" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="info" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="conversations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Conversation" inverseName="appUser" inverseEntity="Conversation" syncable="YES"/>
+        <relationship name="currentUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="appUser" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Conversation" representedClassName="Conversation" syncable="YES" codeGenerationType="class">
+        <attribute name="conversationId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="appUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppUser" inverseName="conversations" inverseEntity="AppUser" syncable="YES"/>
+        <relationship name="companion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="conversation" inverseEntity="User" syncable="YES"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="conversation" inverseEntity="Message" syncable="YES"/>
+    </entity>
+    <entity name="Message" representedClassName="Message" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="messageId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="conversation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="messages" inverseEntity="Conversation" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="isOnline" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="appUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AppUser" inverseName="currentUser" inverseEntity="AppUser" syncable="YES"/>
+        <relationship name="conversation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conversation" inverseName="companion" inverseEntity="Conversation" syncable="YES"/>
     </entity>
     <fetchRequest name="AppUser" entity="AppUser"/>
+    <fetchRequest name="ConversationsNotEmptyWithUserOnline" entity="Conversation" predicateString="messages[SIZE] &gt; 0 AND companion.isOnline == 1"/>
+    <fetchRequest name="ConversationWithId" entity="Conversation" predicateString="conversationId == &quot;@CONVERSATION_ID&quot;"/>
+    <fetchRequest name="MessagesWithConversationId" entity="Message" predicateString="conversation.conversationId == &quot;@CONVERSATION_ID&quot;"/>
+    <fetchRequest name="UsersOnline" entity="User" predicateString="isOnline == 0"/>
+    <fetchRequest name="UserWithId" entity="User" predicateString="userId == &quot;@USER_ID&quot;"/>
     <elements>
-        <element name="AppUser" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="AppUser" positionX="-801" positionY="-225" width="128" height="120"/>
+        <element name="Message" positionX="-117" positionY="-285" width="128" height="105"/>
+        <element name="Conversation" positionX="-315" positionY="-348" width="128" height="105"/>
+        <element name="User" positionX="-641" positionY="-414" width="128" height="120"/>
     </elements>
 </model>
