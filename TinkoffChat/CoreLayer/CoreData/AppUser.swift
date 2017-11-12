@@ -6,13 +6,16 @@
 //  Copyright © 2017 Vladimir Pavlov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 extension AppUser {
 
     static func insertAppUser(in context: NSManagedObjectContext) -> AppUser? {
         if let appUser = NSEntityDescription.insertNewObject(forEntityName: "AppUser", into: context) as? AppUser {
+            appUser.name = "Input your name"
+            appUser.info = "Tell something about yourself"
+            appUser.avatar = UIImagePNGRepresentation(#imageLiteral(resourceName: "placeholder-user"))
             return appUser
         }
         return nil

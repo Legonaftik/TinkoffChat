@@ -11,20 +11,23 @@ import CoreData
 
 class CoreDataStack {
 
+    private let stackName = "TinkoffChat"
+
     private var storeURL: URL {
         get {
-            let documentsDirURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let url = documentsDirURL.appendingPathComponent("TinkoffChat.sqlite")
+            guard let documentsDirURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+                fatalError("Couldn't get documents directory URL!")
+            }
+            let url = documentsDirURL.appendingPathComponent("\(self.stackName).sqlite")
             return url
         }
     }
 
-    private let managedObjectModelName = "TinkoffChat"
     private var _managedObjectModel: NSManagedObjectModel?
     private var managedObjectModel: NSManagedObjectModel? {
         get {
             if _managedObjectModel == nil {
-                guard let modelURL = Bundle.main.url(forResource: managedObjectModelName, withExtension: "momd") else {
+                guard let modelURL = Bundle.main.url(forResource: stackName, withExtension: "momd") else {
                     fatalError("Empty model URL!")
                 }
                 _managedObjectModel = NSManagedObjectModel(contentsOf: modelURL)
@@ -40,11 +43,10 @@ class CoreDataStack {
                 guard let model = self.managedObjectModel else {
                     fatalError("Empty managed object model!")
                 }
-
                 _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-
                 do {
-                    try _persistentStoreCoordinator?.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+                    try _persistentStoreCoordinator?.addPersistentStore(
+                        ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
                 } catch {
                     fatalError("Error adding persistent store to coordinator: \(error.localizedDescription)")
                 }

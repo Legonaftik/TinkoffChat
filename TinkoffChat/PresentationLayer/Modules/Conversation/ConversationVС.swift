@@ -22,6 +22,15 @@ class ConversationVС: UIViewController {
         }
     }
 
+    @IBAction func didChangeMessageText(_ sender: UITextField) {
+        guard let messageText = sender.text else {
+            sendButton.isEnabled = false
+            return
+        }
+        sendButton.isEnabled = !messageText.isEmpty
+    }
+
+
     @IBAction func sendMessage(_ sender: UIButton) {
         guard let messageText = inputTextField.text,
             !messageText.isEmpty else {
@@ -30,7 +39,9 @@ class ConversationVС: UIViewController {
         }
 
         model.sendMessage(in: chatHistory, with: messageText)
+
         inputTextField.text = ""
+        sendButton.isEnabled = false
     }
 
     override func viewDidLoad() {
