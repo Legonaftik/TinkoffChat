@@ -26,9 +26,7 @@ class StorageManager: IDataManager {
     }
 
     func read(completion: @escaping (Profile) -> ()) {
-        guard let appUser = AppUser.findOrInsertAppUser(in: saveContext) else {
-            fatalError("Couldn't neither find nor create AppUser!")
-        }
+        let appUser = AppUser.findOrInsertAppUser(in: saveContext)
         let profile = Profile(name: appUser.name!, info: appUser.info!, avatar: UIImage(data: appUser.avatar!)!)
         completion(profile)
     }
