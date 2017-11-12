@@ -28,6 +28,11 @@ class ConversationvsService: IConversationsService {
 
     private var communicationManager: ICommunicationManager = CommunicationManager()
 
+    init() {
+        communicationManager.singleConversationDelegate = self
+        communicationManager.conversationsListDelegate = self
+    }
+
     func sendMessage(in chatHistory: ChatHistory, with text: String) {
         communicationManager.sendMessage(in: chatHistory, with: text)
     }

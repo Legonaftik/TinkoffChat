@@ -10,6 +10,8 @@ import Foundation
 
 protocol ICommunicationManager {
 
+    weak var conversationsListDelegate: ICommunicationManagerDelegate? {get set}
+    weak var singleConversationDelegate: ICommunicationManagerDelegate? {get set}
     func sendMessage(in chatHistory: ChatHistory, with text: String)
 }
 
@@ -25,7 +27,7 @@ class CommunicationManager: ICommunicationManager {
     weak var singleConversationDelegate: ICommunicationManagerDelegate?
 
     private var chatHistories: [ChatHistory] = []
-    private let multipeerCommunicator = MultipeerCommunicator()
+    private var multipeerCommunicator: ICommunicator = MultipeerCommunicator()
 
     init() {
         multipeerCommunicator.delegate = self
@@ -53,10 +55,10 @@ extension CommunicationManager: ICommunicatorDelegate {
 
     func didFoundUser(userID: String, userName: String?) {
 
-        // Remove any other sessions with this user if they are left in the array
         for i in 0 ..< chatHistories.count {
             if chatHistories[i].userID == userID {
-                chatHistories.remove(at: i)
+                // Shouldn't add chat again
+                return
             }
         }
 
@@ -71,6 +73,7 @@ extension CommunicationManager: ICommunicatorDelegate {
 
     func didLostUser(userID: String) {
 
+        // TODO: Move user to offline
         for i in 0 ..< chatHistories.count {
             if chatHistories[i].userID == userID {
                 chatHistories.remove(at: i)

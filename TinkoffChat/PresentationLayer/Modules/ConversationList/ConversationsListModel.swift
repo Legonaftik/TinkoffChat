@@ -27,7 +27,11 @@ class ConversationsListModel: IConversationsListModel {
 
     var chatHistories: [ChatHistory] = []
 
-    let conversationsService: IConversationsService = ConversationvsService()
+    var conversationsService: IConversationsService = ConversationvsService()
+
+    init() {
+        conversationsService.conversationsListDelegate = self
+    }
 }
 
 extension ConversationsListModel: IConversationsServiceDelegate {

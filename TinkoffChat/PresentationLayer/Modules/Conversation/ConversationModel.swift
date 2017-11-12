@@ -24,10 +24,11 @@ class ConversationModel: IConversationModel {
 
     weak var delegate: IConversationModelDelegate?
 
-    private let conversationsService: IConversationsService
+    private var conversationsService: IConversationsService
 
     init(conversationsService: IConversationsService) {
         self.conversationsService = conversationsService
+        self.conversationsService.singleConversationDelegate = self
     }
 
     func sendMessage(in chatHistory: ChatHistory, with text: String) {
