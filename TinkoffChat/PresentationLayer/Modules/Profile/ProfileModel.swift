@@ -30,6 +30,7 @@ struct ProfileViewModel {
 protocol IProfileModel {
 
     weak var delegate: IProfileModelDelegate? {get set}
+
     func getProfile()
     func saveProfile(avatar: UIImage?, name: String?, info: String?)
     func profileDidChange(avatar: UIImage?, name: String?, info: String?) -> Bool
@@ -52,9 +53,9 @@ class ProfileModel: IProfileModel {
 
     func getProfile() {
         profileService.getProfile { [weak self] profile in
+            self?.lastSavedProfile = profile
             let profileViewModel = ProfileViewModel(profile: profile)
             self?.delegate?.didGet(profileViewModel: profileViewModel)
-            self?.lastSavedProfile = profile
         }
     }
 
@@ -66,16 +67,18 @@ class ProfileModel: IProfileModel {
 
         let profile = Profile(name: name, info: info, avatar: avatar)
         profileService.saveProfile(profile) { [weak self] success in
-            self?.delegate?.didFinishSaving(success: success)
             self?.lastSavedProfile = profile
+            self?.delegate?.didFinishSaving(success: success)
         }
     }
 
     func profileDidChange(avatar: UIImage?, name: String?, info: String?) -> Bool {
+        // Lets save profile for the first time
         guard let lastSavedProfile = lastSavedProfile else {
             return true
         }
 
+        // Won't let to save incorrect profile
         guard let name = name, let info = info, let avatar = avatar,
             !name.isEmpty, !info.isEmpty else {
                 return false

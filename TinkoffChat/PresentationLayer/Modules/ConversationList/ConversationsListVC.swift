@@ -1,5 +1,5 @@
 //
-//  ConversationsListViewController.swift
+//  ConversationsListVС.swift
 //  TinkoffChat
 //
 //  Created by Vladimir Pavlov on 07/10/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationsListViewController: UIViewController {
+class ConversationsListVC: UIViewController {
 
     private let conversationSegueId = "toConversation"
 
@@ -31,7 +31,7 @@ class ConversationsListViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == conversationSegueId {
-            guard let conversationVC = segue.destination as? ConversationViewController,
+            guard let conversationVC = segue.destination as? ConversationVС,
                 let indexPath = tableView.indexPathForSelectedRow else { return }
 
             conversationVC.chatHistory = model.chatHistories[indexPath.row]
@@ -40,7 +40,7 @@ class ConversationsListViewController: UIViewController {
     }
 }
 
-extension ConversationsListViewController: UITableViewDataSource, UITableViewDelegate {
+extension ConversationsListVC: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Online"
@@ -97,7 +97,7 @@ extension ConversationsListViewController: UITableViewDataSource, UITableViewDel
     }
 }
 
-extension ConversationsListViewController: IConversationsListModelDelegate {
+extension ConversationsListVC: IConversationsListModelDelegate {
     
     func didUpdateChatHistories() {
         tableView.reloadData()

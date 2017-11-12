@@ -61,13 +61,13 @@ class MultipeerCommunicator: NSObject, ICommunicator {
     func sendMessage(string: String, to userID: String, completionHandler: ((Bool, Error?) -> ())?) {
         let message = Message(text: string, messageType: .outgoing)
         guard let session = sessions[userID] else {
-            print("Couldn't send message because this session is invalid.")
-            return
+            fatalError("Couldn't send message to not-existing session. User ID: \(userID)")
         }
 
         do {
             let messageData = try JSONEncoder().encode(message)
-            try session.send(messageData, toPeers: session.connectedPeers, with: .reliable)  // There should be only one peer
+            assert(session.connectedPeers.count == 1, "There should be only 1 connected peer in each session")
+            try session.send(messageData, toPeers: session.connectedPeers, with: .reliable)
             completionHandler?(true, nil)
         } catch {
             completionHandler?(false, error)
@@ -81,6 +81,7 @@ extension MultipeerCommunicator: MCNearbyServiceAdvertiserDelegate {
         let session = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self
         sessions[peerID.displayName] = session
+
         invitationHandler(true, session)  // Automatically accept all the invitations
     }
 
@@ -93,13 +94,13 @@ extension MultipeerCommunicator: MCNearbyServiceAdvertiserDelegate {
 extension MultipeerCommunicator: MCNearbyServiceBrowserDelegate {
 
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        delegate?.didFoundUser(userID: peerID.displayName, userName: info?["userName"])
-
         let session = MCSession(peer: myPeerId, securityIdentity: nil, encryptionPreference: .none)
         session.delegate = self
         sessions[peerID.displayName] = session
 
         browser.invitePeer(peerID, to: session, withContext: nil, timeout: 0)
+
+        delegate?.didFoundUser(userID: peerID.displayName, userName: info?["userName"])
     }
 
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -121,7 +122,6 @@ extension MultipeerCommunicator: MCSessionDelegate {
             break
         case .notConnected:
             delegate?.didLostUser(userID: peerID.displayName)
-            sessions.removeValue(forKey: peerID.displayName)
         case .connecting:
             break
         }
@@ -133,7 +133,8 @@ extension MultipeerCommunicator: MCSessionDelegate {
             message.messageType = .incoming
             delegate?.didReceiveMessage(text: message.text, fromUser: peerID.displayName, toUser: myPeerId.displayName)
         } catch {
-            fatalError("Couldn't convert the received data into Message")
+            // This should happen when another developer implemented Message JSON incorrectly
+            assert(false, "Couldn't convert the received data into Message")
         }
     }
 

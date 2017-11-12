@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  ProfileVC.swift
 //  TinkoffChat
 //
 //  Created by Vladimir Pavlov on 20/09/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileVC: UIViewController {
 
     private var imagePicker = UIImagePickerController()
     private var model: IProfileModel = ProfileModel()
@@ -67,15 +67,12 @@ class ProfileViewController: UIViewController {
     }
 
     private func updateSaveButtonsAvailability() {
-        if model.profileDidChange(avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text) {
-            saveButton.isEnabled = true
-        } else {
-            saveButton.isEnabled = false
-        }
+        saveButton.isEnabled = model.profileDidChange(
+            avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text)
     }
 }
 
-extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
@@ -90,7 +87,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
 }
 
-extension ProfileViewController: UITextFieldDelegate {
+extension ProfileVC: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -98,7 +95,7 @@ extension ProfileViewController: UITextFieldDelegate {
     }
 }
 
-extension ProfileViewController: IProfileModelDelegate {
+extension ProfileVC: IProfileModelDelegate {
 
     func didGet(profileViewModel: ProfileViewModel) {
         nameTextField.text = profileViewModel.name

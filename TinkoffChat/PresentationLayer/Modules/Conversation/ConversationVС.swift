@@ -1,5 +1,5 @@
 //
-//  ConversationViewController.swift
+//  ConversationVС.swift
 //  TinkoffChat
 //
 //  Created by Vladimir Pavlov on 08/10/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationViewController: UIViewController {
+class ConversationVС: UIViewController {
 
     var chatHistory: ChatHistory!
     var model: IConversationModel!
@@ -22,13 +22,26 @@ class ConversationViewController: UIViewController {
         }
     }
 
+    @IBAction func didChangeMessageText(_ sender: UITextField) {
+        guard let messageText = sender.text else {
+            sendButton.isEnabled = false
+            return
+        }
+        sendButton.isEnabled = !messageText.isEmpty
+    }
+
+
     @IBAction func sendMessage(_ sender: UIButton) {
         guard let messageText = inputTextField.text,
-            !messageText.isEmpty else { return }
+            !messageText.isEmpty else {
+                displayAlert(message: "Не удалось отправить сообщение!")
+                return
+        }
 
-        model.sendMessage(in: chatHistory, with: inputTextField.text!)
+        model.sendMessage(in: chatHistory, with: messageText)
+
         inputTextField.text = ""
-        inputTextField.resignFirstResponder()
+        sendButton.isEnabled = false
     }
 
     override func viewDidLoad() {
@@ -40,7 +53,7 @@ class ConversationViewController: UIViewController {
     }
 }
 
-extension ConversationViewController: UITableViewDataSource {
+extension ConversationVС: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chatHistory.messages.count
@@ -60,7 +73,7 @@ extension ConversationViewController: UITableViewDataSource {
     }
 }
 
-extension ConversationViewController: IConversationModelDelegate {
+extension ConversationVС: IConversationModelDelegate {
 
     func didUpdate(chatHistories: [ChatHistory]) {
         tableView.reloadData()
