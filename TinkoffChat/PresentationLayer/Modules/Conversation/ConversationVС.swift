@@ -24,11 +24,13 @@ class ConversationVС: UIViewController {
 
     @IBAction func sendMessage(_ sender: UIButton) {
         guard let messageText = inputTextField.text,
-            !messageText.isEmpty else { return }
+            !messageText.isEmpty else {
+                displayAlert(message: "Не удалось отправить сообщение!")
+                return
+        }
 
-        model.sendMessage(in: chatHistory, with: inputTextField.text!)
+        model.sendMessage(in: chatHistory, with: messageText)
         inputTextField.text = ""
-        inputTextField.resignFirstResponder()
     }
 
     override func viewDidLoad() {

@@ -67,11 +67,8 @@ class ProfileVC: UIViewController {
     }
 
     private func updateSaveButtonsAvailability() {
-        if model.profileDidChange(avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text) {
-            saveButton.isEnabled = true
-        } else {
-            saveButton.isEnabled = false
-        }
+        saveButton.isEnabled = model.profileDidChange(
+            avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text)
     }
 }
 

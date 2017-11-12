@@ -15,7 +15,6 @@
 		F358DB131F9B69E900C49EEA /* ConversationsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB121F9B69E900C49EEA /* ConversationsListModel.swift */; };
 		F358DB151F9B7BF900C49EEA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB141F9B7BF900C49EEA /* Message.swift */; };
 		F358DB171F9BAEDF00C49EEA /* ChatHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB161F9BAEDF00C49EEA /* ChatHistory.swift */; };
-		F35B35A41F94C72000D5F557 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A31F94C72000D5F557 /* GCDDataManager.swift */; };
 		F35B35A61F94C8FD00D5F557 /* IDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A51F94C8FD00D5F557 /* IDataManager.swift */; };
 		F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3630A661F72C9D5005EA5BC /* AppDelegate.swift */; };
 		F3630A691F72C9D5005EA5BC /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3630A681F72C9D5005EA5BC /* ProfileVC.swift */; };
@@ -48,7 +47,6 @@
 		F358DB121F9B69E900C49EEA /* ConversationsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListModel.swift; sourceTree = "<group>"; };
 		F358DB141F9B7BF900C49EEA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F358DB161F9BAEDF00C49EEA /* ChatHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistory.swift; sourceTree = "<group>"; };
-		F35B35A31F94C72000D5F557 /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		F35B35A51F94C8FD00D5F557 /* IDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDataManager.swift; sourceTree = "<group>"; };
 		F3630A631F72C9D5005EA5BC /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3630A661F72C9D5005EA5BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				F35B35A51F94C8FD00D5F557 /* IDataManager.swift */,
-				F35B35A31F94C72000D5F557 /* GCDDataManager.swift */,
 				F3B21A201FB1FDC3000F171D /* StorageManager.swift */,
 			);
 			path = DataManager;
@@ -313,7 +310,6 @@
 				F3B55F221F891D0D00F8B9A5 /* ConversationsListVC.swift in Sources */,
 				F3D560B21F8AA5A50042ADC6 /* MessageTableViewCell.swift in Sources */,
 				F358DB111F9B61A500C49EEA /* MultipeerCommunicator.swift in Sources */,
-				F35B35A41F94C72000D5F557 /* GCDDataManager.swift in Sources */,
 				F3D560B01F8AA2520042ADC6 /* ConversationVС.swift in Sources */,
 				F358DB131F9B69E900C49EEA /* ConversationsListModel.swift in Sources */,
 				F3B55F241F89214400F8B9A5 /* ConversationTableViewCell.swift in Sources */,
