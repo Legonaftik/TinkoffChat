@@ -37,12 +37,16 @@ class StorageManager: IDataManager {
     }
 
     func read(completion: @escaping (Profile) -> ()) {
-        let appUser = AppUser.findOrInsertAppUser(in: saveContext)
-        let profile = Profile(name: appUser.name!, info: appUser.info!, avatar: UIImage(data: appUser.avatar!)!)
-        // This save is neccessary for the first launch (when there's no saved profile yet)
-        coreDataStack.performSave(context: saveContext) {
-            DispatchQueue.main.async {
-                completion(profile)
+        saveContext.perform { [weak self] in
+            guard let strongSelf = self else { return }
+
+            let appUser = AppUser.findOrInsertAppUser(in: strongSelf.saveContext)
+            let profile = Profile(name: appUser.name!, info: appUser.info!, avatar: UIImage(data: appUser.avatar!)!)
+            // This save is neccessary for the first launch (when there's no saved profile yet)
+            strongSelf.coreDataStack.performSave(context: strongSelf.saveContext) {
+                DispatchQueue.main.async {
+                    completion(profile)
+                }
             }
         }
     }
