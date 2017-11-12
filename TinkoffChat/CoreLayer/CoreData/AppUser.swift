@@ -27,21 +27,18 @@ extension AppUser {
             fatalError("Model is not available in context!")
         }
 
-        // Default AppUser will be replaced if we'll be able to fetch one
-        var appUser = AppUser.insertDefaultAppUser(in: context)
-
         let fetchRequest = AppUser.fetchRequestAppUser(model: model)
         do {
             let results = try context.fetch(fetchRequest)
             assert(results.count < 2, "Multiple AppUsers found!")
             if let foundUser = results.first {
-                appUser = foundUser
+                return foundUser
             }
         } catch {
             assert(false, "Failed to fetch AppUser: \(error)")
         }
 
-        return appUser
+        return AppUser.insertDefaultAppUser(in: context)
     }
 
     static func fetchRequestAppUser(model: NSManagedObjectModel) -> NSFetchRequest<AppUser> {

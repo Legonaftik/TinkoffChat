@@ -461,7 +461,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3UUNPVRU82;
 				INFOPLIST_FILE = TinkoffChat/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.legonaftik.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -477,7 +477,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3UUNPVRU82;
 				INFOPLIST_FILE = TinkoffChat/SupportingFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.legonaftik.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
