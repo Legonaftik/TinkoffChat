@@ -12,6 +12,7 @@ class ConversationVС: UIViewController {
 
     var chatHistory: ChatHistory!
     var model: IConversationModel!
+    private var online = true
 
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
@@ -27,7 +28,7 @@ class ConversationVС: UIViewController {
             sendButton.isEnabled = false
             return
         }
-        sendButton.isEnabled = !messageText.isEmpty
+        sendButton.isEnabled = online && !messageText.isEmpty
     }
 
 
@@ -82,5 +83,6 @@ extension ConversationVС: IConversationModelDelegate {
     func displayError(with text: String) {
         displayAlert(message: text)
         sendButton.isEnabled = false
+        online = false
     }
 }
