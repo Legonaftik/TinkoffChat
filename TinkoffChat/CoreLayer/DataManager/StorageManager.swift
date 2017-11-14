@@ -47,13 +47,6 @@ class StorageManager: IDataManager {
             DispatchQueue.main.async {
                 completion(profile)
             }
-
-            // This save is neccessary for the first launch (when there's no saved profile yet)
-            strongSelf.coreDataStack.performSave(context: strongSelf.saveContext) {
-                DispatchQueue.main.async {
-                    completion(profile)
-                }
-            }
         }
     }
 }
