@@ -11,10 +11,18 @@ import CoreData
 
 class StorageManager: IDataManager {
 
-    var coreDataStack = CoreDataStack()
-    lazy var saveContext: NSManagedObjectContext = {
+    private var coreDataStack = CoreDataStack()
+
+    private lazy var saveContext: NSManagedObjectContext = {
         guard let context = self.coreDataStack.saveContext else {
             fatalError("Save context is not available.")
+        }
+        return context
+    }()
+
+    private lazy var mainContext: NSManagedObjectContext = {
+        guard let context = self.coreDataStack.mainContext else {
+            fatalError("Main context is not available.")
         }
         return context
     }()
@@ -37,16 +45,13 @@ class StorageManager: IDataManager {
     }
 
     func read(completion: @escaping (Profile) -> ()) {
-        saveContext.perform { [weak self] in
-            guard let strongSelf = self else { return }
-
-            let appUser = AppUser.findOrInsertAppUser(in: strongSelf.saveContext)
+        mainContext.perform { [unowned self] in
+            
+            let appUser = AppUser.findOrInsertAppUser(in: self.mainContext)
             guard let name = appUser.name, let info = appUser.info,
                 let avatarData = appUser.avatar, let avatar = UIImage(data: avatarData) else { return }
             let profile = Profile(name: name, info: info, avatar: avatar)
-            DispatchQueue.main.async {
-                completion(profile)
-            }
+            completion(profile)
         }
     }
 }
