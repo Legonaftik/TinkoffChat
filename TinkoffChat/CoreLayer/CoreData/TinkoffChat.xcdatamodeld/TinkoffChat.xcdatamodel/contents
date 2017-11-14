@@ -34,7 +34,7 @@
     <fetchRequest name="UserWithId" entity="User" predicateString="userId == &quot;@USER_ID&quot;"/>
     <elements>
         <element name="AppUser" positionX="-801" positionY="-225" width="128" height="120"/>
-        <element name="Message" positionX="-117" positionY="-285" width="128" height="105"/>
+        <element name="Message" positionX="-117" positionY="-285" width="128" height="103"/>
         <element name="Conversation" positionX="-315" positionY="-348" width="128" height="105"/>
         <element name="User" positionX="-641" positionY="-414" width="128" height="120"/>
     </elements>

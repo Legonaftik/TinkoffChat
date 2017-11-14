@@ -13,7 +13,7 @@
 		F31C7D671F94102600F767D6 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C7D661F94102600F767D6 /* Profile.swift */; };
 		F358DB111F9B61A500C49EEA /* MultipeerCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB101F9B61A500C49EEA /* MultipeerCommunicator.swift */; };
 		F358DB131F9B69E900C49EEA /* ConversationsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB121F9B69E900C49EEA /* ConversationsListModel.swift */; };
-		F358DB151F9B7BF900C49EEA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB141F9B7BF900C49EEA /* Message.swift */; };
+		F358DB151F9B7BF900C49EEA /* MessageTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB141F9B7BF900C49EEA /* MessageTemp.swift */; };
 		F358DB171F9BAEDF00C49EEA /* ChatHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F358DB161F9BAEDF00C49EEA /* ChatHistory.swift */; };
 		F35B35A61F94C8FD00D5F557 /* IDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B35A51F94C8FD00D5F557 /* IDataManager.swift */; };
 		F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3630A661F72C9D5005EA5BC /* AppDelegate.swift */; };
@@ -45,7 +45,7 @@
 		F31C7D661F94102600F767D6 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		F358DB101F9B61A500C49EEA /* MultipeerCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerCommunicator.swift; sourceTree = "<group>"; };
 		F358DB121F9B69E900C49EEA /* ConversationsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListModel.swift; sourceTree = "<group>"; };
-		F358DB141F9B7BF900C49EEA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		F358DB141F9B7BF900C49EEA /* MessageTemp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTemp.swift; sourceTree = "<group>"; };
 		F358DB161F9BAEDF00C49EEA /* ChatHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistory.swift; sourceTree = "<group>"; };
 		F35B35A51F94C8FD00D5F557 /* IDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDataManager.swift; sourceTree = "<group>"; };
 		F3630A631F72C9D5005EA5BC /* TinkoffChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,7 +134,7 @@
 				F31C7D661F94102600F767D6 /* Profile.swift */,
 				F3AC0C531FA4BF6F00224F32 /* DataManager */,
 				F358DB161F9BAEDF00C49EEA /* ChatHistory.swift */,
-				F358DB141F9B7BF900C49EEA /* Message.swift */,
+				F358DB141F9B7BF900C49EEA /* MessageTemp.swift */,
 				F358DB101F9B61A500C49EEA /* MultipeerCommunicator.swift */,
 				F3B21A1D1FB1E9AE000F171D /* CoreData */,
 			);
@@ -316,7 +316,7 @@
 				F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */,
 				F35B35A61F94C8FD00D5F557 /* IDataManager.swift in Sources */,
 				F358DB171F9BAEDF00C49EEA /* ChatHistory.swift in Sources */,
-				F358DB151F9B7BF900C49EEA /* Message.swift in Sources */,
+				F358DB151F9B7BF900C49EEA /* MessageTemp.swift in Sources */,
 				F375861F1F7D8FAB0070C3A1 /* DesignableButton.swift in Sources */,
 				F37586211F7D8FCB0070C3A1 /* DesignableImageView.swift in Sources */,
 				F31915DF1FA8B9D500EBBE87 /* ConversationModel.swift in Sources */,

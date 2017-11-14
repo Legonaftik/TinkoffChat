@@ -59,7 +59,7 @@ class MultipeerCommunicator: NSObject, ICommunicator {
     }
 
     func sendMessage(string: String, to userID: String, completionHandler: ((Bool, Error?) -> ())?) {
-        let message = Message(text: string, messageType: .outgoing)
+        let message = MessageTemp(text: string, messageType: .outgoing)
         guard let session = sessions[userID] else {
             fatalError("Couldn't send message to not-existing session. User ID: \(userID)")
         }
@@ -129,7 +129,7 @@ extension MultipeerCommunicator: MCSessionDelegate {
 
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         do {
-            var message = try JSONDecoder().decode(Message.self, from: data)
+            var message = try JSONDecoder().decode(MessageTemp.self, from: data)
             message.messageType = .incoming
             delegate?.didReceiveMessage(text: message.text, fromUser: peerID.displayName, toUser: myPeerId.displayName)
         } catch {

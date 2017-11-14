@@ -40,7 +40,7 @@ class ConversationvsService: IConversationsService {
 
             if success {
                 // Type outgoing
-                chatHistory.messages.append(Message(text: text, messageType: .outgoing))
+                chatHistory.messages.append(MessageTemp(text: text, messageType: .outgoing))
                 self.chatHistories.sort(by: ChatHistory.comparator)
             }
             DispatchQueue.main.async {
@@ -104,7 +104,7 @@ extension ConversationvsService: ICommunicatorDelegate {
 
         for chatHistory in chatHistories {
             if chatHistory.userID == fromUser {
-                chatHistory.addNewMessage(Message(text: text, messageType: .incoming))
+                chatHistory.addNewMessage(MessageTemp(text: text, messageType: .incoming))
             }
         }
 

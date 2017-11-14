@@ -12,7 +12,7 @@ class ChatHistory {
 
     let userID: String
     let userName: String
-    var messages: [Message] = []
+    var messages: [MessageTemp] = []
 
     var lastMessageDate: Date? {
         // TODO: Implement
@@ -24,7 +24,7 @@ class ChatHistory {
         self.userName = userName
     }
 
-    func addNewMessage(_ message: Message) {
+    func addNewMessage(_ message: MessageTemp) {
         messages.append(message)
     }
 
