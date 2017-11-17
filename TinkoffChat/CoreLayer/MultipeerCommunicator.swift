@@ -118,7 +118,7 @@ class MultipeerCommunicator: NSObject, ICommunicator {
 extension MultipeerCommunicator: MCNearbyServiceAdvertiserDelegate {
 
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        if let session = self.prepareSession(peer: peerID) {
+        if let session = prepareSession(peer: peerID) {
             let accept = !session.connectedPeers.contains(peerID)
             invitationHandler(accept, session)
         }
@@ -134,7 +134,7 @@ extension MultipeerCommunicator: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         setDiscoveryInfo(discoveryInfo: info, peer: peerID)
         if let session = prepareSession(peer: peerID) {
-            if session.connectedPeers.contains(peerID) == false {
+            if !session.connectedPeers.contains(peerID) {
                 browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
             }
         }
@@ -142,9 +142,9 @@ extension MultipeerCommunicator: MCNearbyServiceBrowserDelegate {
 
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         let userId = peerID.displayName
-        self.delegate?.didLostUser(userID: userId)
-        self.setSession(session: nil, peer: peerID)
-        self.setDiscoveryInfo(discoveryInfo: nil, peer: peerID)
+        delegate?.didLostUser(userID: userId)
+        setSession(session: nil, peer: peerID)
+        setDiscoveryInfo(discoveryInfo: nil, peer: peerID)
     }
 
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
@@ -160,18 +160,20 @@ extension MultipeerCommunicator: MCSessionDelegate {
         switch state {
         case .connected:
             guard let userDiscoveryInfo = peersDiscoveryInfos[userID] else {
-                print("No discovery info for userId \(userID) previousle were received!")
+                print("No discovery info for userId \(userID) previousle was received.")
                 return
             }
 
             guard let userName = userDiscoveryInfo[userNameKey] else {
-                print("No user name for userId \(userID) previousle were received!")
+                print("No user name for userId \(userID) previousle was received.")
                 return
             }
 
-            self.delegate?.didFoundUser(userID: userID , userName: userName)
-        default:
+            delegate?.didFoundUser(userID: userID , userName: userName)
+        case .notConnected:
             delegate?.didLostUser(userID: userID)
+        case .connecting:
+            break
         }
     }
 
