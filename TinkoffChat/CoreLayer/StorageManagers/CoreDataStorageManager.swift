@@ -1,5 +1,5 @@
 //
-//  StorageManager.swift
+//  CoreDataStorageManager.swift
 //  TinkoffChat
 //
 //  Created by Vladimir Pavlov on 07/11/2017.
@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class StorageManager: IDataManager {
+class CoreDataStorageManager: IStorageManager {
 
     private var coreDataStack = CoreDataStack()
 
@@ -53,5 +53,15 @@ class StorageManager: IDataManager {
             let profile = Profile(name: name, info: info, avatar: avatar)
             completion(profile)
         }
+    }
+
+    func getChatHistories(completion: @escaping ([ChatHistory]) -> ()) {
+        // TODO: Implement
+        completion([])
+    }
+
+    func saveMessage(with text: String, to userID: String, completion: @escaping (Bool, String?) -> ()) {
+        // TODO: Implement
+        completion(false, "Couldn't save message in CoreData.")
     }
 }

@@ -16,7 +16,7 @@ protocol IProfileService {
 
 class ProfileService: IProfileService {
 
-    private var dataManager: IDataManager = StorageManager()
+    private var dataManager: IStorageManager = CoreDataStorageManager()
 
     func getProfile(completion: @escaping (Profile) -> ()) {
         dataManager.read(completion: completion)

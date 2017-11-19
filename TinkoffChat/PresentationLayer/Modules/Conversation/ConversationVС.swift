@@ -39,7 +39,9 @@ class ConversationVС: UIViewController {
                 return
         }
 
-        model.sendMessage(in: chatHistory, with: messageText)
+        model.sendMessage(with: messageText, to: chatHistory.userID) { (success, errorMessage) in
+            // TODO: Implement
+        }
 
         inputTextField.text = ""
         sendButton.isEnabled = false

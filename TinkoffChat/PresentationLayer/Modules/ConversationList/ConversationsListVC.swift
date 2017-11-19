@@ -26,7 +26,7 @@ class ConversationsListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        tableView.reloadData()
+        model.getConversationsList()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -42,8 +42,19 @@ class ConversationsListVC: UIViewController {
 
 extension ConversationsListVC: UITableViewDataSource, UITableViewDelegate {
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Online"
+        switch section {
+        case 0:
+            return "Online"
+        case 1:
+            return "Offline"
+        default:
+            return nil
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

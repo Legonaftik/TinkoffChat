@@ -1,0 +1,17 @@
+//
+//  IDataManager.swift
+//  TinkoffChat
+//
+//  Created by Vladimir Pavlov on 16/10/2017.
+//  Copyright © 2017 Vladimir Pavlov. All rights reserved.
+//
+
+import Foundation
+
+protocol IStorageManager {
+
+    func write(profile: Profile, completion: @escaping (_ success: Bool) -> ())
+    func read(completion: @escaping (_ profile: Profile) -> ())
+    func getChatHistories(completion: @escaping ([ChatHistory]) -> ())
+    func saveMessage(with text: String, to userID: String, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> ())
+}

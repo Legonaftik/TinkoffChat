@@ -11,7 +11,8 @@ import Foundation
 protocol IConversationModel {
 
     weak var delegate: IConversationModelDelegate? {get set}
-    func sendMessage(in chatHistory: ChatHistory, with text: String)
+
+    func sendMessage(with text: String, to userID: String, completion: (Bool, String?) -> ())
 }
 
 protocol IConversationModelDelegate: class {
@@ -31,8 +32,10 @@ class ConversationModel: IConversationModel {
         self.conversationsService.singleConversationDelegate = self
     }
 
-    func sendMessage(in chatHistory: ChatHistory, with text: String) {
-        conversationsService.sendMessage(in: chatHistory, with: text)
+    func sendMessage(with text: String, to userID: String, completion: (Bool, String?) -> ()) {
+        conversationsService.sendMessage(with: text, to: userID) { (success, errorMessage) in
+            // TODO: Implement
+        }
     }
 }
 

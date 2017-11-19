@@ -13,6 +13,8 @@ protocol IConversationsListModel {
     weak var delegate: IConversationsListModelDelegate? {get set}
     var conversationsService: IConversationsService {get}
     var chatHistories: [ChatHistory] {get}
+
+    func getConversationsList()
 }
 
 protocol IConversationsListModelDelegate: class {
@@ -31,6 +33,10 @@ class ConversationsListModel: IConversationsListModel {
 
     init() {
         conversationsService.conversationsListDelegate = self
+    }
+
+    func getConversationsList() {
+        conversationsService.getConversationsList()
     }
 }
 

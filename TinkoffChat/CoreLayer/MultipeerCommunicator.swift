@@ -11,7 +11,7 @@ import MultipeerConnectivity
 
 protocol ICommunicator {
 
-    func sendMessage(string: String, to userID: String, completionHandler: ((_ success: Bool, _ error: Error?) -> ())?)
+    func sendMessage(with text: String, to userID: String, completionHandler: ((_ success: Bool, _ error: Error?) -> ())?)
     weak var delegate: ICommunicatorDelegate? {get set}
     var online: Bool {get set}
 }
@@ -77,8 +77,8 @@ class MultipeerCommunicator: NSObject, ICommunicator {
         peersSessions.forEach { $1.disconnect() }
     }
 
-    func sendMessage(string: String, to userID: String, completionHandler: ((Bool, Error?) -> ())?) {
-        let message = MessageTemp(text: string, messageType: .outgoing)
+    func sendMessage(with text: String, to userID: String, completionHandler: ((Bool, Error?) -> ())?) {
+        let message = MessageTemp(text: text, messageType: .outgoing)
         guard let session = peersSessions[userID] else {
             fatalError("Couldn't send message to not-existing session. User ID: \(userID)")
         }
