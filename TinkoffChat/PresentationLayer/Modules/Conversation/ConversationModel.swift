@@ -12,7 +12,7 @@ protocol IConversationModel {
 
     weak var delegate: IConversationModelDelegate? {get set}
 
-    func sendMessage(with text: String, to userID: String, completion: (Bool, String?) -> ())
+    func sendMessage(with text: String, to userID: String, completion: @escaping (Bool, String?) -> ())
 }
 
 protocol IConversationModelDelegate: class {
@@ -32,10 +32,8 @@ class ConversationModel: IConversationModel {
         self.conversationsService.singleConversationDelegate = self
     }
 
-    func sendMessage(with text: String, to userID: String, completion: (Bool, String?) -> ()) {
-        conversationsService.sendMessage(with: text, to: userID) { (success, errorMessage) in
-            // TODO: Implement
-        }
+    func sendMessage(with text: String, to userID: String, completion: @escaping (Bool, String?) -> ()) {
+        conversationsService.sendMessage(with: text, to: userID, completion: completion)
     }
 }
 

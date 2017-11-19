@@ -160,12 +160,15 @@ extension MultipeerCommunicator: MCSessionDelegate {
         switch state {
         case .connected:
             guard let userDiscoveryInfo = peersDiscoveryInfos[userID] else {
-                print("No discovery info for userId \(userID) previousle was received.")
+                print("No discovery info for userId \(userID) was received.")
+                // If something is wrong with peer info then re-invite him
+                browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
                 return
             }
 
             guard let userName = userDiscoveryInfo[userNameKey] else {
-                print("No user name for userId \(userID) previousle was received.")
+                print("No user name for userId \(userID) was received.")
+                browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30)
                 return
             }
 

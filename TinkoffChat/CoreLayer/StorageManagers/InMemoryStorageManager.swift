@@ -10,17 +10,23 @@ import Foundation
 
 class InMemoryStorageManager: IStorageManager {
 
-    private var conversations = [ChatHistory(userID: "-1", userName: "Fake name")]
+    private var conversations = [ChatHistory(userID: "-1", userName: "Fake name", online: false)]
 
     func getChatHistories(completion: @escaping ([ChatHistory]) -> ()) {
         completion(conversations)
     }
 
     func saveMessage(with text: String, to userID: String, completion: @escaping (Bool, String?) -> ()) {
-        conversations[0].addNewMessage(MessageTemp(text: text, messageType: .outgoing))
-        completion(true, nil)
-    }
+        for conversation in conversations {
+            if conversation.userID == userID {
+                conversation.addNewMessage(MessageTemp(text: text, messageType: .outgoing))
+                completion(true, nil)
+                return
+            }
+        }
 
+        completion(false, "Can't save message. UserID is incorrect.")
+    }
 
     func write(profile: Profile, completion: @escaping (_ success: Bool) -> ()) {
         completion(true)
@@ -30,5 +36,23 @@ class InMemoryStorageManager: IStorageManager {
     func read(completion: @escaping (_ profile: Profile) -> ()) {
         completion(Profile())
         return
+    }
+
+    func updateUserInfo(userID: String, userName: String?, online: Bool, completion: @escaping (_ success: Bool) -> ()) {
+        // Already existing conversation
+        for conversation in conversations {
+            if conversation.userID == userID {
+                if let newUserName = userName {
+                    conversation.userName = newUserName
+                }
+                conversation.online = online
+
+                completion(true)
+                return
+            }
+        }
+        // New conversation
+        conversations.append(ChatHistory(userID: userID, userName: userName ?? "Unknown userName", online: online))
+        completion(true)
     }
 }

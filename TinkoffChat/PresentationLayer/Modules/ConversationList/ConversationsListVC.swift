@@ -13,7 +13,7 @@ class ConversationsListVC: UIViewController {
     private let conversationSegueId = "toConversation"
 
     private var model: IConversationsListModel = ConversationsListModel()
-    fileprivate let dateFormatter = DateFormatter()
+    private let dateFormatter = DateFormatter()
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -34,7 +34,17 @@ class ConversationsListVC: UIViewController {
             guard let conversationVC = segue.destination as? ConversationVС,
                 let indexPath = tableView.indexPathForSelectedRow else { return }
 
-            conversationVC.chatHistory = model.chatHistories[indexPath.row]
+            let chatHistory: ChatHistory
+            switch indexPath.section {
+            case 0:
+                chatHistory =  model.chatHistories.filter{$0.online}[indexPath.row]
+            case 1:
+                chatHistory = model.chatHistories.filter{!$0.online}[indexPath.row]
+            default:
+                fatalError("Unexpected section")
+
+            }
+            conversationVC.chatHistory = chatHistory
             conversationVC.model = ConversationModel(conversationsService: model.conversationsService)
         }
     }
@@ -58,12 +68,29 @@ extension ConversationsListVC: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.chatHistories.count
+        switch section {
+        case 0:
+            return model.chatHistories.filter{$0.online}.count
+        case 1:
+            return model.chatHistories.filter{!$0.online}.count
+        default:
+            return 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ConversationTableViewCell
-        let chatHistory = model.chatHistories[indexPath.row]
+
+        let chatHistory: ChatHistory
+        switch indexPath.section {
+        case 0:
+            chatHistory =  model.chatHistories.filter{$0.online}[indexPath.row]
+        case 1:
+            chatHistory = model.chatHistories.filter{!$0.online}[indexPath.row]
+        default:
+            fatalError("Unexpected section")
+
+        }
         configure(cell, using: chatHistory)
         return cell
     }

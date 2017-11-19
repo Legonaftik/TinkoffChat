@@ -64,4 +64,8 @@ class CoreDataStorageManager: IStorageManager {
         // TODO: Implement
         completion(false, "Couldn't save message in CoreData.")
     }
+
+    func updateUserInfo(userID: String, userName: String?, online: Bool, completion: @escaping (_ success: Bool) -> ()) {
+        // TODO: Implement
+    }
 }

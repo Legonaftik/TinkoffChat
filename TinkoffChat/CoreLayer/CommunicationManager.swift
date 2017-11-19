@@ -48,22 +48,32 @@ class CommunicationManager: ICommunicationManager {
 extension CommunicationManager: ICommunicatorDelegate {
 
     func didFoundUser(userID: String, userName: String?) {
-        delegate?.didLoseUser(userID: userID)
+        DispatchQueue.main.async {
+            self.delegate?.didFindUser(userID: userID, userName: userName ?? "Unknown userName")
+        }
     }
 
     func didLostUser(userID: String) {
-        delegate?.didLoseUser(userID: userID)
+        DispatchQueue.main.async {
+            self.delegate?.didLoseUser(userID: userID)
+        }
     }
 
     func failedToStartBrowsingForUsers(error: Error) {
-        delegate?.didReceiveError(with: error.localizedDescription)
+        DispatchQueue.main.async {
+            self.delegate?.didReceiveError(with: error.localizedDescription)
+        }
     }
 
     func failedToStartAdvertising(error: Error) {
-        delegate?.didReceiveError(with: error.localizedDescription)
+        DispatchQueue.main.async {
+            self.delegate?.didReceiveError(with: error.localizedDescription)
+        }
     }
 
     func didReceiveMessage(text: String, fromUser: String, toUser: String) {
-        delegate?.didReceiveMessage(with: text, from: fromUser)
+        DispatchQueue.main.async {
+            self.delegate?.didReceiveMessage(with: text, from: fromUser)
+        }
     }
 }

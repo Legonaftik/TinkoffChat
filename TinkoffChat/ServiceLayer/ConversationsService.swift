@@ -39,9 +39,7 @@ class ConversationvsService: IConversationsService {
         communimationManager.sendMessage(with: text, to: userID) { [weak self] (success, errorMessage) in
 
             if success {
-                self?.storageManager.saveMessage(with: text, to: userID) { (success, errorMessage) in
-                    completion(success, errorMessage)
-                }
+                self?.storageManager.saveMessage(with: text, to: userID, completion: completion)
             } else {
                 self?.singleConversationDelegate?.displayError(with: errorMessage ?? "Couldn't send message.")
             }
@@ -62,13 +60,18 @@ extension ConversationvsService: ICommunicationManagerDelegate {
     }
 
     func didLoseUser(userID: String) {
-        // TODO: Implement
-//        storageManager.
-        singleConversationDelegate?.displayError(with: "Lost connection with \(userID)")
+        storageManager.updateUserInfo(userID: userID, userName: nil, online: false) { [weak self] _ in
+
+            self?.getConversationsList()
+            self?.singleConversationDelegate?.displayError(with: "Lost connection with \(userID)")
+        }
     }
     func didFindUser(userID: String, userName: String) {
-        // TODO: Implement
-        getConversationsList()
+
+        storageManager.updateUserInfo(userID: userID, userName: userName, online: true) { [weak self] _ in
+
+            self?.getConversationsList()
+        }
     }
 
     func didReceiveMessage(with text: String, from userID: String) {
