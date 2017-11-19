@@ -60,7 +60,7 @@ class CoreDataStorageManager: IStorageManager {
         completion([])
     }
 
-    func saveMessage(with text: String, to userID: String, completion: @escaping (Bool, String?) -> ()) {
+    func saveMessage(with text: String, userID: String, type: MessageType, completion: @escaping (Bool, String?) -> ()) {
         // TODO: Implement
         completion(false, "Couldn't save message in CoreData.")
     }

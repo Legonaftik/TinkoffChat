@@ -13,6 +13,6 @@ protocol IStorageManager {
     func write(profile: Profile, completion: @escaping (_ success: Bool) -> ())
     func read(completion: @escaping (_ profile: Profile) -> ())
     func getChatHistories(completion: @escaping ([ChatHistory]) -> ())
-    func saveMessage(with text: String, to userID: String, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> ())
+    func saveMessage(with text: String, userID: String, type: MessageType, completion: @escaping (_ success: Bool, _ errorMessage: String?) -> ())
     func updateUserInfo(userID: String, userName: String?, online: Bool, completion: @escaping (_ success: Bool) -> ())
 }

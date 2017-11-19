@@ -10,16 +10,16 @@ import Foundation
 
 class InMemoryStorageManager: IStorageManager {
 
-    private var conversations = [ChatHistory(userID: "-1", userName: "Fake name", online: false)]
+    private var conversations = [ChatHistory(userID: "-1", userName: "Fake user", online: false)]
 
     func getChatHistories(completion: @escaping ([ChatHistory]) -> ()) {
         completion(conversations)
     }
 
-    func saveMessage(with text: String, to userID: String, completion: @escaping (Bool, String?) -> ()) {
+    func saveMessage(with text: String, userID: String, type: MessageType, completion: @escaping (Bool, String?) -> ()) {
         for conversation in conversations {
             if conversation.userID == userID {
-                conversation.addNewMessage(MessageTemp(text: text, messageType: .outgoing))
+                conversation.addNewMessage(MessageTemp(text: text, messageType: type))
                 completion(true, nil)
                 return
             }

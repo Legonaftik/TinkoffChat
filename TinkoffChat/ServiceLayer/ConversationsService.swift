@@ -39,7 +39,7 @@ class ConversationvsService: IConversationsService {
         communimationManager.sendMessage(with: text, to: userID) { [weak self] (success, errorMessage) in
 
             if success {
-                self?.storageManager.saveMessage(with: text, to: userID, completion: completion)
+                self?.storageManager.saveMessage(with: text, userID: userID, type: .outgoing, completion: completion)
             } else {
                 self?.singleConversationDelegate?.displayError(with: errorMessage ?? "Couldn't send message.")
             }
@@ -75,8 +75,7 @@ extension ConversationvsService: ICommunicationManagerDelegate {
     }
 
     func didReceiveMessage(with text: String, from userID: String) {
-        // TODO: Differentiate incoming and outcoming messages; update convVC
-        storageManager.saveMessage(with: text, to: "self") { [weak self] (success, errorMessage) in
+        storageManager.saveMessage(with: text, userID: userID, type: .incoming) { [weak self] (success, errorMessage) in
             if success {
                 self?.getConversationsList()
             } else {
