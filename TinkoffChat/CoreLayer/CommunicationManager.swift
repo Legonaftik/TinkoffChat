@@ -37,9 +37,7 @@ class CommunicationManager: ICommunicationManager {
 
         multipeerCommunicator.sendMessage(with: text, to: userID) { (success, error) in
             DispatchQueue.main.async {
-                if success {
-                    completion(success, error?.localizedDescription)
-                }
+                completion(success, error?.localizedDescription)
             }
         }
     }

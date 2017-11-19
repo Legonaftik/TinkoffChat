@@ -39,8 +39,12 @@ class ConversationVС: UIViewController {
                 return
         }
 
-        model.sendMessage(with: messageText, to: chatHistory.userID) { (success, errorMessage) in
-            // TODO: Implement
+        model.sendMessage(with: messageText, to: chatHistory.userID) { [weak self] (success, errorMessage) in
+            if success {
+                self?.tableView.reloadData()
+            } else {
+                self?.displayAlert(message: errorMessage ?? "Couldn't send the message.")
+            }
         }
 
         inputTextField.text = ""

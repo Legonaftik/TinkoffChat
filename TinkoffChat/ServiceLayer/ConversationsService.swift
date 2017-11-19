@@ -49,6 +49,7 @@ class ConversationvsService: IConversationsService {
     func getConversationsList() {
         storageManager.getChatHistories { [weak self] chatHistories in
             self?.conversationsListDelegate?.didUpdate(chatHistories: chatHistories)
+            self?.singleConversationDelegate?.didUpdate(chatHistories: chatHistories)
         }
     }
 }
