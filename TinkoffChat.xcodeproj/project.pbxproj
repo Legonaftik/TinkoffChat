@@ -31,13 +31,13 @@
 		F3B21A1A1FB1E977000F171D /* TinkoffChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A181FB1E977000F171D /* TinkoffChat.xcdatamodeld */; };
 		F3B21A1C1FB1E9A6000F171D /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A1B1FB1E9A6000F171D /* CoreDataStack.swift */; };
 		F3B21A1F1FB1F8E6000F171D /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A1E1FB1F8E6000F171D /* AppUser.swift */; };
-		F3B21A211FB1FDC3000F171D /* CoreDataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A201FB1FDC3000F171D /* CoreDataStorageManager.swift */; };
 		F3B55F221F891D0D00F8B9A5 /* ConversationsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B55F211F891D0D00F8B9A5 /* ConversationsListVC.swift */; };
 		F3B55F241F89214400F8B9A5 /* ConversationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B55F231F89214400F8B9A5 /* ConversationTableViewCell.swift */; };
 		F3D560B01F8AA2520042ADC6 /* ConversationVС.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560AF1F8AA2520042ADC6 /* ConversationVС.swift */; };
 		F3D560B21F8AA5A50042ADC6 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560B11F8AA5A40042ADC6 /* MessageTableViewCell.swift */; };
 		F3D560B71F8AB6300042ADC6 /* OutgoingMessageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560B61F8AB6300042ADC6 /* OutgoingMessageContainerView.swift */; };
 		F3D560B91F8AB6910042ADC6 /* IncomingMessageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560B81F8AB6910042ADC6 /* IncomingMessageContainerView.swift */; };
+		F3D6BD921FC199BE00878814 /* CoreDataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6BD911FC199BE00878814 /* CoreDataStorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,13 +67,13 @@
 		F3B21A191FB1E977000F171D /* TinkoffChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffChat.xcdatamodel; sourceTree = "<group>"; };
 		F3B21A1B1FB1E9A6000F171D /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F3B21A1E1FB1F8E6000F171D /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
-		F3B21A201FB1FDC3000F171D /* CoreDataStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorageManager.swift; sourceTree = "<group>"; };
 		F3B55F211F891D0D00F8B9A5 /* ConversationsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListVC.swift; sourceTree = "<group>"; };
 		F3B55F231F89214400F8B9A5 /* ConversationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationTableViewCell.swift; sourceTree = "<group>"; };
 		F3D560AF1F8AA2520042ADC6 /* ConversationVС.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConversationVС.swift"; sourceTree = "<group>"; };
 		F3D560B11F8AA5A40042ADC6 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		F3D560B61F8AB6300042ADC6 /* OutgoingMessageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageContainerView.swift; sourceTree = "<group>"; };
 		F3D560B81F8AB6910042ADC6 /* IncomingMessageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageContainerView.swift; sourceTree = "<group>"; };
+		F3D6BD911FC199BE00878814 /* CoreDataStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,8 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				F35B35A51F94C8FD00D5F557 /* IStorageManager.swift */,
-				F3B21A201FB1FDC3000F171D /* CoreDataStorageManager.swift */,
 				F33506A21FC050C80049F0A7 /* InMemoryStorageManager.swift */,
+				F3D6BD911FC199BE00878814 /* CoreDataStorageManager.swift */,
 			);
 			path = StorageManagers;
 			sourceTree = "<group>";
@@ -306,7 +306,6 @@
 				F33506A11FBF97410049F0A7 /* CommunicationManager.swift in Sources */,
 				F31C7D621F93EB4E00F767D6 /* UIViewController+Extension.swift in Sources */,
 				F3D560B91F8AB6910042ADC6 /* IncomingMessageContainerView.swift in Sources */,
-				F3B21A211FB1FDC3000F171D /* CoreDataStorageManager.swift in Sources */,
 				F3D560B71F8AB6300042ADC6 /* OutgoingMessageContainerView.swift in Sources */,
 				F3B21A1C1FB1E9A6000F171D /* CoreDataStack.swift in Sources */,
 				F33506A31FC050C80049F0A7 /* InMemoryStorageManager.swift in Sources */,
@@ -325,6 +324,7 @@
 				F35B35A61F94C8FD00D5F557 /* IStorageManager.swift in Sources */,
 				F358DB171F9BAEDF00C49EEA /* ChatHistory.swift in Sources */,
 				F358DB151F9B7BF900C49EEA /* MessageTemp.swift in Sources */,
+				F3D6BD921FC199BE00878814 /* CoreDataStorageManager.swift in Sources */,
 				F375861F1F7D8FAB0070C3A1 /* DesignableButton.swift in Sources */,
 				F37586211F7D8FCB0070C3A1 /* DesignableImageView.swift in Sources */,
 				F31915DF1FA8B9D500EBBE87 /* ConversationModel.swift in Sources */,
