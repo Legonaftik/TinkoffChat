@@ -174,19 +174,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="V40-2k-wyD">
-                            <size key="itemSize" width="50" height="50"/>
+                            <size key="itemSize" width="233" height="197"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jld-VK-Fk6">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="jld-VK-Fk6" customClass="PhotoCollectionViewCell" customModule="TinkoffChat" customModuleProvider="target">
+                                <rect key="frame" x="71" y="0.0" width="233" height="197"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="233" height="197"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-user" translatesAutoresizingMaskIntoConstraints="NO" id="IKR-bT-cvW">
+                                            <rect key="frame" x="0.0" y="0.0" width="233" height="197"/>
+                                        </imageView>
+                                    </subviews>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IKR-bT-cvW" secondAttribute="trailing" id="ezW-tx-f3M"/>
+                                    <constraint firstItem="IKR-bT-cvW" firstAttribute="leading" secondItem="jld-VK-Fk6" secondAttribute="leading" id="omI-ma-c5T"/>
+                                    <constraint firstAttribute="bottom" secondItem="IKR-bT-cvW" secondAttribute="bottom" id="rwy-xe-eM4"/>
+                                    <constraint firstItem="IKR-bT-cvW" firstAttribute="top" secondItem="jld-VK-Fk6" secondAttribute="top" id="uh0-y9-9yp"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="IKR-bT-cvW" id="hDN-Xb-MUT"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -204,7 +218,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1mo-oA-ddX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2111" y="1384"/>
+            <point key="canvasLocation" x="2109.5999999999999" y="1383.9580209895053"/>
         </scene>
         <!--Tinkoff Chat-->
         <scene sceneID="x6x-8r-T4a">

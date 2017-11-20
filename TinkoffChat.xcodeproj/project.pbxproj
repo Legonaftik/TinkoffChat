@@ -39,6 +39,7 @@
 		F3D560B91F8AB6910042ADC6 /* IncomingMessageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560B81F8AB6910042ADC6 /* IncomingMessageContainerView.swift */; };
 		F3D6BD921FC199BE00878814 /* CoreDataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6BD911FC199BE00878814 /* CoreDataStorageManager.swift */; };
 		F3D6BD941FC2FB9200878814 /* DownloadAvatarCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6BD931FC2FB9200878814 /* DownloadAvatarCollectionVC.swift */; };
+		F3DBA4B21FC30F6E003884BA /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DBA4B11FC30F6E003884BA /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		F3D560B81F8AB6910042ADC6 /* IncomingMessageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageContainerView.swift; sourceTree = "<group>"; };
 		F3D6BD911FC199BE00878814 /* CoreDataStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStorageManager.swift; sourceTree = "<group>"; };
 		F3D6BD931FC2FB9200878814 /* DownloadAvatarCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadAvatarCollectionVC.swift; sourceTree = "<group>"; };
+		F3DBA4B11FC30F6E003884BA /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +165,7 @@
 		F393855B1FA4B9240009E323 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				F3D6BD951FC2FB9A00878814 /* ImagePicker */,
+				F3D6BD951FC2FB9A00878814 /* DownloadAvatar */,
 				F3B55F261F8922D100F8B9A5 /* Profile */,
 				F3B55F251F8922BB00F8B9A5 /* ConversationList */,
 				F3D560AE1F8AA2340042ADC6 /* Conversation */,
@@ -233,12 +235,13 @@
 			path = Conversation;
 			sourceTree = "<group>";
 		};
-		F3D6BD951FC2FB9A00878814 /* ImagePicker */ = {
+		F3D6BD951FC2FB9A00878814 /* DownloadAvatar */ = {
 			isa = PBXGroup;
 			children = (
+				F3DBA4B11FC30F6E003884BA /* PhotoCollectionViewCell.swift */,
 				F3D6BD931FC2FB9200878814 /* DownloadAvatarCollectionVC.swift */,
 			);
-			path = ImagePicker;
+			path = DownloadAvatar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +327,7 @@
 				F31C7D671F94102600F767D6 /* Profile.swift in Sources */,
 				F3B21A171FAF972A000F171D /* ConversationsService.swift in Sources */,
 				F31C7D651F940E9A00F767D6 /* UIColor+Extension.swift in Sources */,
+				F3DBA4B21FC30F6E003884BA /* PhotoCollectionViewCell.swift in Sources */,
 				F3630A691F72C9D5005EA5BC /* ProfileVC.swift in Sources */,
 				F3B55F221F891D0D00F8B9A5 /* ConversationsListVC.swift in Sources */,
 				F3D560B21F8AA5A50042ADC6 /* MessageTableViewCell.swift in Sources */,

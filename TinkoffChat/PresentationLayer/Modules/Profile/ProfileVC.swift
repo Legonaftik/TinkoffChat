@@ -60,7 +60,7 @@ class ProfileVC: UIViewController {
     }
 
     @IBAction func changedTextFieldText() {
-        updateSaveButtonsAvailability()
+        updateSaveButtonAvailability()
     }
 
     override func viewDidLoad() {
@@ -73,7 +73,7 @@ class ProfileVC: UIViewController {
         addObserversForKeyboardAppearance()
     }
 
-    private func updateSaveButtonsAvailability() {
+    private func updateSaveButtonAvailability() {
         saveButton.isEnabled = model.profileDidChange(
             avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text)
     }
@@ -93,7 +93,7 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             avatarImageView.image = image
-            updateSaveButtonsAvailability()
+            updateSaveButtonAvailability()
         }
         dismiss(animated: true, completion: nil)
     }
@@ -141,5 +141,6 @@ extension ProfileVC: DownloadAvatarCollectionVCDelegate {
 
     func didPickAvatar(_ avatar: UIImage) {
         avatarImageView.image = avatar
+        updateSaveButtonAvailability()
     }
 }
