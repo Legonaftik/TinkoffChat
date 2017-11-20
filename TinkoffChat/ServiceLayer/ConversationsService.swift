@@ -69,16 +69,15 @@ extension ConversationvsService: ICommunicationManagerDelegate {
 
     func didLoseUser(userID: String) {
         storageManager.updateUserInfo(userID: userID, userName: nil, online: false) { [weak self] _ in
-
             self?.getConversationsList()
-            self?.singleConversationDelegate?.displayError(with: "Lost connection with \(userID)")
+            self?.singleConversationDelegate?.didDisconnect(peerID: userID)
         }
     }
+
     func didFindUser(userID: String, userName: String) {
-
         storageManager.updateUserInfo(userID: userID, userName: userName, online: true) { [weak self] _ in
-
             self?.getConversationsList()
+            self?.singleConversationDelegate?.didReconnect(peerID: userID)
         }
     }
 

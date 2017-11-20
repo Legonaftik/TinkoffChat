@@ -91,12 +91,17 @@ extension ConversationVС: ConversationModelDelegate {
     func didDisconnect(peerID: String) {
         if peerID == model.chatHistory.userID {
             sendButton.isEnabled = false
+            
+            dismiss(animated: true, completion: nil)
             displayAlert(message: "Lost connection with \(model.chatHistory.userName).")
         }
     }
 
     func didReconnect(peerID: String) {
         if peerID == model.chatHistory.userID {
+            sendButton.isEnabled = !(inputTextField.text?.isEmpty ?? true)
+
+            dismiss(animated: true, completion: nil)
             displayAlert(message: "\(model.chatHistory.userName) is online again.")
         }
     }
