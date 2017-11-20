@@ -44,8 +44,7 @@ class ConversationsListVC: UIViewController {
                 fatalError("Unexpected section")
 
             }
-            conversationVC.chatHistory = chatHistory
-            conversationVC.model = ConversationModel(conversationsService: model.conversationsService)
+            conversationVC.model = ConversationModel(chatHistory: chatHistory, conversationsService: model.conversationsService)
         }
     }
 }

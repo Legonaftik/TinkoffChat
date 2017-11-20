@@ -8,26 +8,25 @@
 
 import Foundation
 
-protocol IConversationModel {
+protocol ConversationModelDelegate: class {
 
-    weak var delegate: IConversationModelDelegate? {get set}
-
-    func sendMessage(with text: String, to userID: String, completion: @escaping (Bool, String?) -> ())
-}
-
-protocol IConversationModelDelegate: class {
-
-    func didUpdate(chatHistories: [ChatHistory])
+    func didReceiveMessage(with text: String, from userID: String)
     func displayError(with text: String)
+    func didDisconnect(peerID: String)
+    func didReconnect(peerID: String)
 }
 
-class ConversationModel: IConversationModel {
+class ConversationModel {
 
-    weak var delegate: IConversationModelDelegate?
+    weak var delegate: ConversationModelDelegate?
+
+    var chatHistory: ChatHistory
 
     private var conversationsService: IConversationsService
 
-    init(conversationsService: IConversationsService) {
+    init(chatHistory: ChatHistory, conversationsService: IConversationsService) {
+        self.chatHistory = chatHistory
+
         self.conversationsService = conversationsService
         self.conversationsService.singleConversationDelegate = self
     }
@@ -37,10 +36,18 @@ class ConversationModel: IConversationModel {
     }
 }
 
-extension ConversationModel: IConversationsServiceDelegate {
+extension ConversationModel: IConversationsServiceSingleConversationDelegate {
     
-    func didUpdate(chatHistories: [ChatHistory]) {
-        delegate?.didUpdate(chatHistories: chatHistories)
+    func didReceiveMessage(with text: String, from userID: String) {
+        delegate?.didReceiveMessage(with: text, from: userID)
+    }
+
+    func didDisconnect(peerID: String) {
+        delegate?.didDisconnect(peerID: peerID)
+    }
+
+    func didReconnect(peerID: String) {
+        delegate?.didReconnect(peerID: peerID)
     }
 
     func displayError(with text: String) {

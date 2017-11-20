@@ -10,23 +10,31 @@ import Foundation
 
 protocol IConversationsService {
 
-    weak var conversationsListDelegate: IConversationsServiceDelegate? {get set}
-    weak var singleConversationDelegate: IConversationsServiceDelegate? {get set}
+    weak var conversationsListDelegate: IConversationsServiceConversationsListDelegate? {get set}
+    weak var singleConversationDelegate: IConversationsServiceSingleConversationDelegate? {get set}
 
     func sendMessage(with text: String, to userID: String, completion: @escaping (Bool, String?) -> ())
     func getConversationsList()
 }
 
-protocol IConversationsServiceDelegate: class {
+protocol IConversationsServiceConversationsListDelegate: class {
 
     func didUpdate(chatHistories: [ChatHistory])
     func displayError(with text: String)
 }
 
+protocol IConversationsServiceSingleConversationDelegate: class {
+
+    func didReceiveMessage(with text: String, from userID: String)
+    func displayError(with text: String)
+    func didDisconnect(peerID: String)
+    func didReconnect(peerID: String)
+}
+
 class ConversationvsService: IConversationsService {
 
-    weak var conversationsListDelegate: IConversationsServiceDelegate?
-    weak var singleConversationDelegate: IConversationsServiceDelegate?
+    weak var conversationsListDelegate: IConversationsServiceConversationsListDelegate?
+    weak var singleConversationDelegate: IConversationsServiceSingleConversationDelegate?
 
     private var communimationManager: ICommunicationManager = CommunicationManager()
     private let storageManager: IStorageManager = InMemoryStorageManager()
@@ -49,7 +57,6 @@ class ConversationvsService: IConversationsService {
     func getConversationsList() {
         storageManager.getChatHistories { [weak self] chatHistories in
             self?.conversationsListDelegate?.didUpdate(chatHistories: chatHistories)
-            self?.singleConversationDelegate?.didUpdate(chatHistories: chatHistories)
         }
     }
 }
@@ -79,6 +86,7 @@ extension ConversationvsService: ICommunicationManagerDelegate {
         storageManager.saveMessage(with: text, userID: userID, type: .incoming) { [weak self] (success, errorMessage) in
             if success {
                 self?.getConversationsList()
+                self?.singleConversationDelegate?.didReceiveMessage(with: text, from: userID)
             } else {
                 self?.singleConversationDelegate?.displayError(with: errorMessage ?? "Error while saving a new message from \(userID)")
             }

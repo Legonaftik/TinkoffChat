@@ -40,7 +40,7 @@ class ConversationsListModel: IConversationsListModel {
     }
 }
 
-extension ConversationsListModel: IConversationsServiceDelegate {
+extension ConversationsListModel: IConversationsServiceConversationsListDelegate {
 
     func didUpdate(chatHistories: [ChatHistory]) {
         self.chatHistories = chatHistories
