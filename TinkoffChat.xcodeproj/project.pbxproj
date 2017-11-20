@@ -38,7 +38,7 @@
 		F3D560B71F8AB6300042ADC6 /* OutgoingMessageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560B61F8AB6300042ADC6 /* OutgoingMessageContainerView.swift */; };
 		F3D560B91F8AB6910042ADC6 /* IncomingMessageContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D560B81F8AB6910042ADC6 /* IncomingMessageContainerView.swift */; };
 		F3D6BD921FC199BE00878814 /* CoreDataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6BD911FC199BE00878814 /* CoreDataStorageManager.swift */; };
-		F3D6BD941FC2FB9200878814 /* ImagePickerCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6BD931FC2FB9200878814 /* ImagePickerCollectionViewController.swift */; };
+		F3D6BD941FC2FB9200878814 /* DownloadAvatarCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D6BD931FC2FB9200878814 /* DownloadAvatarCollectionVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,7 +75,7 @@
 		F3D560B61F8AB6300042ADC6 /* OutgoingMessageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessageContainerView.swift; sourceTree = "<group>"; };
 		F3D560B81F8AB6910042ADC6 /* IncomingMessageContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessageContainerView.swift; sourceTree = "<group>"; };
 		F3D6BD911FC199BE00878814 /* CoreDataStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStorageManager.swift; sourceTree = "<group>"; };
-		F3D6BD931FC2FB9200878814 /* ImagePickerCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerCollectionViewController.swift; sourceTree = "<group>"; };
+		F3D6BD931FC2FB9200878814 /* DownloadAvatarCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadAvatarCollectionVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,7 +236,7 @@
 		F3D6BD951FC2FB9A00878814 /* ImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				F3D6BD931FC2FB9200878814 /* ImagePickerCollectionViewController.swift */,
+				F3D6BD931FC2FB9200878814 /* DownloadAvatarCollectionVC.swift */,
 			);
 			path = ImagePicker;
 			sourceTree = "<group>";
@@ -329,7 +329,7 @@
 				F3D560B21F8AA5A50042ADC6 /* MessageTableViewCell.swift in Sources */,
 				F358DB111F9B61A500C49EEA /* MultipeerCommunicator.swift in Sources */,
 				F3D560B01F8AA2520042ADC6 /* ConversationVС.swift in Sources */,
-				F3D6BD941FC2FB9200878814 /* ImagePickerCollectionViewController.swift in Sources */,
+				F3D6BD941FC2FB9200878814 /* DownloadAvatarCollectionVC.swift in Sources */,
 				F358DB131F9B69E900C49EEA /* ConversationsListModel.swift in Sources */,
 				F3B55F241F89214400F8B9A5 /* ConversationTableViewCell.swift in Sources */,
 				F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */,

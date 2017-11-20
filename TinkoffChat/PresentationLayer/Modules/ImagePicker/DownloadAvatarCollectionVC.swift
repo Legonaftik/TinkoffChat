@@ -1,5 +1,5 @@
 //
-//  ImagePickerCollectionViewController.swift
+//  DownloadAvatarCollectionVC.swift
 //  TinkoffChat
 //
 //  Created by Vladimir Pavlov on 20/11/2017.
@@ -15,7 +15,7 @@ protocol DownloadAvatarCollectionVCDelegate: class {
     func didPickAvatar(_ avatar: UIImage)
 }
 
-class ImagePickerCollectionViewController: UICollectionViewController {
+class DownloadAvatarCollectionVC: UICollectionViewController {
 
     weak var delegate: DownloadAvatarCollectionVCDelegate?
 

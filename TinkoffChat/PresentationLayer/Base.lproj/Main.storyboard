@@ -158,17 +158,17 @@
                         <outlet property="infoTextField" destination="7zZ-il-k0j" id="2DV-hP-Czh"/>
                         <outlet property="nameTextField" destination="skE-4O-Uhk" id="gsG-op-o6i"/>
                         <outlet property="saveButton" destination="oIp-bb-WN1" id="ZNM-p1-5fR"/>
-                        <segue destination="hTr-1A-rZe" kind="presentation" identifier="toImagePickerCollectionVC" id="qCE-c4-mr5"/>
+                        <segue destination="hTr-1A-rZe" kind="presentation" identifier="toDownloadAvatarCollectionVC" id="qCE-c4-mr5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1225" y="689"/>
         </scene>
-        <!--Image Picker Collection View Controller-->
+        <!--Download Avatar CollectionVC-->
         <scene sceneID="j5j-Wb-bvB">
             <objects>
-                <collectionViewController id="D2G-XF-OqL" customClass="ImagePickerCollectionViewController" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="D2G-XF-OqL" customClass="DownloadAvatarCollectionVC" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="c1k-tr-zar">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

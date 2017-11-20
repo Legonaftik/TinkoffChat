@@ -10,7 +10,7 @@ import UIKit
 
 class ProfileVC: UIViewController {
 
-    private let imagePickerCollectionVCSegueID = "toImagePickerCollectionVC"
+    private let downloadAvatarCollectionVCSegueID = "toDownloadAvatarCollectionVC"
 
     private var imagePicker = UIImagePickerController()
     private var model: IProfileModel = ProfileModel()
@@ -35,7 +35,7 @@ class ProfileVC: UIViewController {
         }
 
         let downloadAction = UIAlertAction(title: "Download", style: .default) { [unowned self] _ in
-            self.performSegue(withIdentifier: self.imagePickerCollectionVCSegueID, sender: nil)
+            self.performSegue(withIdentifier: self.downloadAvatarCollectionVCSegueID, sender: nil)
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -79,11 +79,11 @@ class ProfileVC: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == imagePickerCollectionVCSegueID {
+        if segue.identifier == downloadAvatarCollectionVCSegueID {
             guard let navigationVC = segue.destination as? UINavigationController,
-                let imagePickerCollectionVC = navigationVC.topViewController as? ImagePickerCollectionViewController else { return }
+                let downloadAvatarCollectionVC = navigationVC.topViewController as? DownloadAvatarCollectionVC else { return }
 
-            imagePickerCollectionVC.delegate = self
+            downloadAvatarCollectionVC.delegate = self
         }
     }
 }
