@@ -49,3 +49,4 @@ extension AppUser {
         return fetchRequest
     }
 }
+

@@ -1,5 +1,5 @@
 //
-//  Message.swift
+//  MessageTemp.swift
 //  TinkoffChat
 //
 //  Created by Vladimir Pavlov on 21/10/2017.
@@ -14,7 +14,7 @@ enum MessageType: Int, Codable {
     case outgoing
 }
 
-struct Message: Codable {
+struct MessageTemp: Codable {
 
     let eventType = "TextMessage"
     let messageId = generateMessageId()

@@ -10,21 +10,23 @@ import Foundation
 
 class ChatHistory {
 
+    var online: Bool
     let userID: String
-    let userName: String
-    var messages: [Message] = []
+    var userName: String
+    var messages: [MessageTemp] = []
 
     var lastMessageDate: Date? {
         // TODO: Implement
         return Date()
     }
 
-    init(userID: String, userName: String) {
+    init(userID: String, userName: String, online: Bool) {
         self.userID = userID
         self.userName = userName
+        self.online = online
     }
 
-    func addNewMessage(_ message: Message) {
+    func addNewMessage(_ message: MessageTemp) {
         messages.append(message)
     }
 

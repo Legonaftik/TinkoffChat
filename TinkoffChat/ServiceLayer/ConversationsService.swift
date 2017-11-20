@@ -10,108 +10,85 @@ import Foundation
 
 protocol IConversationsService {
 
-    weak var conversationsListDelegate: IConversationsServiceDelegate? {get set}
-    weak var singleConversationDelegate: IConversationsServiceDelegate? {get set}
+    weak var conversationsListDelegate: IConversationsServiceConversationsListDelegate? {get set}
+    weak var singleConversationDelegate: IConversationsServiceSingleConversationDelegate? {get set}
 
-    func sendMessage(in chatHistory: ChatHistory, with text: String)
+    func sendMessage(with text: String, to userID: String, completion: @escaping (Bool, String?) -> ())
+    func getConversationsList()
 }
 
-protocol IConversationsServiceDelegate: class {
+protocol IConversationsServiceConversationsListDelegate: class {
 
     func didUpdate(chatHistories: [ChatHistory])
     func displayError(with text: String)
 }
 
+protocol IConversationsServiceSingleConversationDelegate: class {
+
+    func didReceiveMessage(with text: String, from userID: String)
+    func displayError(with text: String)
+    func didDisconnect(peerID: String)
+    func didReconnect(peerID: String)
+}
+
 class ConversationvsService: IConversationsService {
 
-    weak var conversationsListDelegate: IConversationsServiceDelegate?
-    weak var singleConversationDelegate: IConversationsServiceDelegate?
+    weak var conversationsListDelegate: IConversationsServiceConversationsListDelegate?
+    weak var singleConversationDelegate: IConversationsServiceSingleConversationDelegate?
 
-    private var chatHistories: [ChatHistory] = []
-    private var multipeerCommunicator: ICommunicator = MultipeerCommunicator()
+    private var communimationManager: ICommunicationManager = CommunicationManager()
+    private let storageManager: IStorageManager = InMemoryStorageManager()
 
     init() {
-        multipeerCommunicator.delegate = self
+        communimationManager.delegate = self
     }
 
-    func sendMessage(in chatHistory: ChatHistory, with text: String) {
-
-        multipeerCommunicator.sendMessage(string: text, to: chatHistory.userID) { [unowned self] (success, error) in
+    func sendMessage(with text: String, to userID: String, completion: @escaping (Bool, String?) -> ()) {
+        communimationManager.sendMessage(with: text, to: userID) { [weak self] (success, errorMessage) in
 
             if success {
-                // Type outgoing
-                chatHistory.messages.append(Message(text: text, messageType: .outgoing))
-                self.chatHistories.sort(by: ChatHistory.comparator)
+                self?.storageManager.saveMessage(with: text, userID: userID, type: .outgoing, completion: completion)
+            } else {
+                self?.singleConversationDelegate?.displayError(with: errorMessage ?? "Couldn't send message.")
             }
-            DispatchQueue.main.async {
-                if success {
-                    self.singleConversationDelegate?.didUpdate(chatHistories: self.chatHistories)
-                }
-            }
+        }
+    }
+
+    func getConversationsList() {
+        storageManager.getChatHistories { [weak self] chatHistories in
+            self?.conversationsListDelegate?.didUpdate(chatHistories: chatHistories)
         }
     }
 }
 
-extension ConversationvsService: ICommunicatorDelegate {
+extension ConversationvsService: ICommunicationManagerDelegate {
 
-    func didFoundUser(userID: String, userName: String?) {
+    func didReceiveError(with message: String) {
+        singleConversationDelegate?.displayError(with: message)
+    }
 
-        for i in 0 ..< chatHistories.count {
-            if chatHistories[i].userID == userID {
-                // Replace old session with the new one
-                chatHistories.remove(at: i)
-                break
+    func didLoseUser(userID: String) {
+        storageManager.updateUserInfo(userID: userID, userName: nil, online: false) { [weak self] _ in
+            self?.getConversationsList()
+            self?.singleConversationDelegate?.didDisconnect(peerID: userID)
+        }
+    }
+
+    func didFindUser(userID: String, userName: String) {
+        storageManager.updateUserInfo(userID: userID, userName: userName, online: true) { [weak self] _ in
+            self?.getConversationsList()
+            self?.singleConversationDelegate?.didReconnect(peerID: userID)
+        }
+    }
+
+    func didReceiveMessage(with text: String, from userID: String) {
+        storageManager.saveMessage(with: text, userID: userID, type: .incoming) { [weak self] (success, errorMessage) in
+            if success {
+                self?.getConversationsList()
+                self?.singleConversationDelegate?.didReceiveMessage(with: text, from: userID)
+            } else {
+                self?.singleConversationDelegate?.displayError(with: errorMessage ?? "Error while saving a new message from \(userID)")
             }
-        }
-
-        // Otherwise create a new record
-        chatHistories.append(ChatHistory(userID: userID, userName: userName ?? "Unknown user"))
-        chatHistories.sort(by: ChatHistory.comparator)
-
-        DispatchQueue.main.async {
-            self.conversationsListDelegate?.didUpdate(chatHistories: self.chatHistories)
-        }
-    }
-
-    func didLostUser(userID: String) {
-
-        for i in 0 ..< chatHistories.count {
-            if chatHistories[i].userID == userID {
-                chatHistories.remove(at: i)
-                break
-            }
-        }
-
-        DispatchQueue.main.async {
-            self.conversationsListDelegate?.didUpdate(chatHistories: self.chatHistories)
-            self.singleConversationDelegate?.displayError(with: "Lost connection with this user.")
-        }
-    }
-
-    func failedToStartBrowsingForUsers(error: Error) {
-        DispatchQueue.main.async {
-            self.conversationsListDelegate?.displayError(with: error.localizedDescription)
-        }
-    }
-
-    func failedToStartAdvertising(error: Error) {
-        DispatchQueue.main.async {
-            self.conversationsListDelegate?.displayError(with: error.localizedDescription)
-        }
-    }
-
-    func didReceiveMessage(text: String, fromUser: String, toUser: String) {
-
-        for chatHistory in chatHistories {
-            if chatHistory.userID == fromUser {
-                chatHistory.addNewMessage(Message(text: text, messageType: .incoming))
-            }
-        }
-
-        DispatchQueue.main.async {
-            self.conversationsListDelegate?.didUpdate(chatHistories: self.chatHistories)
-            self.singleConversationDelegate?.didUpdate(chatHistories: self.chatHistories)
         }
     }
 }
-
