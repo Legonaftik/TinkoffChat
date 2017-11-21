@@ -43,12 +43,19 @@ class DownloadAvatarCollectionVC: UICollectionViewController {
             fatalError("Dequeued a wrong cell.")
         }
         let avatarURL = model.avatars[indexPath.row].url
-        do {
-            let avatarData = try Data(contentsOf: avatarURL)
-            let avatar = UIImage(data: avatarData)
-            cell.imageView.image = avatar
-        } catch {
-            print("Couldn't convert image URL to image")
+
+        // TODO: Move this logic in UIImage extension
+        cell.imageView.image = #imageLiteral(resourceName: "placeholder-user")
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                let avatarData = try Data(contentsOf: avatarURL)
+                let avatar = UIImage(data: avatarData)
+                DispatchQueue.main.async {
+                    cell.imageView.image = avatar
+                }
+            } catch {
+                print("Couldn't convert image URL to image")
+            }
         }
 
         return cell
