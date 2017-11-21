@@ -35,21 +35,36 @@ class DownloadAvatarCollectionVC: UICollectionViewController {
 
     // MARK: - UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return model.avatars.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as? PhotoCollectionViewCell else {
             fatalError("Dequeued a wrong cell.")
         }
+        let avatarURL = model.avatars[indexPath.row].url
+        do {
+            let avatarData = try Data(contentsOf: avatarURL)
+            let avatar = UIImage(data: avatarData)
+            cell.imageView.image = avatar
+        } catch {
+            print("Couldn't convert image URL to image")
+        }
 
-        cell.imageView.image = #imageLiteral(resourceName: "placeholder-user")
         return cell
     }
 
     // MARK: UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didPickAvatar(#imageLiteral(resourceName: "placeholder-user"))
+        guard let cell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell else {
+            fatalError("Unexpected cell type.")
+        }
+
+        guard let avatar = cell.imageView.image else {
+            fatalError("Photo cell must contain some image")
+        }
+
+        delegate?.didPickAvatar(avatar)
         
         dismiss(animated: true, completion: nil)
     }
@@ -90,6 +105,6 @@ extension DownloadAvatarCollectionVC: DownloadAvatarModelDelegate {
     }
 
     func didGetAvatars() {
-        print(model.avatars)
+        collectionView?.reloadData()
     }
 }

@@ -21,11 +21,12 @@ class ImagesService: IImagesService {
         let config = RequestsFactory.AvatarRequests.getAvatars()
 
         requestSender.send(config: config) { result in
+
             switch result {
             case .success(let avatars):
-                completion(avatars, nil)
+                DispatchQueue.main.async { completion(avatars, nil) }
             case .fail(let errorMessage):
-                completion(nil, errorMessage)
+                DispatchQueue.main.async { completion(nil, errorMessage) }
             }
         }
     }
