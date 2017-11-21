@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4261BEF1FC4274400D75364 /* DownloadAvatarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4261BEE1FC4274400D75364 /* DownloadAvatarModel.swift */; };
+		D4261BF11FC4289800D75364 /* ImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4261BF01FC4289800D75364 /* ImagesService.swift */; };
 		D48DC9151FC416A80006BB52 /* GetAvatarsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9141FC416A80006BB52 /* GetAvatarsRequest.swift */; };
 		D48DC9171FC41BA90006BB52 /* AvatarsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9161FC41BA90006BB52 /* AvatarsParser.swift */; };
 		D48DC9191FC420300006BB52 /* IParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9181FC420300006BB52 /* IParser.swift */; };
@@ -52,6 +54,8 @@
 
 /* Begin PBXFileReference section */
 		B1545EBFC8A02134BEF2386D /* Pods-TinkoffChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinkoffChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat.debug.xcconfig"; sourceTree = "<group>"; };
+		D4261BEE1FC4274400D75364 /* DownloadAvatarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadAvatarModel.swift; sourceTree = "<group>"; };
+		D4261BF01FC4289800D75364 /* ImagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesService.swift; sourceTree = "<group>"; };
 		D48DC9141FC416A80006BB52 /* GetAvatarsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvatarsRequest.swift; sourceTree = "<group>"; };
 		D48DC9161FC41BA90006BB52 /* AvatarsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsParser.swift; sourceTree = "<group>"; };
 		D48DC9181FC420300006BB52 /* IParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IParser.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 		F39385581FA4B8FE0009E323 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
+				D4261BF01FC4289800D75364 /* ImagesService.swift */,
 				F3B21A161FAF972A000F171D /* ConversationsService.swift */,
 				F393855C1FA4BA3F0009E323 /* ProfileService.swift */,
 			);
@@ -315,6 +320,7 @@
 		F3D6BD951FC2FB9A00878814 /* DownloadAvatar */ = {
 			isa = PBXGroup;
 			children = (
+				D4261BEE1FC4274400D75364 /* DownloadAvatarModel.swift */,
 				F3DBA4B11FC30F6E003884BA /* PhotoCollectionViewCell.swift */,
 				F3D6BD931FC2FB9200878814 /* DownloadAvatarCollectionVC.swift */,
 			);
@@ -464,6 +470,7 @@
 				F31C7D671F94102600F767D6 /* Profile.swift in Sources */,
 				D48DC9151FC416A80006BB52 /* GetAvatarsRequest.swift in Sources */,
 				F3B21A171FAF972A000F171D /* ConversationsService.swift in Sources */,
+				D4261BEF1FC4274400D75364 /* DownloadAvatarModel.swift in Sources */,
 				F31C7D651F940E9A00F767D6 /* UIColor+Extension.swift in Sources */,
 				D48DC9171FC41BA90006BB52 /* AvatarsParser.swift in Sources */,
 				F3DBA4B21FC30F6E003884BA /* PhotoCollectionViewCell.swift in Sources */,
@@ -482,6 +489,7 @@
 				F358DB151F9B7BF900C49EEA /* MessageTemp.swift in Sources */,
 				F3D6BD921FC199BE00878814 /* CoreDataStorageManager.swift in Sources */,
 				F375861F1F7D8FAB0070C3A1 /* DesignableButton.swift in Sources */,
+				D4261BF11FC4289800D75364 /* ImagesService.swift in Sources */,
 				F37586211F7D8FCB0070C3A1 /* DesignableImageView.swift in Sources */,
 				F31915DF1FA8B9D500EBBE87 /* ConversationModel.swift in Sources */,
 				F393855D1FA4BA3F0009E323 /* ProfileService.swift in Sources */,

@@ -17,6 +17,8 @@ class DownloadAvatarCollectionVC: UICollectionViewController {
 
     weak var delegate: DownloadAvatarCollectionVCDelegate?
 
+    private var model = DownloadAvatarModel()
+
     private let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     private let itemsPerRow: CGFloat = 3
 
@@ -27,16 +29,8 @@ class DownloadAvatarCollectionVC: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let requestSender = RequestSender()
-        let requestConfig = RequestsFactory.AvatarRequests.getAvatars()
-        requestSender.send(config: requestConfig) { [weak self] result in
-            switch result {
-            case .success(let value):
-                print(value)
-            case .fail(let errorMessage):
-                self?.displayAlert(message: errorMessage)
-            }
-        }
+        model.delegate = self
+        model.getAvatars()
     }
 
     // MARK: - UICollectionViewDataSource
@@ -53,7 +47,7 @@ class DownloadAvatarCollectionVC: UICollectionViewController {
         return cell
     }
 
-    // MARK: - UICollectionViewDelegate
+    // MARK: UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didPickAvatar(#imageLiteral(resourceName: "placeholder-user"))
         
@@ -61,6 +55,7 @@ class DownloadAvatarCollectionVC: UICollectionViewController {
     }
 }
 
+// MARK: UICollectionViewDelegateFlowLayout
 extension DownloadAvatarCollectionVC : UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView,
@@ -84,5 +79,17 @@ extension DownloadAvatarCollectionVC : UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.top
+    }
+}
+
+// MARK: - DownloadAvatarModelDelegate
+extension DownloadAvatarCollectionVC: DownloadAvatarModelDelegate {
+
+    func didReceiveError(with message: String) {
+        displayAlert(message: message)
+    }
+
+    func didGetAvatars() {
+        print(model.avatars)
     }
 }
