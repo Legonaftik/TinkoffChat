@@ -14,9 +14,11 @@ struct AvatarAPIModel {
     let url: URL
 }
 
-class AvatarsParser: Parser<[AvatarAPIModel]> {
+class AvatarsParser: IParser {
 
-    override func parse(data: Data) -> [AvatarAPIModel]? {
+    typealias Model = [AvatarAPIModel]
+
+    func parse(data: Data) -> [AvatarAPIModel]? {
         let json = JSON(data)
         guard let avatars = json["hits"].array else { return nil }
 

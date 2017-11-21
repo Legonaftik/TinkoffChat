@@ -12,9 +12,9 @@ enum RequestsFactory {
     
     enum AvatarRequests {
 
-        static func getAvatars() -> RequestConfig<[AvatarAPIModel]> {
+        static func getAvatars() -> RequestConfig<AvatarsParser> {
             let request = GetAvatarsRequest(apiKey: "7121519-f35b7d8c483ba86df63a4d2df")
-            return RequestConfig<[AvatarAPIModel]>(request: request, parser: AvatarsParser())
+            return RequestConfig<AvatarsParser>(request: request, parser: AvatarsParser())
         }
     }
 }

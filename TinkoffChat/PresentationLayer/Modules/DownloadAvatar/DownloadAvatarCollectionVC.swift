@@ -31,9 +31,9 @@ class DownloadAvatarCollectionVC: UICollectionViewController {
         let requestConfig = RequestsFactory.AvatarRequests.getAvatars()
         requestSender.send(config: requestConfig) { [weak self] result in
             switch result {
-            case .Success(let value):
+            case .success(let value):
                 print(value)
-            case .Fail(let errorMessage):
+            case .fail(let errorMessage):
                 self?.displayAlert(message: errorMessage)
             }
         }

@@ -1,5 +1,5 @@
 //
-//  IRequest.swift
+//  IParser.swift
 //  TinkoffChat
 //
 //  Created by Vladimir Pavlov on 21/11/2017.
@@ -8,6 +8,8 @@
 
 import Foundation
 
-protocol IRequest {
-    var urlRequest: URLRequest? { get }
+protocol IParser {
+
+    associatedtype Model
+    func parse(data: Data) -> Model?
 }
