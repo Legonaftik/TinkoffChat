@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileVC: UIViewController {
 
+    private let downloadAvatarCollectionVCSegueID = "toDownloadAvatarCollectionVC"
+
     private var imagePicker = UIImagePickerController()
     private var model: IProfileModel = ProfileModel()
 
@@ -32,10 +34,15 @@ class ProfileVC: UIViewController {
             self.present(self.imagePicker, animated: true, completion: nil)
         }
 
+        let downloadAction = UIAlertAction(title: "Download", style: .default) { [unowned self] _ in
+            self.performSegue(withIdentifier: self.downloadAvatarCollectionVCSegueID, sender: nil)
+        }
+
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
         alertController.addAction(galeryAction)
         alertController.addAction(cameraAction)
+        alertController.addAction(downloadAction)
         alertController.addAction(cancelAction)
 
         present(alertController, animated: true, completion: nil)
@@ -53,7 +60,7 @@ class ProfileVC: UIViewController {
     }
 
     @IBAction func changedTextFieldText() {
-        updateSaveButtonsAvailability()
+        updateSaveButtonAvailability()
     }
 
     override func viewDidLoad() {
@@ -66,9 +73,18 @@ class ProfileVC: UIViewController {
         addObserversForKeyboardAppearance()
     }
 
-    private func updateSaveButtonsAvailability() {
+    private func updateSaveButtonAvailability() {
         saveButton.isEnabled = model.profileDidChange(
             avatar: avatarImageView.image, name: nameTextField.text, info: infoTextField.text)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == downloadAvatarCollectionVCSegueID {
+            guard let navigationVC = segue.destination as? UINavigationController,
+                let downloadAvatarCollectionVC = navigationVC.topViewController as? DownloadAvatarCollectionVC else { return }
+
+            downloadAvatarCollectionVC.delegate = self
+        }
     }
 }
 
@@ -77,7 +93,7 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             avatarImageView.image = image
-            updateSaveButtonsAvailability()
+            updateSaveButtonAvailability()
         }
         dismiss(animated: true, completion: nil)
     }
@@ -118,5 +134,13 @@ extension ProfileVC: IProfileModelDelegate {
             }
             displayAlert(title: "Error", message: "Couldn't save profile.", firstAction: okAction, secondAction: retryAction)
         }
+    }
+}
+
+extension ProfileVC: DownloadAvatarCollectionVCDelegate {
+
+    func didPickAvatar(_ avatar: UIImage) {
+        avatarImageView.image = avatar
+        updateSaveButtonAvailability()
     }
 }
