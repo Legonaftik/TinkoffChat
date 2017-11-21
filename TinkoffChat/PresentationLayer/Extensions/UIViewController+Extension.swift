@@ -10,6 +10,24 @@ import UIKit
 
 extension UIViewController {
 
+    func displayAlert(title: String? = "Внимание!", message: String? = nil, firstAction: UIAlertAction? = nil, secondAction: UIAlertAction? = nil) {
+
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        if let firstAction = firstAction {
+            alertController.addAction(firstAction)
+        } else {
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+        }
+        if let secondAction = secondAction {
+            alertController.addAction(secondAction)
+        }
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    // MARK: - Keyboard appearance
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
@@ -34,20 +52,18 @@ extension UIViewController {
                                                name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
     }
 
-    func displayAlert(title: String? = "Внимание!", message: String? = nil, firstAction: UIAlertAction? = nil, secondAction: UIAlertAction? = nil) {
+    // MARK: - ChildVC
+    func add(_ child: UIViewController) {
+        addChildViewController(child)
+        view.addSubview(child.view)
+        child.didMove(toParentViewController: self)
+    }
 
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    func remove() {
+        guard parent != nil else { return }
 
-        if let firstAction = firstAction {
-            alertController.addAction(firstAction)
-        } else {
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(okAction)
-        }
-        if let secondAction = secondAction {
-            alertController.addAction(secondAction)
-        }
-
-        self.present(alertController, animated: true, completion: nil)
+        willMove(toParentViewController: nil)
+        view.removeFromSuperview()
+        removeFromParentViewController()
     }
 }

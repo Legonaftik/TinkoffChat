@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D4261BEF1FC4274400D75364 /* DownloadAvatarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4261BEE1FC4274400D75364 /* DownloadAvatarModel.swift */; };
 		D4261BF11FC4289800D75364 /* ImagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4261BF01FC4289800D75364 /* ImagesService.swift */; };
+		D4261BF51FC4425600D75364 /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4261BF41FC4425600D75364 /* LoadingVC.swift */; };
 		D48DC9151FC416A80006BB52 /* GetAvatarsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9141FC416A80006BB52 /* GetAvatarsRequest.swift */; };
 		D48DC9171FC41BA90006BB52 /* AvatarsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9161FC41BA90006BB52 /* AvatarsParser.swift */; };
 		D48DC9191FC420300006BB52 /* IParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9181FC420300006BB52 /* IParser.swift */; };
@@ -56,6 +57,7 @@
 		B1545EBFC8A02134BEF2386D /* Pods-TinkoffChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinkoffChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat.debug.xcconfig"; sourceTree = "<group>"; };
 		D4261BEE1FC4274400D75364 /* DownloadAvatarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadAvatarModel.swift; sourceTree = "<group>"; };
 		D4261BF01FC4289800D75364 /* ImagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesService.swift; sourceTree = "<group>"; };
+		D4261BF41FC4425600D75364 /* LoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingVC.swift; sourceTree = "<group>"; };
 		D48DC9141FC416A80006BB52 /* GetAvatarsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvatarsRequest.swift; sourceTree = "<group>"; };
 		D48DC9161FC41BA90006BB52 /* AvatarsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsParser.swift; sourceTree = "<group>"; };
 		D48DC9181FC420300006BB52 /* IParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IParser.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		F393855A1FA4B90F0009E323 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				D4261BF41FC4425600D75364 /* LoadingVC.swift */,
 				F393855B1FA4B9240009E323 /* Modules */,
 				F3630A6A1F72C9D5005EA5BC /* Main.storyboard */,
 				F31C7D631F93EB5F00F767D6 /* Extensions */,
@@ -465,6 +468,7 @@
 				F3A9BECD1FC32F2F004D3EBF /* RequestSender.swift in Sources */,
 				F3A9BEC81FC32D26004D3EBF /* RequestsFactory.swift in Sources */,
 				F3A9BEC61FC32D26004D3EBF /* IRequest.swift in Sources */,
+				D4261BF51FC4425600D75364 /* LoadingVC.swift in Sources */,
 				F33506A31FC050C80049F0A7 /* InMemoryStorageManager.swift in Sources */,
 				F3AC0C551FA4CC8000224F32 /* ProfileModel.swift in Sources */,
 				F31C7D671F94102600F767D6 /* Profile.swift in Sources */,

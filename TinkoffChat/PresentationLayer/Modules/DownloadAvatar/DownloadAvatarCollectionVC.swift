@@ -26,10 +26,14 @@ class DownloadAvatarCollectionVC: UICollectionViewController {
         dismiss(animated: true, completion: nil)
     }
 
+    private var loadingVC = LoadingVC()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         model.delegate = self
+
+        add(loadingVC)
         model.getAvatars()
     }
 
@@ -96,10 +100,12 @@ extension DownloadAvatarCollectionVC : UICollectionViewDelegateFlowLayout {
 extension DownloadAvatarCollectionVC: DownloadAvatarModelDelegate {
 
     func didReceiveError(with message: String) {
+        loadingVC.remove()
         displayAlert(message: message)
     }
 
     func didGetAvatars() {
+        loadingVC.remove()
         collectionView?.reloadData()
     }
 }
