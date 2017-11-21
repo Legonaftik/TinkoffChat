@@ -44,19 +44,7 @@ class DownloadAvatarCollectionVC: UICollectionViewController {
         }
         let avatarURL = model.avatars[indexPath.row].url
 
-        // TODO: Move this logic in UIImage extension
-        cell.imageView.image = #imageLiteral(resourceName: "placeholder-user")
-        DispatchQueue.global(qos: .userInitiated).async {
-            do {
-                let avatarData = try Data(contentsOf: avatarURL)
-                let avatar = UIImage(data: avatarData)
-                DispatchQueue.main.async {
-                    cell.imageView.image = avatar
-                }
-            } catch {
-                print("Couldn't convert image URL to image")
-            }
-        }
+        cell.imageView.downloadImage(from: avatarURL)
 
         return cell
     }
