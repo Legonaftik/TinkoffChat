@@ -44,7 +44,7 @@ class DownloadAvatarCollectionVC: UICollectionViewController {
         }
         let avatarURL = model.avatars[indexPath.row].url
 
-        cell.imageView.downloadImage(from: avatarURL)
+        cell.imageURL = avatarURL
 
         return cell
     }
