@@ -24,7 +24,7 @@ class AvatarsParser: IParser {
 
         var avatarModels = [AvatarAPIModel]()
         for avatar in avatars {
-            guard let url = avatar["previewURL"].url else { continue }
+            guard let url = avatar["webformatURL"].url else { continue }
             avatarModels.append(AvatarAPIModel(url: url))
         }
         return avatarModels
