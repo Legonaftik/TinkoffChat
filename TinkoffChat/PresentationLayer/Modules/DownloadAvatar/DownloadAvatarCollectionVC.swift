@@ -26,6 +26,17 @@ class DownloadAvatarCollectionVC: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let requestSender = RequestSender()
+        let requestConfig = RequestsFactory.AvatarRequests.getAvatars()
+        requestSender.send(config: requestConfig) { [weak self] result in
+            switch result {
+            case .Success(let value):
+                print(value)
+            case .Fail(let errorMessage):
+                self?.displayAlert(message: errorMessage)
+            }
+        }
     }
 
     // MARK: - UICollectionViewDataSource

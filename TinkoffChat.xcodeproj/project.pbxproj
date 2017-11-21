@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D48DC9151FC416A80006BB52 /* GetAvatarsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9141FC416A80006BB52 /* GetAvatarsRequest.swift */; };
+		D48DC9171FC41BA90006BB52 /* AvatarsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48DC9161FC41BA90006BB52 /* AvatarsParser.swift */; };
 		ED43808770ECB2DC927B9FD6 /* Pods_TinkoffChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1A3A99B9EC4A2B965470074 /* Pods_TinkoffChat.framework */; };
 		F31915DF1FA8B9D500EBBE87 /* ConversationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31915DE1FA8B9D500EBBE87 /* ConversationModel.swift */; };
 		F31C7D621F93EB4E00F767D6 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31C7D611F93EB4E00F767D6 /* UIViewController+Extension.swift */; };
@@ -27,16 +29,11 @@
 		F375861F1F7D8FAB0070C3A1 /* DesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F375861E1F7D8FAA0070C3A1 /* DesignableButton.swift */; };
 		F37586211F7D8FCB0070C3A1 /* DesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37586201F7D8FCB0070C3A1 /* DesignableImageView.swift */; };
 		F393855D1FA4BA3F0009E323 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F393855C1FA4BA3F0009E323 /* ProfileService.swift */; };
-		F3A9BEC21FC32D26004D3EBF /* LastFMTracksParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BEBA1FC32D26004D3EBF /* LastFMTracksParser.swift */; };
-		F3A9BEC31FC32D26004D3EBF /* AppsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BEBB1FC32D26004D3EBF /* AppsParser.swift */; };
 		F3A9BEC41FC32D26004D3EBF /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BEBC1FC32D26004D3EBF /* Parser.swift */; };
-		F3A9BEC51FC32D26004D3EBF /* LastFMTracksRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BEBE1FC32D26004D3EBF /* LastFMTracksRequest.swift */; };
 		F3A9BEC61FC32D26004D3EBF /* IRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BEBF1FC32D26004D3EBF /* IRequest.swift */; };
-		F3A9BEC71FC32D26004D3EBF /* AppleRSSRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BEC01FC32D26004D3EBF /* AppleRSSRequest.swift */; };
 		F3A9BEC81FC32D26004D3EBF /* RequestsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BEC11FC32D26004D3EBF /* RequestsFactory.swift */; };
 		F3A9BECC1FC32F2F004D3EBF /* IRequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BECA1FC32F2F004D3EBF /* IRequestSender.swift */; };
 		F3A9BECD1FC32F2F004D3EBF /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BECB1FC32F2F004D3EBF /* RequestSender.swift */; };
-		F3A9BECF1FC3316D004D3EBF /* AvatarAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BECE1FC3316D004D3EBF /* AvatarAPIModel.swift */; };
 		F3AC0C551FA4CC8000224F32 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0C541FA4CC8000224F32 /* ProfileModel.swift */; };
 		F3B21A171FAF972A000F171D /* ConversationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A161FAF972A000F171D /* ConversationsService.swift */; };
 		F3B21A1A1FB1E977000F171D /* TinkoffChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A181FB1E977000F171D /* TinkoffChat.xcdatamodeld */; };
@@ -55,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		B1545EBFC8A02134BEF2386D /* Pods-TinkoffChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TinkoffChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TinkoffChat/Pods-TinkoffChat.debug.xcconfig"; sourceTree = "<group>"; };
+		D48DC9141FC416A80006BB52 /* GetAvatarsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAvatarsRequest.swift; sourceTree = "<group>"; };
+		D48DC9161FC41BA90006BB52 /* AvatarsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsParser.swift; sourceTree = "<group>"; };
 		E1A3A99B9EC4A2B965470074 /* Pods_TinkoffChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TinkoffChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31915DE1FA8B9D500EBBE87 /* ConversationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationModel.swift; sourceTree = "<group>"; };
 		F31C7D611F93EB4E00F767D6 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -77,16 +76,11 @@
 		F375861E1F7D8FAA0070C3A1 /* DesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableButton.swift; sourceTree = "<group>"; };
 		F37586201F7D8FCB0070C3A1 /* DesignableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableImageView.swift; sourceTree = "<group>"; };
 		F393855C1FA4BA3F0009E323 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
-		F3A9BEBA1FC32D26004D3EBF /* LastFMTracksParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastFMTracksParser.swift; sourceTree = "<group>"; };
-		F3A9BEBB1FC32D26004D3EBF /* AppsParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppsParser.swift; sourceTree = "<group>"; };
 		F3A9BEBC1FC32D26004D3EBF /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
-		F3A9BEBE1FC32D26004D3EBF /* LastFMTracksRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastFMTracksRequest.swift; sourceTree = "<group>"; };
 		F3A9BEBF1FC32D26004D3EBF /* IRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IRequest.swift; sourceTree = "<group>"; };
-		F3A9BEC01FC32D26004D3EBF /* AppleRSSRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleRSSRequest.swift; sourceTree = "<group>"; };
 		F3A9BEC11FC32D26004D3EBF /* RequestsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsFactory.swift; sourceTree = "<group>"; };
 		F3A9BECA1FC32F2F004D3EBF /* IRequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IRequestSender.swift; sourceTree = "<group>"; };
 		F3A9BECB1FC32F2F004D3EBF /* RequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
-		F3A9BECE1FC3316D004D3EBF /* AvatarAPIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarAPIModel.swift; sourceTree = "<group>"; };
 		F3AC0C541FA4CC8000224F32 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		F3B21A161FAF972A000F171D /* ConversationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsService.swift; sourceTree = "<group>"; };
 		F3B21A191FB1E977000F171D /* TinkoffChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffChat.xcdatamodel; sourceTree = "<group>"; };
@@ -225,7 +219,6 @@
 				F3A9BEB91FC32D26004D3EBF /* Parsers */,
 				F3A9BEBD1FC32D26004D3EBF /* Requests */,
 				F3A9BEC11FC32D26004D3EBF /* RequestsFactory.swift */,
-				F3A9BECE1FC3316D004D3EBF /* AvatarAPIModel.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -233,8 +226,7 @@
 		F3A9BEB91FC32D26004D3EBF /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
-				F3A9BEBA1FC32D26004D3EBF /* LastFMTracksParser.swift */,
-				F3A9BEBB1FC32D26004D3EBF /* AppsParser.swift */,
+				D48DC9161FC41BA90006BB52 /* AvatarsParser.swift */,
 				F3A9BEBC1FC32D26004D3EBF /* Parser.swift */,
 			);
 			path = Parsers;
@@ -243,9 +235,8 @@
 		F3A9BEBD1FC32D26004D3EBF /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				F3A9BEBE1FC32D26004D3EBF /* LastFMTracksRequest.swift */,
+				D48DC9141FC416A80006BB52 /* GetAvatarsRequest.swift */,
 				F3A9BEBF1FC32D26004D3EBF /* IRequest.swift */,
-				F3A9BEC01FC32D26004D3EBF /* AppleRSSRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -460,8 +451,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3B21A1F1FB1F8E6000F171D /* AppUser.swift in Sources */,
-				F3A9BEC21FC32D26004D3EBF /* LastFMTracksParser.swift in Sources */,
-				F3A9BEC51FC32D26004D3EBF /* LastFMTracksRequest.swift in Sources */,
 				F33506A11FBF97410049F0A7 /* CommunicationManager.swift in Sources */,
 				F31C7D621F93EB4E00F767D6 /* UIViewController+Extension.swift in Sources */,
 				F3D560B91F8AB6910042ADC6 /* IncomingMessageContainerView.swift in Sources */,
@@ -473,15 +462,14 @@
 				F33506A31FC050C80049F0A7 /* InMemoryStorageManager.swift in Sources */,
 				F3AC0C551FA4CC8000224F32 /* ProfileModel.swift in Sources */,
 				F31C7D671F94102600F767D6 /* Profile.swift in Sources */,
+				D48DC9151FC416A80006BB52 /* GetAvatarsRequest.swift in Sources */,
 				F3B21A171FAF972A000F171D /* ConversationsService.swift in Sources */,
 				F31C7D651F940E9A00F767D6 /* UIColor+Extension.swift in Sources */,
-				F3A9BEC31FC32D26004D3EBF /* AppsParser.swift in Sources */,
-				F3A9BECF1FC3316D004D3EBF /* AvatarAPIModel.swift in Sources */,
+				D48DC9171FC41BA90006BB52 /* AvatarsParser.swift in Sources */,
 				F3DBA4B21FC30F6E003884BA /* PhotoCollectionViewCell.swift in Sources */,
 				F3630A691F72C9D5005EA5BC /* ProfileVC.swift in Sources */,
 				F3B55F221F891D0D00F8B9A5 /* ConversationsListVC.swift in Sources */,
 				F3D560B21F8AA5A50042ADC6 /* MessageTableViewCell.swift in Sources */,
-				F3A9BEC71FC32D26004D3EBF /* AppleRSSRequest.swift in Sources */,
 				F358DB111F9B61A500C49EEA /* MultipeerCommunicator.swift in Sources */,
 				F3D560B01F8AA2520042ADC6 /* ConversationVС.swift in Sources */,
 				F3D6BD941FC2FB9200878814 /* DownloadAvatarCollectionVC.swift in Sources */,

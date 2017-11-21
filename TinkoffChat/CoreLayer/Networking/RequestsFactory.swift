@@ -1,41 +1,20 @@
 //
 //  RequestsFactory.swift
-//  SOADemo
+//  TinkoffChat
 //
-//  Created by a.y.zverev on 14.04.17.
-//  Copyright © 2017 a.y.zverev. All rights reserved.
+//  Created by Vladimir Pavlov on 21/11/2017.
+//  Copyright © 2017 Vladimir Pavlov. All rights reserved.
 //
 
 import Foundation
 
 enum RequestsFactory {
     
-    enum AppleRSSRequests {
-        
-        static func newAppsConfig() -> RequestConfig<[AppApiModel]> {
-            return RequestConfig<[AppApiModel]>(request:NewAppsRequest(), parser: AppsParser())
-        }
-        
-        static func topPaidAppsConfig() -> RequestConfig<[AppApiModel]> {
-            return RequestConfig<[AppApiModel]>(request:TopPaidAppsRequest(), parser: AppsParser())
-        }
-        
-        static func topFreeAppsConfig() -> RequestConfig<[AppApiModel]> {
-            return RequestConfig<[AppApiModel]>(request:TopFreeAppsRequest(), parser: AppsParser())
-        }
-    }
-    
-    enum LastFMRequests {
-        static func topTracksConfig() -> RequestConfig<[TrackApiModel]> {
-            let request = LastFMTopTracksRequest(apiKey: "d2fc8ba489c03df1a0f1eba71dea6fd9")
-            return RequestConfig<[TrackApiModel]>(request:request, parser: LastFMTracksParser())
-        }
-    }
-
     enum AvatarRequests {
 
-        static func avatars() -> RequestConfig<[AvatarAPIModel]> {
-            return RequestConfig<[AvatarAPIModel]>(request: request, parser: <#T##Parser<[AvatarAPIModel]>#>)
+        static func getAvatars() -> RequestConfig<[AvatarAPIModel]> {
+            let request = GetAvatarsRequest(apiKey: "7121519-f35b7d8c483ba86df63a4d2df")
+            return RequestConfig<[AvatarAPIModel]>(request: request, parser: AvatarsParser())
         }
     }
 }
