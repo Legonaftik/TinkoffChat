@@ -10,15 +10,23 @@ import UIKit
 
 class ScaleOnStateChangeButton: UIButton {
 
+    private let animationDuration = 0.5
+
     override var isEnabled: Bool {
         didSet {
             if oldValue != isEnabled {
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
-                }, completion: { _ in
-                    self.transform = .identity
-                })
+                animateStatusChange()
             }
         }
+    }
+
+    private func animateStatusChange() {
+        UIView.animate(withDuration: animationDuration/2, animations: {
+            self.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+        }, completion: { _ in
+            UIView.animate(withDuration: self.animationDuration/2, animations: {
+                self.transform = .identity
+            })
+        })
     }
 }

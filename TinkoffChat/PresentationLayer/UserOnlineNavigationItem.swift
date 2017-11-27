@@ -10,6 +10,8 @@ import UIKit
 
 class UserOnlineNavigationItem: UINavigationItem {
 
+    private let animationDuration = 1.0
+
     private lazy var titleLabel: UILabel? = {
         return self.titleView?.subviews.first as? UILabel
     }()
@@ -20,11 +22,14 @@ class UserOnlineNavigationItem: UINavigationItem {
     }
 
     func updateUserStatus(online: Bool) {
-        UIView.animate(withDuration: 1.0, animations: {
-            self.titleLabel?.textColor = online ? .green : .black
+        titleLabel?.textColor = online ? .green : .black
+
+        UIView.animate(withDuration: animationDuration/2, animations: {
             self.titleLabel?.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         }, completion: { _ in
-            self.titleLabel?.transform = .identity
+            UIView.animate(withDuration: self.animationDuration/2, animations: {
+                self.titleLabel?.transform = .identity
+            })
         })
     }
 }
