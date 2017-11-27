@@ -37,6 +37,7 @@
 		F3A9BEC81FC32D26004D3EBF /* RequestsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BEC11FC32D26004D3EBF /* RequestsFactory.swift */; };
 		F3A9BECC1FC32F2F004D3EBF /* IRequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BECA1FC32F2F004D3EBF /* IRequestSender.swift */; };
 		F3A9BECD1FC32F2F004D3EBF /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BECB1FC32F2F004D3EBF /* RequestSender.swift */; };
+		F3A9BEF71FCC0F46004D3EBF /* TinkoffEmitterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A9BEF61FCC0F46004D3EBF /* TinkoffEmitterCell.swift */; };
 		F3AC0C551FA4CC8000224F32 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AC0C541FA4CC8000224F32 /* ProfileModel.swift */; };
 		F3B21A171FAF972A000F171D /* ConversationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A161FAF972A000F171D /* ConversationsService.swift */; };
 		F3B21A1A1FB1E977000F171D /* TinkoffChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F3B21A181FB1E977000F171D /* TinkoffChat.xcdatamodeld */; };
@@ -87,6 +88,7 @@
 		F3A9BEC11FC32D26004D3EBF /* RequestsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsFactory.swift; sourceTree = "<group>"; };
 		F3A9BECA1FC32F2F004D3EBF /* IRequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IRequestSender.swift; sourceTree = "<group>"; };
 		F3A9BECB1FC32F2F004D3EBF /* RequestSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
+		F3A9BEF61FCC0F46004D3EBF /* TinkoffEmitterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinkoffEmitterCell.swift; sourceTree = "<group>"; };
 		F3AC0C541FA4CC8000224F32 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		F3B21A161FAF972A000F171D /* ConversationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsService.swift; sourceTree = "<group>"; };
 		F3B21A191FB1E977000F171D /* TinkoffChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinkoffChat.xcdatamodel; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		F393855A1FA4B90F0009E323 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
+				F3A9BEF61FCC0F46004D3EBF /* TinkoffEmitterCell.swift */,
 				D4261BF41FC4425600D75364 /* LoadingVC.swift */,
 				F393855B1FA4B9240009E323 /* Modules */,
 				F3630A6A1F72C9D5005EA5BC /* Main.storyboard */,
@@ -486,6 +489,7 @@
 				F3D6BD941FC2FB9200878814 /* DownloadAvatarCollectionVC.swift in Sources */,
 				F358DB131F9B69E900C49EEA /* ConversationsListModel.swift in Sources */,
 				F3B55F241F89214400F8B9A5 /* ConversationTableViewCell.swift in Sources */,
+				F3A9BEF71FCC0F46004D3EBF /* TinkoffEmitterCell.swift in Sources */,
 				F3630A671F72C9D5005EA5BC /* AppDelegate.swift in Sources */,
 				F35B35A61F94C8FD00D5F557 /* IStorageManager.swift in Sources */,
 				D48DC9191FC420300006BB52 /* IParser.swift in Sources */,
