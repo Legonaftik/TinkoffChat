@@ -12,6 +12,7 @@ class ConversationVС: UIViewController {
 
     var model: ConversationModel!
 
+    @IBOutlet weak var userOnlineNavigationItem: UserOnlineNavigationItem!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var sendButton: ScaleOnStateChangeButton!
     @IBOutlet weak var tableView: UITableView! {
@@ -52,7 +53,7 @@ class ConversationVС: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = model.chatHistory.userName
+        userOnlineNavigationItem.setup(username: model.chatHistory.userName, online: model.chatHistory.online)
         model.delegate = self
         addObserversForKeyboardAppearance()
     }
@@ -91,12 +92,14 @@ extension ConversationVС: ConversationModelDelegate {
     func didDisconnect(peerID: String) {
         if peerID == model.chatHistory.userID {
             sendButton.isEnabled = false
+            userOnlineNavigationItem.updateUserStatus(online: false)
         }
     }
 
     func didReconnect(peerID: String) {
         if peerID == model.chatHistory.userID {
             sendButton.isEnabled = !(inputTextField.text?.isEmpty ?? true)
+            userOnlineNavigationItem.updateUserStatus(online: true)
         }
     }
 
