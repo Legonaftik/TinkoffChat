@@ -471,6 +471,11 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very long username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gi-5V-a0D">
                                     <rect key="frame" x="-77" y="-11" width="153" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very long username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIx-cD-6DM">
+                                    <rect key="frame" x="-76.5" y="-11" width="153" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -478,7 +483,9 @@
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="2Gi-5V-a0D" firstAttribute="centerY" secondItem="jDZ-2W-ukd" secondAttribute="centerY" id="5U8-76-VBu"/>
+                                <constraint firstItem="kIx-cD-6DM" firstAttribute="centerY" secondItem="jDZ-2W-ukd" secondAttribute="centerY" id="6ra-ZI-2c4"/>
                                 <constraint firstItem="2Gi-5V-a0D" firstAttribute="centerX" secondItem="jDZ-2W-ukd" secondAttribute="centerX" id="LCK-HF-UUn"/>
+                                <constraint firstItem="kIx-cD-6DM" firstAttribute="centerX" secondItem="jDZ-2W-ukd" secondAttribute="centerX" id="eLb-5b-vB5"/>
                             </constraints>
                         </view>
                     </navigationItem>

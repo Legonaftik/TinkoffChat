@@ -12,24 +12,44 @@ class UserOnlineNavigationItem: UINavigationItem {
 
     private let animationDuration = 1.0
 
-    private lazy var titleLabel: UILabel? = {
-        return self.titleView?.subviews.first as? UILabel
+    private lazy var offlineLabel: UILabel = {
+        guard let label = self.titleView?.subviews.first as? UILabel else {
+            fatalError("Title view is not set up in storyboard.")
+        }
+        return label
+    }()
+
+    private lazy var onlineLabel: UILabel = {
+        guard let label = self.titleView?.subviews.last as? UILabel else {
+            fatalError("Title view is not set up in storyboard.")
+        }
+        return label
     }()
 
     func setup(username: String, online: Bool) {
-        titleLabel?.text = username
-        titleLabel?.textColor = online ? .green : .black
+        offlineLabel.text = username
+        onlineLabel.text = username
+
+        onlineLabel.alpha = online ? 1.0 : 0.0
     }
 
     func updateUserStatus(online: Bool) {
-        titleLabel?.textColor = online ? .green : .black
 
-        UIView.animate(withDuration: animationDuration/2, animations: {
-            self.titleLabel?.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-        }, completion: { _ in
-            UIView.animate(withDuration: self.animationDuration/2, animations: {
-                self.titleLabel?.transform = .identity
+        UIView.animateKeyframes(withDuration: animationDuration, delay: 0.0, options: [], animations: {
+
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0, animations: {
+                self.onlineLabel.alpha = online ? 1.0 : 0.0
             })
-        })
+
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5, animations: {
+                self.offlineLabel.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                self.onlineLabel.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            })
+
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5, animations: {
+                self.offlineLabel.transform = .identity
+                self.onlineLabel.transform = .identity
+            })
+        }, completion: nil)
     }
 }
