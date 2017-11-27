@@ -11,6 +11,8 @@ import UIKit
 class ScaleOnStateChangeButton: UIButton {
 
     private let animationDuration = 0.5
+    private let enabledButtonColor = UIColor(red: 0, green: 0.478431, blue: 1, alpha: 1)
+    private let disabledButtonColor = UIColor.lightGray
 
     override var isEnabled: Bool {
         didSet {
@@ -28,5 +30,9 @@ class ScaleOnStateChangeButton: UIButton {
                 self.transform = .identity
             })
         })
+
+        UIView.transition(with: self, duration: animationDuration, options: [], animations: {
+            self.tintColor = self.isEnabled ? self.enabledButtonColor : self.disabledButtonColor
+        }, completion: nil)
     }
 }
