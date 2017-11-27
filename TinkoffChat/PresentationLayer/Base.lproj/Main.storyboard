@@ -426,7 +426,7 @@
                                             <action selector="didChangeMessageText:" destination="2GI-yy-TU1" eventType="editingChanged" id="1nQ-vf-pL8"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zj9-LJ-CfJ">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zj9-LJ-CfJ" customClass="ScaleOnStateChangeButton" customModule="TinkoffChat" customModuleProvider="target">
                                         <rect key="frame" x="331" y="8" width="36" height="30"/>
                                         <state key="normal" title="Send"/>
                                         <connections>

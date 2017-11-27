@@ -13,7 +13,7 @@ class ConversationVС: UIViewController {
     var model: ConversationModel!
 
     @IBOutlet weak var inputTextField: UITextField!
-    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var sendButton: ScaleOnStateChangeButton!
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.hideKeyboard))
@@ -23,12 +23,12 @@ class ConversationVС: UIViewController {
 
     @IBAction func didChangeMessageText(_ sender: UITextField) {
         guard let messageText = sender.text else {
-            sendButton.isEnabled = false
+                self.sendButton.isEnabled = false
             return
         }
+
         sendButton.isEnabled = model.chatHistory.online && !messageText.isEmpty
     }
-
 
     @IBAction func sendMessage(_ sender: UIButton) {
         guard let messageText = inputTextField.text,
@@ -91,18 +91,12 @@ extension ConversationVС: ConversationModelDelegate {
     func didDisconnect(peerID: String) {
         if peerID == model.chatHistory.userID {
             sendButton.isEnabled = false
-            
-            dismiss(animated: true, completion: nil)
-            displayAlert(message: "Lost connection with \(model.chatHistory.userName).")
         }
     }
 
     func didReconnect(peerID: String) {
         if peerID == model.chatHistory.userID {
             sendButton.isEnabled = !(inputTextField.text?.isEmpty ?? true)
-
-            dismiss(animated: true, completion: nil)
-            displayAlert(message: "\(model.chatHistory.userName) is online again.")
         }
     }
 
