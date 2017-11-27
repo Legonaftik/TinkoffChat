@@ -31,6 +31,7 @@ class UserOnlineNavigationItem: UINavigationItem {
         onlineLabel.text = username
 
         onlineLabel.alpha = online ? 1.0 : 0.0
+        offlineLabel.alpha = online ? 0.0 : 1.0
     }
 
     func updateUserStatus(online: Bool) {
@@ -39,6 +40,7 @@ class UserOnlineNavigationItem: UINavigationItem {
 
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 1.0, animations: {
                 self.onlineLabel.alpha = online ? 1.0 : 0.0
+                self.offlineLabel.alpha = online ? 0.0 : 1.0
             })
 
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5, animations: {
