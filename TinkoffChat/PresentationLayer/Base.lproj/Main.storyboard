@@ -295,6 +295,7 @@
                         <viewLayoutGuide key="safeArea" id="Khc-gr-mbP"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tinkoff Chat" id="x4C-Wk-uf9">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Wx0-yh-6on"/>
                         <barButtonItem key="rightBarButtonItem" title="Profile" id="YTm-CR-onn">
                             <connections>
                                 <segue destination="vnf-u7-wb8" kind="presentation" id="mjm-mR-cFR"/>
@@ -309,7 +310,7 @@
             </objects>
             <point key="canvasLocation" x="525.60000000000002" y="-9.4452773613193415"/>
         </scene>
-        <!--Person name-->
+        <!--Conversation VС-->
         <scene sceneID="J0P-1u-6uN">
             <objects>
                 <viewController id="2GI-yy-TU1" customClass="ConversationVС" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
@@ -426,7 +427,7 @@
                                             <action selector="didChangeMessageText:" destination="2GI-yy-TU1" eventType="editingChanged" id="1nQ-vf-pL8"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zj9-LJ-CfJ">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zj9-LJ-CfJ" customClass="ScaleOnStateChangeButton" customModule="TinkoffChat" customModuleProvider="target">
                                         <rect key="frame" x="331" y="8" width="36" height="30"/>
                                         <state key="normal" title="Send"/>
                                         <connections>
@@ -461,11 +462,39 @@
                         <viewLayoutGuide key="safeArea" id="UdP-4K-OKA"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Person name" id="YmJ-dk-Fzz"/>
+                    <navigationItem key="navigationItem" id="YmJ-dk-Fzz" customClass="UserOnlineNavigationItem" customModule="TinkoffChat" customModuleProvider="target">
+                        <barButtonItem key="backBarButtonItem" title=" " id="J4p-JC-frX"/>
+                        <view key="titleView" contentMode="scaleToFill" id="jDZ-2W-ukd">
+                            <rect key="frame" x="187.5" y="22" width="0.0" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very long username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gi-5V-a0D">
+                                    <rect key="frame" x="-77" y="-11" width="153" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Very long username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIx-cD-6DM">
+                                    <rect key="frame" x="-76.5" y="-11" width="153" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="2Gi-5V-a0D" firstAttribute="centerY" secondItem="jDZ-2W-ukd" secondAttribute="centerY" id="5U8-76-VBu"/>
+                                <constraint firstItem="kIx-cD-6DM" firstAttribute="centerY" secondItem="jDZ-2W-ukd" secondAttribute="centerY" id="6ra-ZI-2c4"/>
+                                <constraint firstItem="2Gi-5V-a0D" firstAttribute="centerX" secondItem="jDZ-2W-ukd" secondAttribute="centerX" id="LCK-HF-UUn"/>
+                                <constraint firstItem="kIx-cD-6DM" firstAttribute="centerX" secondItem="jDZ-2W-ukd" secondAttribute="centerX" id="eLb-5b-vB5"/>
+                            </constraints>
+                        </view>
+                    </navigationItem>
                     <connections>
                         <outlet property="inputTextField" destination="iRH-By-v9y" id="KS8-a1-jrL"/>
+                        <outlet property="navigationItem" destination="YmJ-dk-Fzz" id="ebF-hU-J2Y"/>
                         <outlet property="sendButton" destination="Zj9-LJ-CfJ" id="xtp-3L-9F7"/>
                         <outlet property="tableView" destination="hBD-Qq-NHo" id="FN7-zJ-Ndy"/>
+                        <outlet property="userOnlineNavigationItem" destination="YmJ-dk-Fzz" id="gNs-ta-OZU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kny-oD-w78" userLabel="First Responder" sceneMemberID="firstResponder"/>
